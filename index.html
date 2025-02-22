@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>REX MARKET</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#produk">Produk</a></li>
+        <li><a href="#kontak">Kontak</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <section id="home">
+      <h1>Welcome To My Website</h1>
+      <p>Kami hanya menyediakan 1 produk untuk anda 🗿</p>
+    </section>
+    <section id="produk">
+      <h1>Produk</h1>
+      <div class="produk">
+        <img src="image-produk.jpg" alt="Gambar Produk">
+        <h2>Panel Bot Node Js</h2>
+        <p>Harga: Rp 1.000 / 1GB</p>
+        <select id="jumlah-ram" name="jumlah-ram">
+          <option value="">Pilih Jumlah Ram</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+        <p id="harga-total">Harga Total: Rp 0</p>
+        <button class="order-btn" id="order-btn" disabled>Order</button>
+      </div>
+    </section>
+    <section id="kontak">
+      <h1>Kontak</h1>
+      <p>Email : myrex.rexaja.1@gmail.com</p>
+    </section>
+  </main>
+  <script>
+    const selectJumlahRam = document.getElementById('jumlah-ram');
+    const hargaTotal = document.getElementById('harga-total');
+    const orderBtn = document.getElementById('order-btn');
+
+    selectJumlahRam.addEventListener('change', () => {
+      const hargaSatuan = 1000;
+      const jumlahRam = parseInt(selectJumlahRam.value);
+      const totalHarga = hargaSatuan * jumlahRam;
+
+      hargaTotal.textContent = `Harga Total: Rp ${totalHarga}`;
+
+      if (selectJumlahRam.value !== '') {
+        orderBtn.disabled = false;
+      } else {
+        orderBtn.disabled = true;
+      }
+    });
+
+    orderBtn.addEventListener('click', () => {
+      const namaProduk = orderBtn.parentNode.querySelector('h2').textContent;
+      const hargaSatuan = 1000;
+      const jumlahRam = parseInt(selectJumlahRam.value);
+      const totalHarga = hargaSatuan * jumlahRam;
+      const url = `https://wa.me/6285600462532?text=Halo%2C+saya+ingin+memesan+${namaProduk}+sebanyak+${jumlahRam}+dengan+harga+total+Rp+${totalHarga}.`;
+      window.open(url, '_blank');
+    });
+  </script>
+</body>
+</html>
