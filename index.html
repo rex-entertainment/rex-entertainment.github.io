@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,42 +8,77 @@
 </head>
 <body>
 
-    <header>
+    <div class="login-container">
         <h1>REX MARKET</h1>
-    </header>
 
-    <main>
-        <section class="login-container">
+        <!-- Form Login -->
+        <div class="form-box">
             <h2>Login</h2>
             <form id="login-form">
                 <label>Username:</label>
                 <input type="text" id="login-username" required>
+                <label>Password:</label>
+                <input type="password" id="login-password" required>
                 <button type="submit">Login</button>
             </form>
-            <p id="error-message" style="color: red; display: none;"></p>
-        </section>
-    </main>
+        </div>
+
+        <!-- Form Register -->
+        <div class="form-box">
+            <h2>Register</h2>
+            <form id="register-form">
+                <label>Username:</label>
+                <input type="text" id="register-username" required>
+                <label>Password:</label>
+                <input type="password" id="register-password" required>
+                <button type="submit">Register</button>
+            </form>
+        </div>
+    </div>
 
     <script>
+        // Cek apakah sudah login sebelumnya
+        if (localStorage.getItem("loggedInUser")) {
+            window.location.href = "order.html";
+        }
+
+        // Register
+        document.getElementById("register-form").addEventListener("submit", function(e) {
+            e.preventDefault();
+            let username = document.getElementById("register-username").value;
+            let password = document.getElementById("register-password").value;
+
+            // Cek apakah username sudah dipakai
+            if (localStorage.getItem(username)) {
+                alert("Username sudah digunakan!");
+                return;
+            }
+
+            // Simpan akun ke localStorage
+            localStorage.setItem(username, JSON.stringify({ password: password, saldo: 0 }));
+            alert("Registrasi berhasil! Silakan login.");
+        });
+
+        // Login
         document.getElementById("login-form").addEventListener("submit", function(e) {
             e.preventDefault();
-            let username = document.getElementById("login-username").value.trim();
+            let username = document.getElementById("login-username").value;
+            let password = document.getElementById("login-password").value;
+            let userData = localStorage.getItem(username);
 
-            if (!username) {
-                alert("Masukkan username!");
+            if (!userData) {
+                alert("Username tidak terdaftar!");
                 return;
             }
 
-            // Cek apakah username sudah pernah terdaftar
-            let registeredUsers = JSON.parse(localStorage.getItem("registered_users")) || [];
-            if (!registeredUsers.includes(username)) {
-                document.getElementById("error-message").textContent = "Username belum terdaftar!";
-                document.getElementById("error-message").style.display = "block";
+            let user = JSON.parse(userData);
+            if (user.password !== password) {
+                alert("Password salah!");
                 return;
             }
 
-            // Simpan username ke localStorage dan arahkan ke order.html
-            localStorage.setItem("username", username);
+            // Simpan sesi login
+            localStorage.setItem("loggedInUser", username);
             window.location.href = "order.html";
         });
     </script>
