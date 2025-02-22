@@ -1,86 +1,160 @@
-body {
-  font-family: Arial, sans-serif;
+/* Reset dasar */
+* {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
 }
 
-header {
-  background-color: #333;
-  color: #fff;
-  padding: 20px;
+body {
+  background: linear-gradient(to right, #ff7e5f, #feb47b);
+  color: #333;
   text-align: center;
+}
+
+/* Navigasi */
+header {
+  background: linear-gradient(to right, #6a11cb, #2575fc);
+  padding: 15px 0;
 }
 
 nav ul {
   list-style: none;
-  margin: 0;
-  padding: 0;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
 }
 
-nav li {
-  margin-right: 20px;
+nav ul li {
+  margin: 0 15px;
 }
 
-nav a {
-  color: #fff;
+nav ul li a {
   text-decoration: none;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  transition: color 0.3s;
 }
 
+nav ul li a:hover {
+  color: #ffeb3b;
+}
+
+/* Bagian utama */
 main {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   padding: 20px;
 }
 
 section {
-  background-color: #f7f7f7;
+  margin-bottom: 30px;
+  background: white;
   padding: 20px;
-  margin-bottom: 20px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
 }
 
-h1 {
-  font-size: 24px;
-  margin-bottom: 10px;
-}
-
-.produk {
+/* Form */
+form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 20px;
+}
+
+form input {
+  width: 80%;
+  padding: 10px;
+  margin: 5px 0;
+  border: 2px solid #007bff;
+  border-radius: 5px;
+}
+
+form input[type="submit"] {
+  background: linear-gradient(to right, #ff512f, #dd2476);
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+form input[type="submit"]:hover {
+  background: linear-gradient(to right, #dd2476, #ff512f);
+}
+
+/* Produk */
+.produk {
+  text-align: center;
 }
 
 .produk img {
-  width: 100px;
-  height: 100px;
-  object-fit: cover;
-  margin-bottom: 10px;
+  width: 200px;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
 }
 
-#harga-total {
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-
-.order-btn {
-  background-color: #333;
-  color: #fff;
-  padding: 10px 20px;
-  border: none;
+.produk select {
+  margin: 10px 0;
+  padding: 10px;
+  border: 2px solid #ff7e5f;
   border-radius: 5px;
-  cursor: pointer;
 }
 
-.order-btn:hover {
-  background-color: #555;
+/* Tombol Order */
+.order-btn {
+  background: linear-gradient(to right, #4CAF50, #2E8B57);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background 0.3s;
 }
 
 .order-btn:disabled {
-  background-color: #ccc;
-  color: #666;
+  background: #ccc;
   cursor: not-allowed;
+}
+
+.order-btn:hover:not(:disabled) {
+  background: linear-gradient(to right, #2E8B57, #4CAF50);
+}
+
+/* Panel Admin */
+#owner-panel {
+  margin-top: 20px;
+  padding: 15px;
+  background: linear-gradient(to right, #f9a825, #f57c00);
+  border-radius: 10px;
+  color: white;
+}
+
+#owner-panel input {
+  padding: 5px;
+  margin: 5px;
+  border: 2px solid white;
+  border-radius: 5px;
+}
+
+#owner-panel button {
+  background: linear-gradient(to right, #ff9800, #e65100);
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background 0.3s;
+}
+
+#owner-panel button:hover {
+  background: linear-gradient(to right, #e65100, #ff9800);
+}
+
+/* Footer */
+footer {
+  margin-top: 20px;
+  padding: 10px;
+  background: linear-gradient(to right, #6a11cb, #2575fc);
+  color: white;
+  text-align: center;
 }
