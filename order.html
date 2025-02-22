@@ -1,68 +1,94 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Order - REX MARKET</title>
-    <link rel="stylesheet" href="style.css">
+    <title>REX MARKET</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; }
+        .admin-container { display: none; margin-top: 20px; }
+        .admin-box { display: flex; justify-content: center; gap: 20px; }
+        .admin-card { border: 1px solid #ddd; padding: 15px; width: 200px; }
+    </style>
 </head>
 <body>
 
-    <header>
-        <nav>
-            <ul>
-                <li><a href="order.html">Order</a></li>
-                <li><a href="logout.php">Logout</a></li>
-            </ul>
-        </nav>
-    </header>
+    <h1>REX MARKET</h1>
+    <p>Saldo: <span id="saldo">0</span> IDR</p>
 
-    <main>
-        <section class="saldo-container">
-            <h2>Saldo: 
-                <span>
-                    <?php 
-                    session_start();
-                    echo isset($_SESSION['saldo']) ? $_SESSION['saldo'] . " IDR" : "0 IDR"; 
-                    ?>
-                </span>
-            </h2>
-            <button>Beli Mata Uang</button>
-        </section>
+    <div class="admin-container" id="admin-panel">
+        <h2>Admin Panel</h2>
+        <div class="admin-box">
+            <div class="admin-card">
+                <h3>Tambah Saldo</h3>
+                <label>Username:</label>
+                <input type="text" id="target-user">
+                <label>Jumlah:</label>
+                <input type="number" id="amount">
+                <button onclick="tambahSaldo()">Tambah</button>
+            </div>
 
-        <?php
-        // Hanya owner yang bisa melihat panel ini
-        if (isset($_SESSION['username']) && $_SESSION['username'] === 'rexowner') {
-        ?>
-            <section class="admin-container">
-                <h2>Admin Panel</h2>
-                <div class="admin-box">
-                    <div class="admin-card">
-                        <h3>Tambah Saldo</h3>
-                        <form action="tambah_saldo.php" method="POST">
-                            <label>Username:</label>
-                            <input type="text" name="username" required>
-                            <label>Jumlah Saldo:</label>
-                            <input type="number" name="amount" required>
-                            <button type="submit">Tambah Saldo</button>
-                        </form>
-                    </div>
+            <div class="admin-card">
+                <h3>Kurangi Saldo</h3>
+                <label>Username:</label>
+                <input type="text" id="target-user-kurang">
+                <label>Jumlah:</label>
+                <input type="number" id="amount-kurang">
+                <button onclick="kurangiSaldo()">Kurangi</button>
+            </div>
+        </div>
+    </div>
 
-                    <div class="admin-card">
-                        <h3>Kurangi Saldo</h3>
-                        <form action="kurangi_saldo.php" method="POST">
-                            <label>Username:</label>
-                            <input type="text" name="username" required>
-                            <label>Jumlah Saldo:</label>
-                            <input type="number" name="amount" required>
-                            <button type="submit">Kurangi Saldo</button>
-                        </form>
-                    </div>
-                </div>
-            </section>
-        <?php } ?>
+    <script>
+        let username = localStorage.getItem("username") || prompt("Masukkan Username:");
+        localStorage.setItem("username", username);
 
-    </main>
+        if (username === "rexowner") {
+            document.getElementById("admin-panel").style.display = "block";
+        }
+
+        function getSaldo(user) {
+            return parseInt(localStorage.getItem(user + "_saldo")) || 0;
+        }
+
+        function updateSaldo() {
+            document.getElementById("saldo").textContent = getSaldo(username);
+        }
+
+        function tambahSaldo() {
+            let targetUser = document.getElementById("target-user").value;
+            let amount = parseInt(document.getElementById("amount").value);
+            if (!targetUser || isNaN(amount) || amount <= 0) {
+                alert("Masukkan username dan jumlah saldo yang valid.");
+                return;
+            }
+            let saldo = getSaldo(targetUser);
+            saldo += amount;
+            localStorage.setItem(targetUser + "_saldo", saldo);
+            alert(`Saldo ${amount} IDR berhasil ditambahkan ke ${targetUser}`);
+            updateSaldo();
+        }
+
+        function kurangiSaldo() {
+            let targetUser = document.getElementById("target-user-kurang").value;
+            let amount = parseInt(document.getElementById("amount-kurang").value);
+            if (!targetUser || isNaN(amount) || amount <= 0) {
+                alert("Masukkan username dan jumlah saldo yang valid.");
+                return;
+            }
+            let saldo = getSaldo(targetUser);
+            if (saldo < amount) {
+                alert("Saldo tidak cukup!");
+                return;
+            }
+            saldo -= amount;
+            localStorage.setItem(targetUser + "_saldo", saldo);
+            alert(`Saldo ${amount} IDR berhasil dikurangi dari ${targetUser}`);
+            updateSaldo();
+        }
+
+        updateSaldo();
+    </script>
 
 </body>
 </html>
