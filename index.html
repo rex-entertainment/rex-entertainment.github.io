@@ -3,25 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>REX MARKET</title>
+    <title>Login - REX MARKET</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
     <header>
-        <nav>
-            <ul>
-                <li><a href="register.html">Register</a></li>
-                <li><a href="login.html">Login</a></li>
-            </ul>
-        </nav>
+        <h1>REX MARKET</h1>
     </header>
-    <main class="center-content">
-        <h1>Selamat Datang di REX MARKET</h1>
-        <p>Silakan Login atau Register untuk melanjutkan.</p>
-        <div class="button-container">
-            <a href="register.html" class="btn">Register</a>
-            <a href="login.html" class="btn">Login</a>
-        </div>
+
+    <main>
+        <section class="login-container">
+            <h2>Login</h2>
+            <form id="login-form">
+                <label>Username:</label>
+                <input type="text" id="login-username" required>
+                <button type="submit">Login</button>
+            </form>
+            <p id="error-message" style="color: red; display: none;"></p>
+        </section>
     </main>
+
+    <script>
+        document.getElementById("login-form").addEventListener("submit", function(e) {
+            e.preventDefault();
+            let username = document.getElementById("login-username").value.trim();
+
+            if (!username) {
+                alert("Masukkan username!");
+                return;
+            }
+
+            // Cek apakah username sudah pernah terdaftar
+            let registeredUsers = JSON.parse(localStorage.getItem("registered_users")) || [];
+            if (!registeredUsers.includes(username)) {
+                document.getElementById("error-message").textContent = "Username belum terdaftar!";
+                document.getElementById("error-message").style.display = "block";
+                return;
+            }
+
+            // Simpan username ke localStorage dan arahkan ke order.html
+            localStorage.setItem("username", username);
+            window.location.href = "order.html";
+        });
+    </script>
+
 </body>
 </html>
