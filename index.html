@@ -10,29 +10,18 @@
     <header>
         <nav>
             <ul>
-                <li><a href="index.html">Home</a></li>
                 <li><a href="register.html">Register</a></li>
-                <li><a href="login.html" id="login-link">Login</a></li>
-                <li><a href="order.html" id="order-link" style="display: none;">Order</a></li>
-                <li><a href="#" id="logout-btn" style="display: none;">Logout</a></li>
+                <li><a href="login.html">Login</a></li>
             </ul>
         </nav>
     </header>
-    <main>
-        <h1>Welcome To REX MARKET</h1>
-        <p>Silakan login atau register untuk mulai memesan.</p>
+    <main class="center-content">
+        <h1>Selamat Datang di REX MARKET</h1>
+        <p>Silakan Login atau Register untuk melanjutkan.</p>
+        <div class="button-container">
+            <a href="register.html" class="btn">Register</a>
+            <a href="login.html" class="btn">Login</a>
+        </div>
     </main>
-    <script>
-        if (localStorage.getItem("isLoggedIn") === "true") {
-            document.getElementById("login-link").style.display = "none";
-            document.getElementById("order-link").style.display = "inline";
-            document.getElementById("logout-btn").style.display = "inline";
-        }
-
-        document.getElementById("logout-btn").addEventListener("click", () => {
-            localStorage.setItem("isLoggedIn", "false");
-            window.location.href = "index.html";
-        });
-    </script>
 </body>
 </html>
