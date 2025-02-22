@@ -20,7 +20,7 @@
     <main>
         <!-- Bagian Saldo -->
         <section class="saldo-container">
-            <h2>Saldo: <span id="saldo">0</span> IDR</h2>
+            <h2>Saldo: <span id="saldo">0</span></h2>
             <button id="beli-mata-uang">Beli Mata Uang</button>
         </section>
 
@@ -74,7 +74,7 @@
         // Jika login sebagai Owner, tampilkan Menu Admin
         if (username === "rexowner") {
             document.getElementById("admin-menu").style.display = "inline";
-            document.getElementById("admin-panel").style.display = "block";
+            document.getElementById("admin-panel").style.display = "inline";
         }
 
         // Beli Mata Uang (Chat ke Owner)
