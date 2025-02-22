@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order - REX MARKET</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="order.html">Order</a></li>
+                <li><a href="#" id="logout-btn">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1>Order Produk</h1>
+        <p><strong>Username:</strong> <span id="user-info"></span></p>
+        <p><strong>Password:</strong> <span id="password-info"></span></p>
+        
+        <h2>Saldo: <span id="saldo">0</span> IDR</h2>
+        <button id="beli-mata-uang">Beli Mata Uang</button>
+        
+        <h2>Pesan Produk</h2>
+        <select id="jumlah-ram">
+            <option value="">Pilih Jumlah Ram</option>
+            <option value="1">1 GB</option>
+            <option value="2">2 GB</option>
+            <option value="3">3 GB</option>
+            <option value="4">4 GB</option>
+        </select>
+        <p id="harga-total">Harga Total: Rp 0</p>
+        <button id="order-btn" disabled>Order</button>
+    </main>
+    <script>
+        if (localStorage.getItem("isLoggedIn") !== "true") {
+            window.location.href = "login.html";
+        }
+
+        document.getElementById("user-info").textContent = localStorage.getItem("username");
+        document.getElementById("password-info").textContent = localStorage.getItem("password");
+
+        let saldoMataUang = 0;
+        const saldoElem = document.getElementById("saldo");
+        const beliMataUang = document.getElementById("beli-mata-uang");
+        const selectJumlahRam = document.getElementById("jumlah-ram");
+        const hargaTotal = document.getElementById("harga-total");
+        const orderBtn = document.getElementById("order-btn");
+
+        beliMataUang.addEventListener("click", () => {
+            window.open("https://wa.me/6285600462532?text=Halo%2C+saya+ingin+membeli+mata+uang+IDR", "_blank");
+        });
+
+        selectJumlahRam.addEventListener("change", () => {
+            const hargaSatuan = 1000;
+            const jumlahRam = parseInt(selectJumlahRam.value);
+            const totalHarga = hargaSatuan * jumlahRam;
+
+            hargaTotal.textContent = `Harga Total: Rp ${totalHarga}`;
+            orderBtn.disabled = selectJumlahRam.value === "";
+        });
+
+        document.getElementById("logout-btn").addEventListener("click", () => {
+            localStorage.setItem("isLoggedIn", "false");
+            window.location.href = "login.html";
+        });
+    </script>
+</body>
+</html>
