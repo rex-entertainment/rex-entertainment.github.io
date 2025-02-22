@@ -1,111 +1,121 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Order - REX MARKET</title>
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order - REX MARKET</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
 <header>
-<nav>
-<ul>
-<li><a href="order.html">Order</a></li>
-<li><a href="logout.php">Logout</a></li>
-</ul>
-</nav>
+    <nav>
+        <ul>
+            <li><a href="order.html">Order</a></li>
+            <li><a href="logout.php">Logout</a></li>
+        </ul>
+    </nav>
 </header>
 
 <!-- Wadah Admin (Hanya Owner yang Bisa Melihat) -->
 <section class="admin-container">
-<h2>Admin Panel</h2>
-<div class="admin-box">
-<div class="admin-card">
-<h3>Tambah Saldo</h3>
-<form id="tambah-saldo-form">
-<label>Username:</label>
-<input type="text" id="username-tambah" required>
-<label>Jumlah Saldo:</label>
-<input type="number" id="amount-tambah" required>
-<button type="submit">Tambah Saldo</button>
-</form>
-</div>
-<div class="admin-card">
-<h3>Kurangi Saldo</h3>
-<form id="kurangi-saldo-form">
-<label>Username:</label>
-<input type="text" id="username-kurang" required>
-<label>Jumlah Saldo:</label>
-<input type="number" id="amount-kurang" required>
-<button type="submit">Kurangi Saldo</button>
-</form>
-</div>
-</div>
+    <h2>Admin Panel</h2>
+    <div class="admin-box">
+        <div class="admin-card">
+            <h3>Tambah Saldo</h3>
+            <form id="tambah-saldo-form">
+                <label>Username:</label>
+                <input type="text" id="username-tambah" required>
+                <label>Jumlah Saldo:</label>
+                <input type="number" id="amount-tambah" required>
+                <button type="submit">Tambah Saldo</button>
+            </form>
+        </div>
+        <div class="admin-card">
+            <h3>Kurangi Saldo</h3>
+            <form id="kurangi-saldo-form">
+                <label>Username:</label>
+                <input type="text" id="username-kurang" required>
+                <label>Jumlah Saldo:</label>
+                <input type="number" id="amount-kurang" required>
+                <button type="submit">Kurangi Saldo</button>
+            </form>
+        </div>
+    </div>
 </section>
 
 <main>
-<!-- Bagian Saldo -->
-<section class="saldo-container">
-<h2>Saldo: <span id="saldo">0</span> IDR</h2>
-<button id="beli-saldo-btn">Beli Mata Uang</button>
-</section>
+    <!-- Bagian Saldo -->
+    <section class="saldo-container">
+        <h2>Saldo: <span id="saldo">0</span> IDR</h2>
+        <button id="beli-saldo-btn">Beli Mata Uang</button>
+    </section>
 
-```<!-- Bagian Produk -->
-<section class="produk-container">
-  <h2>Order Produk</h2>
-  <div class="produk-card">
-    <img src="image-produk.jpg" alt="PANEL BOT" class="product-image">
-    <h3>PANEL BOT</h3>
-    <p>Harga: Rp 1.000 / 1GB</p>
-    <select>
-      <option value="">Pilih Jumlah Ram</option>
-      <option value="1">1 GB</option>
-      <option value="2">2 GB</option>
-      <option value="3">3 GB</option>
-      <option value="4">4 GB</option>
-    </select>
-    <p>Harga Total: Rp 0</p>
-    <button>Order</button>
-  </div>
-</section>
-```
+    <!-- Bagian Produk -->
+    <section class="produk-container">
+        <h2>Order Produk</h2>
+        <div class="produk-card">
+            <img src="image-produk.jpg" alt="PANEL BOT" class="product-image">
+            <h3>PANEL BOT</h3>
+            <p>Harga: Rp 1.000 / 1GB</p>
+            <select>
+                <option value="">Pilih Jumlah Ram</option>
+                <option value="1">1 GB</option>
+                <option value="2">2 GB</option>
+                <option value="3">3 GB</option>
+                <option value="4">4 GB</option>
+            </select>
+            <p>Harga Total: Rp 0</p>
+            <button>Order</button>
+        </div>
+    </section>
 </main>
 
 <script>
-const tambahSaldoForm = document.getElementById('tambah-saldo-form');
-const kurangiSaldoForm = document.getElementById('kurangi-saldo-form');
-const saldoElement = document.getElementById('saldo');
-const beliSaldoBtn = document.getElementById('beli-saldo-btn');
+// Ambil saldo dari localStorage saat halaman dimuat
+let saldo = localStorage.getItem("saldo") ? parseInt(localStorage.getItem("saldo")) : 0;
+const saldoElement = document.getElementById("saldo");
+saldoElement.textContent = saldo;
 
-```let saldo = 0;
-
-tambahSaldoForm.addEventListener('submit', (e) => {
-  e.preventDefault();
-  const username = document.getElementById('username-tambah').value;
-  const amount = parseInt(document.getElementById('amount-tambah').value);
-  saldo += amount;
-  saldoElement.textContent = saldo;
-});
-
-kurangiSaldoForm.addEventListener('submit', (e) => {
-  e.preventDefault();
-  const username = document.getElementById('username-kurang').value;
-  const amount = parseInt(document.getElementById('amount-kurang').value);
-  if (saldo >= amount) {
-    saldo -= amount;
+// Fungsi untuk memperbarui saldo di tampilan dan menyimpannya ke localStorage
+function updateSaldo() {
     saldoElement.textContent = saldo;
-  } else {
-    alert('Saldo tidak cukup!');
-  }
+    localStorage.setItem("saldo", saldo);
+}
+
+document.getElementById('tambah-saldo-form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const amount = parseInt(document.getElementById('amount-tambah').value);
+    if (!isNaN(amount) && amount > 0) {
+        saldo += amount;
+        updateSaldo();
+        alert(`Saldo sebesar ${amount} IDR telah ditambahkan!`);
+    } else {
+        alert("Masukkan jumlah saldo yang valid.");
+    }
 });
 
-beliSaldoBtn.addEventListener('click', () => {
-  const saldo = document.getElementById('saldo').textContent;
-  const whatsappLink = `https://wa.me/62856004625328?text=Saya ingin membeli saldo sebesar ${saldo} IDR`;
-  window.open(whatsappLink, '_blank');
+document.getElementById('kurangi-saldo-form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const amount = parseInt(document.getElementById('amount-kurang').value);
+    if (!isNaN(amount) && amount > 0) {
+        if (saldo >= amount) {
+            saldo -= amount;
+            updateSaldo();
+            alert(`Saldo sebesar ${amount} IDR telah dikurangi!`);
+        } else {
+            alert("Saldo tidak cukup!");
+        }
+    } else {
+        alert("Masukkan jumlah saldo yang valid.");
+    }
 });
-```
+
+document.getElementById("beli-saldo-btn").addEventListener("click", () => {
+    const whatsappLink = `https://wa.me/62856004625328?text=Saya ingin membeli saldo sebesar ${saldo} IDR`;
+    window.open(whatsappLink, "_blank");
+});
 </script>
+
 </body>
-  </html>
+</html>
