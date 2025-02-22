@@ -1,190 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>REX MARKET</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REX MARKET</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <nav>
-      <ul>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#register">Register</a></li>
-        <li><a href="#login">Login</a></li>
-        <li><a href="#produk">Produk</a></li>
-        <li><a href="#kontak">Kontak</a></li>
-      </ul>
-    </nav>
-  </header>
-  <main>
-    <section id="home">
-      <h1>Welcome To REX MARKET</h1>
-    </section>
-
-    <section id="register">
-      <h1>Register</h1>
-      <form id="register-form">
-        <label for="reg-username">Username:</label>
-        <input type="text" id="reg-username"><br><br>
-        <label for="reg-password">Password:</label>
-        <input type="password" id="reg-password"><br><br>
-        <input type="submit" value="Register">
-      </form>
-    </section>
-
-    <section id="login">
-      <h1>Login</h1>
-      <form id="login-form">
-        <label for="login-username">Username:</label>
-        <input type="text" id="login-username"><br><br>
-        <label for="login-password">Password:</label>
-        <input type="password" id="login-password"><br><br>
-        <input type="submit" value="Login">
-      </form>
-    </section>
-
-    <section id="mata-uang" style="display: none;">
-      <h1>Mata Uang Virtual</h1>
-      <p>Saldo: <span id="saldo">0</span> REX</p>
-      <button id="beli-mata-uang">Beli Mata Uang</button>
-      
-      <!-- Panel Owner (Hanya Muncul Jika Owner Login) -->
-      <div id="owner-panel" style="display: none;">
-        <h2>Admin Panel</h2>
-        <label for="user-target">Username:</label>
-        <input type="text" id="user-target">
-        <label for="saldo-tambah">Tambah Saldo:</label>
-        <input type="number" id="saldo-tambah">
-        <button id="add-saldo">Add Saldo</button>
-      </div>
-    </section>
-
-    <section id="produk">
-      <h1>Produk</h1>
-      <div class="produk">
-        <img src="image-produk.jpg" alt="Gambar Produk">
-        <h2>Panel Bot Node Js</h2>
-        <p>Harga: 1,000 REX / 1GB</p>
-        <select id="jumlah-ram">
-          <option value="">Pilih Jumlah Ram</option>
-          <option value="1">1 GB</option>
-          <option value="2">2 GB</option>
-          <option value="3">3 GB</option>
-          <option value="4">4 GB</option>
-          <option value="5">5 GB</option>
-        </select>
-        <p id="harga-total">Harga Total: 0 REX</p>
-        <button class="order-btn" id="order-btn" disabled>Order</button>
-      </div>
-    </section>
-
-    <section id="kontak">
-      <h1>Kontak</h1>
-      <p>Email: myrex.rexaja.1@gmail.com</p>
-      <p>WhatsApp: <a href="https://wa.me/6285600462532" target="_blank">Chat Owner</a></p>
-    </section>
-  </main>
-
-  <script>
-    const registerForm = document.getElementById('register-form');
-    const loginForm = document.getElementById('login-form');
-    const saldoElement = document.getElementById('saldo');
-    const beliMataUang = document.getElementById('beli-mata-uang');
-    const jumlahRam = document.getElementById('jumlah-ram');
-    const hargaTotal = document.getElementById('harga-total');
-    const orderBtn = document.getElementById('order-btn');
-    const ownerPanel = document.getElementById('owner-panel');
-    const addSaldoBtn = document.getElementById('add-saldo');
-    const userTarget = document.getElementById('user-target');
-    const saldoTambah = document.getElementById('saldo-tambah');
-
-    let users = JSON.parse(localStorage.getItem('users')) || {};
-    let currentUser = null;
-
-    // Tambahkan akun owner secara otomatis jika belum ada
-    if (!users['rexowner']) {
-      users['rexowner'] = { password: '12321', saldo: 0 };
-      localStorage.setItem('users', JSON.stringify(users));
-    }
-
-    // Register User
-    registerForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const username = document.getElementById('reg-username').value;
-      const password = document.getElementById('reg-password').value;
-
-      if (!users[username]) {
-        users[username] = { password, saldo: 0 };
-        localStorage.setItem('users', JSON.stringify(users));
-        alert('Registrasi berhasil! Silakan login.');
-      } else {
-        alert('Username sudah terdaftar!');
-      }
-    });
-
-    // Login User
-    loginForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const username = document.getElementById('login-username').value;
-      const password = document.getElementById('login-password').value;
-
-      if (users[username] && users[username].password === password) {
-        currentUser = username;
-        document.getElementById('mata-uang').style.display = 'block';
-        saldoElement.textContent = users[username].saldo + ' REX';
-
-        if (username === 'rexowner') {
-          ownerPanel.style.display = 'block';
-        } else {
-          ownerPanel.style.display = 'none';
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="register.html">Register</a></li>
+                <li><a href="login.html" id="login-link">Login</a></li>
+                <li><a href="order.html" id="order-link" style="display: none;">Order</a></li>
+                <li><a href="#" id="logout-btn" style="display: none;">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1>Welcome To REX MARKET</h1>
+        <p>Silakan login atau register untuk mulai memesan.</p>
+    </main>
+    <script>
+        if (localStorage.getItem("isLoggedIn") === "true") {
+            document.getElementById("login-link").style.display = "none";
+            document.getElementById("order-link").style.display = "inline";
+            document.getElementById("logout-btn").style.display = "inline";
         }
 
-        alert(`Login berhasil! Selamat datang, ${username}.`);
-      } else {
-        alert('Username atau password salah!');
-      }
-    });
-
-    // Tambah Saldo (Hanya Owner)
-    addSaldoBtn.addEventListener('click', () => {
-      if (currentUser !== 'rexowner') {
-        alert('Hanya owner yang dapat menambahkan saldo!');
-        return;
-      }
-
-      const targetUser = userTarget.value;
-      const jumlah = parseInt(saldoTambah.value);
-
-      if (users[targetUser] && jumlah > 0) {
-        users[targetUser].saldo += jumlah;
-        localStorage.setItem('users', JSON.stringify(users));
-        alert(`Saldo ${jumlah} REX berhasil ditambahkan ke ${targetUser}`);
-      } else {
-        alert('User tidak ditemukan atau jumlah tidak valid.');
-      }
-    });
-
-    // Beli Mata Uang (Chat Owner)
-    beliMataUang.addEventListener('click', () => {
-      window.open(`https://wa.me/6285600462532?text=Halo%2C+saya+ingin+membeli+mata+uang+REX.`, '_blank');
-    });
-
-    // Order Produk
-    orderBtn.addEventListener('click', () => {
-      const jumlah = parseInt(jumlahRam.value);
-      const totalHarga = jumlah * 1000;
-
-      if (users[currentUser].saldo >= totalHarga) {
-        users[currentUser].saldo -= totalHarga;
-        localStorage.setItem('users', JSON.stringify(users));
-        saldoElement.textContent = users[currentUser].saldo + ' REX';
-        alert(`Pesanan berhasil! Anda membeli ${jumlah} GB.`);
-      } else {
-        alert('Saldo tidak cukup! Silakan beli mata uang REX terlebih dahulu.');
-      }
-    });
-  </script>
+        document.getElementById("logout-btn").addEventListener("click", () => {
+            localStorage.setItem("isLoggedIn", "false");
+            window.location.href = "index.html";
+        });
+    </script>
 </body>
-                                      </html>
+</html>
