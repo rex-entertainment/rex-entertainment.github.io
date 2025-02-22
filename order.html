@@ -11,7 +11,7 @@
         <nav>
             <ul>
                 <li><a href="order.html">Order</a></li>
-                <li id="add-saldo-menu" style="display: none;"><a href="#add-saldo">Add Saldo</a></li>
+                <li id="admin-menu" style="display: none;"><a href="#admin-panel">Admin</a></li>
                 <li><a href="#" id="logout-btn">Logout</a></li>
             </ul>
         </nav>
@@ -44,14 +44,15 @@
             </div>
         </section>
 
-        <!-- Form Add Saldo (Hanya Owner yang bisa melihat) -->
-        <section id="add-saldo-section" style="display: none;">
-            <h2>Tambah Saldo</h2>
+        <!-- Panel Admin (Hanya Owner yang bisa melihat) -->
+        <section id="admin-panel" style="display: none;">
+            <h2>Admin Panel</h2>
             <label for="target-user">Username:</label>
             <input type="text" id="target-user"><br>
             <label for="amount">Jumlah Saldo:</label>
             <input type="number" id="amount"><br>
             <button id="add-saldo-btn">Tambah Saldo</button>
+            <button id="reduce-saldo-btn">Kurangi Saldo</button>
         </section>
     </main>
 
@@ -70,10 +71,10 @@
         const hargaTotal = document.getElementById("harga-total");
         const orderBtn = document.getElementById("order-btn");
 
-        // Owner: Menampilkan menu Add Saldo
+        // Jika login sebagai Owner, tampilkan Menu Admin
         if (username === "rexowner") {
-            document.getElementById("add-saldo-menu").style.display = "inline";
-            document.getElementById("add-saldo-section").style.display = "block";
+            document.getElementById("admin-menu").style.display = "inline";
+            document.getElementById("admin-panel").style.display = "block";
         }
 
         // Beli Mata Uang (Chat ke Owner)
@@ -133,6 +134,34 @@
 
             alert("Saldo " + amount + " IDR berhasil ditambahkan ke " + targetUser);
         });
+
+        // Owner Mengurangi Saldo User
+        document.getElementById("reduce-saldo-btn").addEventListener("click", () => {
+            if (username !== "rexowner") {
+                alert("Anda bukan owner!");
+                return;
+            }
+
+            const targetUser = document.getElementById("target-user").value;
+            const amount = parseInt(document.getElementById("amount").value);
+
+            if (!targetUser || isNaN(amount) || amount <= 0) {
+                alert("Masukkan username dan jumlah saldo yang valid.");
+                return;
+            }
+
+            let userSaldo = parseInt(localStorage.getItem(targetUser + "_saldo")) || 0;
+
+            if (userSaldo < amount) {
+                alert("Saldo user tidak cukup untuk dikurangi!");
+                return;
+            }
+
+            userSaldo -= amount;
+            localStorage.setItem(targetUser + "_saldo", userSaldo);
+
+            alert("Saldo " + amount + " IDR berhasil dikurangi dari " + targetUser);
+        });
     </script>
 </body>
-    </html>
+</html>
