@@ -21,23 +21,27 @@
     <section class="admin-container">
         <h2>Admin Panel</h2>
         <div class="admin-box">
-            <form action="tambah_saldo.php" method="POST">
+            <div class="admin-card">
                 <h3>Tambah Saldo</h3>
-                <label>Username</label>
-                <input type="text" name="username" required>
-                <label>Jumlah Saldo</label>
-                <input type="number" name="amount" required>
-                <button type="submit">Tambah Saldo</button>
-            </form>
+                <form action="tambah_saldo.php" method="POST">
+                    <label>Username:</label>
+                    <input type="text" name="username" required>
+                    <label>Jumlah Saldo:</label>
+                    <input type="number" name="amount" required>
+                    <button type="submit">Tambah Saldo</button>
+                </form>
+            </div>
 
-            <form action="kurangi_saldo.php" method="POST">
+            <div class="admin-card">
                 <h3>Kurangi Saldo</h3>
-                <label>Username</label>
-                <input type="text" name="username" required>
-                <label>Jumlah Saldo</label>
-                <input type="number" name="amount" required>
-                <button type="submit">Kurangi Saldo</button>
-            </form>
+                <form action="kurangi_saldo.php" method="POST">
+                    <label>Username:</label>
+                    <input type="text" name="username" required>
+                    <label>Jumlah Saldo:</label>
+                    <input type="number" name="amount" required>
+                    <button type="submit">Kurangi Saldo</button>
+                </form>
+            </div>
         </div>
     </section>
 
