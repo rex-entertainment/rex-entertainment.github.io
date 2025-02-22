@@ -12,7 +12,7 @@
         <nav>
             <ul>
                 <li><a href="order.html">Order</a></li>
-                <li><a href="#" id="logout">Logout</a></li>
+                <li><a href="index.html">Logout</a></li>
             </ul>
         </nav>
     </header>
@@ -136,13 +136,7 @@
             let whatsappLink = `https://wa.me/62856004625328?text=Halo, saya ingin order PANEL BOT ${jumlahRam}GB dengan harga Rp ${hargaTotal}`;
             window.open(whatsappLink, '_blank');
         });
-
-        document.getElementById("logout").addEventListener("click", () => {
-    localStorage.removeItem("username");  // Hapus username dari localStorage
-    localStorage.clear();  // Hapus semua data localStorage (termasuk saldo user)
-    alert("Anda telah logout.");
-    window.location.reload();  // Refresh halaman untuk reset sesi
-});
+        
         updateSaldo();
     </script>
 
