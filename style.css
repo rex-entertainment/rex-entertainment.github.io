@@ -1,5 +1,4 @@
-
-/* Reset CSS */
+/* Reset dasar */
 * {
     margin: 0;
     padding: 0;
@@ -7,72 +6,75 @@
     font-family: Arial, sans-serif;
 }
 
-/* Background abu-abu gelap */
+/* Background abu-abu gelap untuk semua */
 body {
-    background-color: #2c2c2c;
+    background-color: #1e1e1e;
     color: #ffffff;
-    text-align: center;
     padding: 20px;
 }
 
-/* Header dan Navigasi */
+/* Header */
 header {
-    background-color: #1f1f1f;
-    padding: 15px 0;
-    margin-bottom: 20px;
+    background-color: #292929;
+    padding: 15px;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 nav ul {
     list-style: none;
     display: flex;
     justify-content: center;
+    gap: 20px;
 }
 
 nav ul li {
-    margin: 0 15px;
+    display: inline;
 }
 
 nav ul li a {
-    text-decoration: none;
     color: #ffffff;
+    text-decoration: none;
     font-weight: bold;
-    padding: 10px 15px;
-    background-color: #444;
+    padding: 8px 15px;
     border-radius: 5px;
     transition: 0.3s;
 }
 
 nav ul li a:hover {
-    background-color: #666;
+    background-color: #ff8800;
 }
 
 /* Admin Panel */
 .admin-container {
-    background-color: #3a3a3a;
+    background-color: #292929;
     padding: 20px;
-    border-radius: 10px;
-    margin-bottom: 20px;
+    margin: 20px 0;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .admin-box {
     display: flex;
-    justify-content: center;
     gap: 20px;
+    justify-content: center;
 }
 
 .admin-card {
-    background-color: #1f1f1f;
-    padding: 20px;
-    border-radius: 10px;
+    background-color: #3a3a3a;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
     width: 250px;
 }
 
 .admin-card h3 {
     margin-bottom: 10px;
-    color: #f1c40f;
 }
 
-.admin-card input, .admin-card button {
+.admin-card input,
+.admin-card button {
     width: 100%;
     padding: 8px;
     margin-top: 5px;
@@ -81,76 +83,80 @@ nav ul li a:hover {
 }
 
 .admin-card input {
-    background-color: #444;
-    color: #ffffff;
+    background-color: #555;
+    color: white;
 }
 
 .admin-card button {
-    background-color: #f1c40f;
-    color: #000;
-    font-weight: bold;
+    background-color: #ff8800;
+    color: white;
     cursor: pointer;
     transition: 0.3s;
 }
 
 .admin-card button:hover {
-    background-color: #d4ac0d;
+    background-color: #ff6600;
 }
 
 /* Saldo Container */
 .saldo-container {
-    background-color: #3a3a3a;
+    background-color: #292929;
     padding: 20px;
-    border-radius: 10px;
-    margin-bottom: 20px;
+    margin: 20px 0;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .saldo-container h2 {
-    color: #27ae60;
+    font-size: 24px;
 }
 
 .saldo-container button {
+    background-color: #ff8800;
+    color: white;
     padding: 10px 20px;
-    background-color: #3498db;
-    color: #ffffff;
-    font-weight: bold;
-    border: none;
     border-radius: 5px;
+    border: none;
     cursor: pointer;
     transition: 0.3s;
-    margin-top: 10px;
 }
 
 .saldo-container button:hover {
-    background-color: #2980b9;
+    background-color: #ff6600;
 }
 
-/* Produk Container */
+/* Produk */
 .produk-container {
-    background-color: #3a3a3a;
-    padding: 20px;
-    border-radius: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
 }
 
 .produk-card {
-    background-color: #1f1f1f;
+    background-color: #3a3a3a;
     padding: 20px;
-    border-radius: 10px;
+    border-radius: 8px;
+    text-align: center;
     width: 250px;
-    margin: auto;
 }
 
-.product-image {
+.produk-card img {
     width: 100%;
-    border-radius: 5px;
+    border-radius: 8px;
 }
 
 .produk-card h3 {
     margin-top: 10px;
-    color: #f39c12;
 }
 
-.produk-card select, .produk-card button {
+.produk-card p {
+    margin: 5px 0;
+}
+
+.produk-card select,
+.produk-card button {
     width: 100%;
     padding: 8px;
     margin-top: 5px;
@@ -159,35 +165,25 @@ nav ul li a:hover {
 }
 
 .produk-card select {
-    background-color: #444;
-    color: #ffffff;
+    background-color: #555;
+    color: white;
 }
 
 .produk-card button {
-    background-color: #e74c3c;
-    color: #ffffff;
-    font-weight: bold;
+    background-color: #ff8800;
+    color: white;
     cursor: pointer;
     transition: 0.3s;
 }
 
 .produk-card button:hover {
-    background-color: #c0392b;
+    background-color: #ff6600;
 }
 
-/* Logout Button */
-#logout {
-    display: inline-block;
-    margin-top: 20px;
-    padding: 10px 20px;
-    background-color: #e74c3c;
-    color: #ffffff;
-    font-weight: bold;
-    border-radius: 5px;
-    text-decoration: none;
-    transition: 0.3s;
-}
-
-#logout:hover {
-    background-color: #c0392b;
+/* Responsive */
+@media (max-width: 768px) {
+    .admin-box {
+        flex-direction: column;
+        align-items: center;
+    }
 }
