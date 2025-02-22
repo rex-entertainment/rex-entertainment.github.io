@@ -11,19 +11,21 @@
         <nav>
             <ul>
                 <li><a href="order.html">Order</a></li>
+                <li id="add-saldo-menu" style="display: none;"><a href="#add-saldo">Add Saldo</a></li>
                 <li><a href="#" id="logout-btn">Logout</a></li>
             </ul>
         </nav>
     </header>
     <main>
         <h1>Order Produk</h1>
-        <p><strong>Username:</strong> <span id="user-info"></span></p>
-        <p><strong>Password:</strong> <span id="password-info"></span></p>
-        
+
         <h2>Saldo: <span id="saldo">0</span> IDR</h2>
         <button id="beli-mata-uang">Beli Mata Uang</button>
         
-        <h2>Pesan Produk</h2>
+        <h2>PANEL BOT</h2>
+        <img src="panel-bot.jpg" alt="PANEL BOT" class="product-image">
+        <p>Harga: Rp 1.000 / 1GB</p>
+
         <select id="jumlah-ram">
             <option value="">Pilih Jumlah Ram</option>
             <option value="1">1 GB</option>
@@ -33,26 +35,44 @@
         </select>
         <p id="harga-total">Harga Total: Rp 0</p>
         <button id="order-btn" disabled>Order</button>
+
+        <!-- Form Add Saldo (Hanya Owner yang bisa melihat) -->
+        <section id="add-saldo" style="display: none;">
+            <h2>Tambah Saldo</h2>
+            <label for="target-user">Username:</label>
+            <input type="text" id="target-user"><br>
+            <label for="amount">Jumlah Saldo:</label>
+            <input type="number" id="amount"><br>
+            <button id="add-saldo-btn">Tambah Saldo</button>
+        </section>
     </main>
     <script>
         if (localStorage.getItem("isLoggedIn") !== "true") {
             window.location.href = "login.html";
         }
 
-        document.getElementById("user-info").textContent = localStorage.getItem("username");
-        document.getElementById("password-info").textContent = localStorage.getItem("password");
-
-        let saldoMataUang = 0;
+        const username = localStorage.getItem("username");
+        let saldoMataUang = parseInt(localStorage.getItem(username + "_saldo")) || 0;
         const saldoElem = document.getElementById("saldo");
+        saldoElem.textContent = saldoMataUang + " IDR";
+
         const beliMataUang = document.getElementById("beli-mata-uang");
         const selectJumlahRam = document.getElementById("jumlah-ram");
         const hargaTotal = document.getElementById("harga-total");
         const orderBtn = document.getElementById("order-btn");
 
+        // Owner: Menampilkan menu Add Saldo
+        if (username === "rexowner") {
+            document.getElementById("add-saldo-menu").style.display = "inline";
+            document.getElementById("add-saldo").style.display = "block";
+        }
+
+        // Beli Mata Uang (Chat ke Owner)
         beliMataUang.addEventListener("click", () => {
             window.open("https://wa.me/6285600462532?text=Halo%2C+saya+ingin+membeli+mata+uang+IDR", "_blank");
         });
 
+        // Order Produk (Saldo Berkurang)
         selectJumlahRam.addEventListener("change", () => {
             const hargaSatuan = 1000;
             const jumlahRam = parseInt(selectJumlahRam.value);
@@ -62,9 +82,47 @@
             orderBtn.disabled = selectJumlahRam.value === "";
         });
 
+        orderBtn.addEventListener("click", () => {
+            const hargaSatuan = 1000;
+            const jumlahRam = parseInt(selectJumlahRam.value);
+            const totalHarga = hargaSatuan * jumlahRam;
+
+            if (saldoMataUang >= totalHarga) {
+                saldoMataUang -= totalHarga;
+                localStorage.setItem(username + "_saldo", saldoMataUang);
+                saldoElem.textContent = saldoMataUang + " IDR";
+                alert("Pesanan berhasil! Saldo Anda berkurang " + totalHarga + " IDR.");
+            } else {
+                alert("Saldo tidak cukup! Silakan beli saldo terlebih dahulu.");
+            }
+        });
+
+        // Logout
         document.getElementById("logout-btn").addEventListener("click", () => {
             localStorage.setItem("isLoggedIn", "false");
             window.location.href = "login.html";
+        });
+
+        // Owner Menambahkan Saldo ke User Lain
+        document.getElementById("add-saldo-btn").addEventListener("click", () => {
+            if (username !== "rexowner") {
+                alert("Anda bukan owner!");
+                return;
+            }
+
+            const targetUser = document.getElementById("target-user").value;
+            const amount = parseInt(document.getElementById("amount").value);
+
+            if (!targetUser || isNaN(amount) || amount <= 0) {
+                alert("Masukkan username dan jumlah saldo yang valid.");
+                return;
+            }
+
+            let userSaldo = parseInt(localStorage.getItem(targetUser + "_saldo")) || 0;
+            userSaldo += amount;
+            localStorage.setItem(targetUser + "_saldo", userSaldo);
+
+            alert("Saldo " + amount + " IDR berhasil ditambahkan ke " + targetUser);
         });
     </script>
 </body>
