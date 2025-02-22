@@ -7,12 +7,12 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
     <header>
         <nav>
             <ul>
                 <li><a href="order.html">Order</a></li>
-                <li id="admin-menu" style="display: none;"><a href="#admin-panel">Admin</a></li>
-                <li><a href="#" id="logout-btn">Logout</a></li>
+                <li><a href="logout.html">Logout</a></li>
             </ul>
         </nav>
     </header>
@@ -20,8 +20,8 @@
     <main>
         <!-- Bagian Saldo -->
         <section class="saldo-container">
-            <h2>Saldo: <span id="saldo">0</span> IDR</h2>
-            <button id="beli-mata-uang">Beli Mata Uang</button>
+            <h2>Saldo: <span>0</span></h2>
+            <button>Beli Mata Uang</button>
         </section>
 
         <!-- Bagian Produk -->
@@ -32,132 +32,38 @@
                 <h3>PANEL BOT</h3>
                 <p>Harga: Rp 1.000 / 1GB</p>
 
-                <select id="jumlah-ram">
+                <select>
                     <option value="">Pilih Jumlah Ram</option>
                     <option value="1">1 GB</option>
                     <option value="2">2 GB</option>
                     <option value="3">3 GB</option>
                     <option value="4">4 GB</option>
                 </select>
-                <p id="harga-total">Harga Total: Rp 0</p>
-                <button id="order-btn" disabled>Order</button>
+                <p>Harga Total: Rp 0</p>
+                <button>Order</button>
             </div>
         </section>
 
-        <!-- Panel Admin (Hanya untuk Owner) -->
-        <section id="admin-panel" style="display: none;">
+        <!-- Fitur Admin (Hanya untuk rexowner) -->
+        <section class="admin-container">
             <h2>Admin Panel</h2>
-            <label for="target-user">Username:</label>
-            <input type="text" id="target-user"><br>
-            <label for="amount">Jumlah Saldo:</label>
-            <input type="number" id="amount"><br>
-            <button id="add-saldo-btn">Tambah Saldo</button>
-            <button id="reduce-saldo-btn">Kurangi Saldo</button>
+            <form action="tambah_saldo.php" method="POST">
+                <label>Username:</label>
+                <input type="text" name="username" required>
+                <label>Jumlah Saldo:</label>
+                <input type="number" name="amount" required>
+                <button type="submit">Tambah Saldo</button>
+            </form>
+
+            <form action="kurangi_saldo.php" method="POST">
+                <label>Username:</label>
+                <input type="text" name="username" required>
+                <label>Jumlah Saldo:</label>
+                <input type="number" name="amount" required>
+                <button type="submit">Kurangi Saldo</button>
+            </form>
         </section>
     </main>
 
-    <script>
-        // Cek apakah user sudah login
-        if (localStorage.getItem("isLoggedIn") !== "true") {
-            window.location.href = "login.html";
-        }
-
-        const username = localStorage.getItem("username");
-        let saldoMataUang = parseInt(localStorage.getItem(username + "_saldo")) || 0;
-        const saldoElem = document.getElementById("saldo");
-        saldoElem.textContent = saldoMataUang + " IDR";
-
-        // Jika login sebagai Owner, tampilkan Menu Admin
-        if (username === "rexowner") {
-            document.getElementById("admin-menu").style.display = "inline";
-            document.getElementById("admin-panel").style.display = "block";
-        }
-
-        // Beli Mata Uang (Chat ke Owner)
-        document.getElementById("beli-mata-uang").addEventListener("click", () => {
-            window.open("https://wa.me/6285600462532?text=Halo%2C+saya+ingin+membeli+mata+uang+IDR", "_blank");
-        });
-
-        // Order Produk (Saldo Berkurang)
-        document.getElementById("jumlah-ram").addEventListener("change", () => {
-            const hargaSatuan = 1000;
-            const jumlahRam = parseInt(document.getElementById("jumlah-ram").value);
-            const totalHarga = hargaSatuan * jumlahRam;
-
-            document.getElementById("harga-total").textContent = `Harga Total: Rp ${totalHarga}`;
-            document.getElementById("order-btn").disabled = jumlahRam === 0;
-        });
-
-        document.getElementById("order-btn").addEventListener("click", () => {
-            const hargaSatuan = 1000;
-            const jumlahRam = parseInt(document.getElementById("jumlah-ram").value);
-            const totalHarga = hargaSatuan * jumlahRam;
-
-            if (saldoMataUang >= totalHarga) {
-                saldoMataUang -= totalHarga;
-                localStorage.setItem(username + "_saldo", saldoMataUang);
-                saldoElem.textContent = saldoMataUang + " IDR";
-                alert("Pesanan berhasil! Saldo Anda berkurang " + totalHarga + " IDR.");
-            } else {
-                alert("Saldo tidak cukup! Silakan beli saldo terlebih dahulu.");
-            }
-        });
-
-        // Logout
-        document.getElementById("logout-btn").addEventListener("click", () => {
-            localStorage.setItem("isLoggedIn", "false");
-            window.location.href = "index.html";
-        });
-
-        // Owner Menambahkan Saldo ke User Lain
-        document.getElementById("add-saldo-btn").addEventListener("click", () => {
-            if (username !== "rexowner") {
-                alert("Anda bukan owner!");
-                return;
-            }
-
-            const targetUser = document.getElementById("target-user").value;
-            const amount = parseInt(document.getElementById("amount").value);
-
-            if (!targetUser || isNaN(amount) || amount <= 0) {
-                alert("Masukkan username dan jumlah saldo yang valid.");
-                return;
-            }
-
-            let userSaldo = parseInt(localStorage.getItem(targetUser + "_saldo")) || 0;
-            userSaldo += amount;
-            localStorage.setItem(targetUser + "_saldo", userSaldo);
-
-            alert("Saldo " + amount + " IDR berhasil ditambahkan ke " + targetUser);
-        });
-
-        // Owner Mengurangi Saldo User
-        document.getElementById("reduce-saldo-btn").addEventListener("click", () => {
-            if (username !== "rexowner") {
-                alert("Anda bukan owner!");
-                return;
-            }
-
-            const targetUser = document.getElementById("target-user").value;
-            const amount = parseInt(document.getElementById("amount").value);
-
-            if (!targetUser || isNaN(amount) || amount <= 0) {
-                alert("Masukkan username dan jumlah saldo yang valid.");
-                return;
-            }
-
-            let userSaldo = parseInt(localStorage.getItem(targetUser + "_saldo")) || 0;
-
-            if (userSaldo < amount) {
-                alert("Saldo user tidak cukup untuk dikurangi!");
-                return;
-            }
-
-            userSaldo -= amount;
-            localStorage.setItem(targetUser + "_saldo", userSaldo);
-
-            alert("Saldo " + amount + " IDR berhasil dikurangi dari " + targetUser);
-        });
-    </script>
 </body>
-</html>
+    </html>
