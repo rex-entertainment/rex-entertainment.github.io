@@ -1,110 +1,84 @@
+
 body {
-    font-family: Arial, sans-serif;
-    background-color: #333;
-    color: white;
-    text-align: center;
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
 }
 
 header {
-    background-color: #222;
-    padding: 10px 0;
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
 }
 
-nav ul {
-    list-style: none;
-    padding: 0;
+header nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
 }
 
-nav ul li {
-    display: inline;
-    margin: 0 15px;
+header nav ul li {
+  margin-right: 20px;
 }
 
-nav ul li a {
-    color: white;
-    text-decoration: none;
-}
-
-.saldo-container {
-    background: #444;
-    padding: 20px;
-    margin: 20px auto;
-    border-radius: 10px;
-    width: 300px;
-}
-
-.produk-container {
-    margin-top: 20px;
-}
-
-.produk-card {
-    background: #555;
-    padding: 20px;
-    margin: 0 auto;
-    width: 300px;
-    border-radius: 10px;
-}
-
-.product-image {
-    width: 100%;
-    border-radius: 10px;
+header nav a {
+  color: #fff;
+  text-decoration: none;
 }
 
 .admin-container {
-    width: 80%;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: #333;
-    border-radius: 8px;
-    text-align: center;
-}
-
-.admin-box {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
+  background-color: #fff;
+  padding: 20px;
+  border: 1px solid #ddd;
+  margin: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .admin-card {
-    background-color: #444;
-    padding: 20px;
-    width: 300px;
-    border-radius: 8px;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+  background-color: #f7f7f7;
+  padding: 20px;
+  border: 1px solid #ddd;
+  margin-bottom: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .admin-card h3 {
-    margin-bottom: 10px;
+  margin-top: 0;
 }
 
-.admin-card input {
-    width: 100%;
-    padding: 8px;
-    margin: 5px 0;
+.saldo-container {
+  background-color: #fff;
+  padding: 20px;
+  border: 1px solid #ddd;
+  margin: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.admin-card button {
-    width: 100%;
-    padding: 10px;
-    background-color: #f04;
-    color: white;
-    border: none;
-    cursor: pointer;
+.produk-container {
+  background-color: #fff;
+  padding: 20px;
+  border: 1px solid #ddd;
+  margin: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.admin-card button:hover {
-    background-color: #d03;
+.produk-card {
+  background-color: #f7f7f7;
+  padding: 20px;
+  border: 1px solid #ddd;
+  margin-bottom: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-button {
-    background: #ff6600;
-    color: white;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+.produk-card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px;
 }
 
-button:disabled {
-    background: gray;
+.produk-card h3 {
+  margin-top: 0;
 }
