@@ -1,160 +1,81 @@
-/* Reset dasar */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: Arial, sans-serif;
-}
-
 body {
-  background: linear-gradient(to right, #ff7e5f, #feb47b);
-  color: #333;
-  text-align: center;
+    font-family: Arial, sans-serif;
+    background-color: #2c2c2c; /* Abu-abu gelap */
+    color: white;
+    text-align: center;
+    margin: 0;
+    padding: 0;
 }
 
-/* Navigasi */
-header {
-  background: linear-gradient(to right, #6a11cb, #2575fc);
-  padding: 15px 0;
+h1, h2, p {
+    color: #f1f1f1;
+}
+
+nav {
+    background-color: #1f1f1f; /* Abu-abu lebih gelap */
+    padding: 10px 0;
 }
 
 nav ul {
-  list-style: none;
-  display: flex;
-  justify-content: center;
+    list-style: none;
+    padding: 0;
 }
 
 nav ul li {
-  margin: 0 15px;
+    display: inline;
+    margin: 10px;
 }
 
 nav ul li a {
-  text-decoration: none;
-  color: white;
-  font-size: 18px;
-  font-weight: bold;
-  transition: color 0.3s;
+    text-decoration: none;
+    color: #f1f1f1;
+    font-weight: bold;
+    padding: 8px 16px;
+    border-radius: 5px;
 }
 
 nav ul li a:hover {
-  color: #ffeb3b;
+    background-color: #444; /* Efek hover abu-abu lebih terang */
 }
 
-/* Bagian utama */
-main {
-  padding: 20px;
+button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
 }
 
-section {
-  margin-bottom: 30px;
-  background: white;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+button:hover {
+    background-color: #0056b3;
 }
 
-/* Form */
 form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+    background-color: #3a3a3a; /* Warna abu-abu form */
+    padding: 20px;
+    border-radius: 8px;
+    display: inline-block;
+    margin-top: 20px;
 }
 
-form input {
-  width: 80%;
-  padding: 10px;
-  margin: 5px 0;
-  border: 2px solid #007bff;
-  border-radius: 5px;
+input {
+    padding: 8px;
+    margin: 5px;
+    border-radius: 5px;
+    border: 1px solid #666;
+    background-color: #222;
+    color: white;
 }
 
-form input[type="submit"] {
-  background: linear-gradient(to right, #ff512f, #dd2476);
-  color: white;
-  border: none;
-  cursor: pointer;
-  transition: background 0.3s;
+select {
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #666;
+    background-color: #222;
+    color: white;
 }
 
-form input[type="submit"]:hover {
-  background: linear-gradient(to right, #dd2476, #ff512f);
-}
-
-/* Produk */
-.produk {
-  text-align: center;
-}
-
-.produk img {
-  width: 200px;
-  height: auto;
-  border-radius: 10px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
-}
-
-.produk select {
-  margin: 10px 0;
-  padding: 10px;
-  border: 2px solid #ff7e5f;
-  border-radius: 5px;
-}
-
-/* Tombol Order */
-.order-btn {
-  background: linear-gradient(to right, #4CAF50, #2E8B57);
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-  border-radius: 5px;
-  transition: background 0.3s;
-}
-
-.order-btn:disabled {
-  background: #ccc;
-  cursor: not-allowed;
-}
-
-.order-btn:hover:not(:disabled) {
-  background: linear-gradient(to right, #2E8B57, #4CAF50);
-}
-
-/* Panel Admin */
-#owner-panel {
-  margin-top: 20px;
-  padding: 15px;
-  background: linear-gradient(to right, #f9a825, #f57c00);
-  border-radius: 10px;
-  color: white;
-}
-
-#owner-panel input {
-  padding: 5px;
-  margin: 5px;
-  border: 2px solid white;
-  border-radius: 5px;
-}
-
-#owner-panel button {
-  background: linear-gradient(to right, #ff9800, #e65100);
-  color: white;
-  border: none;
-  padding: 10px;
-  cursor: pointer;
-  border-radius: 5px;
-  transition: background 0.3s;
-}
-
-#owner-panel button:hover {
-  background: linear-gradient(to right, #e65100, #ff9800);
-}
-
-/* Footer */
-footer {
-  margin-top: 20px;
-  padding: 10px;
-  background: linear-gradient(to right, #6a11cb, #2575fc);
-  color: white;
-  text-align: center;
+main {
+    padding: 20px;
 }
