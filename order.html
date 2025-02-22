@@ -20,7 +20,7 @@
     <main>
         <!-- Bagian Saldo -->
         <section class="saldo-container">
-            <h2>Saldo: <span id="saldo">0</span></h2>
+            <h2>Saldo: <span id="saldo">0</span> IDR</h2>
             <button id="beli-mata-uang">Beli Mata Uang</button>
         </section>
 
@@ -44,7 +44,7 @@
             </div>
         </section>
 
-        <!-- Panel Admin (Hanya Owner yang bisa melihat) -->
+        <!-- Panel Admin (Hanya untuk Owner) -->
         <section id="admin-panel" style="display: none;">
             <h2>Admin Panel</h2>
             <label for="target-user">Username:</label>
@@ -57,6 +57,7 @@
     </main>
 
     <script>
+        // Cek apakah user sudah login
         if (localStorage.getItem("isLoggedIn") !== "true") {
             window.location.href = "login.html";
         }
@@ -66,11 +67,6 @@
         const saldoElem = document.getElementById("saldo");
         saldoElem.textContent = saldoMataUang + " IDR";
 
-        const beliMataUang = document.getElementById("beli-mata-uang");
-        const selectJumlahRam = document.getElementById("jumlah-ram");
-        const hargaTotal = document.getElementById("harga-total");
-        const orderBtn = document.getElementById("order-btn");
-
         // Jika login sebagai Owner, tampilkan Menu Admin
         if (username === "rexowner") {
             document.getElementById("admin-menu").style.display = "inline";
@@ -78,23 +74,23 @@
         }
 
         // Beli Mata Uang (Chat ke Owner)
-        beliMataUang.addEventListener("click", () => {
+        document.getElementById("beli-mata-uang").addEventListener("click", () => {
             window.open("https://wa.me/6285600462532?text=Halo%2C+saya+ingin+membeli+mata+uang+IDR", "_blank");
         });
 
         // Order Produk (Saldo Berkurang)
-        selectJumlahRam.addEventListener("change", () => {
+        document.getElementById("jumlah-ram").addEventListener("change", () => {
             const hargaSatuan = 1000;
-            const jumlahRam = parseInt(selectJumlahRam.value);
+            const jumlahRam = parseInt(document.getElementById("jumlah-ram").value);
             const totalHarga = hargaSatuan * jumlahRam;
 
-            hargaTotal.textContent = `Harga Total: Rp ${totalHarga}`;
-            orderBtn.disabled = selectJumlahRam.value === "";
+            document.getElementById("harga-total").textContent = `Harga Total: Rp ${totalHarga}`;
+            document.getElementById("order-btn").disabled = jumlahRam === 0;
         });
 
-        orderBtn.addEventListener("click", () => {
+        document.getElementById("order-btn").addEventListener("click", () => {
             const hargaSatuan = 1000;
-            const jumlahRam = parseInt(selectJumlahRam.value);
+            const jumlahRam = parseInt(document.getElementById("jumlah-ram").value);
             const totalHarga = hargaSatuan * jumlahRam;
 
             if (saldoMataUang >= totalHarga) {
