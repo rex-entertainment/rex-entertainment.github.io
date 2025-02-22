@@ -138,11 +138,11 @@
         });
 
         document.getElementById("logout").addEventListener("click", () => {
-            localStorage.clear();
-            alert("Anda telah logout.");
-            location.reload();
-        });
-
+    localStorage.removeItem("username");  // Hapus username dari localStorage
+    localStorage.clear();  // Hapus semua data localStorage (termasuk saldo user)
+    alert("Anda telah logout.");
+    window.location.reload();  // Refresh halaman untuk reset sesi
+});
         updateSaldo();
     </script>
 
