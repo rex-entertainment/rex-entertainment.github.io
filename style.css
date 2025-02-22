@@ -1,189 +1,85 @@
-/* Reset dasar */
-* {
+body {
+    font-family: Arial, sans-serif;
+    background-color: #1c1c1c;
+    color: #ffffff;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
-}
-
-/* Background abu-abu gelap untuk semua */
-body {
-    background-color: #1e1e1e;
-    color: #ffffff;
-    padding: 20px;
-}
-
-/* Header */
-header {
-    background-color: #292929;
-    padding: 15px;
     text-align: center;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+header {
+    background-color: #333;
+    padding: 15px;
 }
 
 nav ul {
     list-style: none;
-    display: flex;
-    justify-content: center;
-    gap: 20px;
+    padding: 0;
 }
 
 nav ul li {
     display: inline;
+    margin: 0 15px;
 }
 
 nav ul li a {
-    color: #ffffff;
+    color: white;
     text-decoration: none;
-    font-weight: bold;
-    padding: 8px 15px;
-    border-radius: 5px;
-    transition: 0.3s;
 }
 
-nav ul li a:hover {
-    background-color: #ff8800;
-}
-
-/* Admin Panel */
 .admin-container {
-    background-color: #292929;
+    background-color: #2a2a2a;
     padding: 20px;
-    margin: 20px 0;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin: 20px auto;
+    width: 50%;
+    border-radius: 10px;
 }
 
 .admin-box {
     display: flex;
-    gap: 20px;
-    justify-content: center;
+    justify-content: space-around;
 }
 
 .admin-card {
-    background-color: #3a3a3a;
-    padding: 15px;
-    border-radius: 8px;
-    text-align: center;
-    width: 250px;
-}
-
-.admin-card h3 {
-    margin-bottom: 10px;
-}
-
-.admin-card input,
-.admin-card button {
-    width: 100%;
-    padding: 8px;
-    margin-top: 5px;
-    border-radius: 5px;
-    border: none;
-}
-
-.admin-card input {
-    background-color: #555;
-    color: white;
-}
-
-.admin-card button {
-    background-color: #ff8800;
-    color: white;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.admin-card button:hover {
-    background-color: #ff6600;
-}
-
-/* Saldo Container */
-.saldo-container {
-    background-color: #292929;
+    background-color: #444;
     padding: 20px;
-    margin: 20px 0;
-    border-radius: 8px;
-    text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    width: 45%;
 }
 
-.saldo-container h2 {
-    font-size: 24px;
+input, button {
+    display: block;
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px;
 }
 
-.saldo-container button {
-    background-color: #ff8800;
+button {
+    background-color: #ff6600;
     color: white;
-    padding: 10px 20px;
-    border-radius: 5px;
     border: none;
     cursor: pointer;
-    transition: 0.3s;
 }
 
-.saldo-container button:hover {
-    background-color: #ff6600;
+.saldo-container {
+    background-color: #444;
+    padding: 20px;
+    width: 50%;
+    margin: 20px auto;
+    border-radius: 10px;
 }
 
-/* Produk */
 .produk-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
+    width: 50%;
+    margin: 20px auto;
 }
 
 .produk-card {
-    background-color: #3a3a3a;
+    background-color: #333;
     padding: 20px;
-    border-radius: 8px;
-    text-align: center;
-    width: 250px;
+    border-radius: 10px;
 }
 
-.produk-card img {
-    width: 100%;
-    border-radius: 8px;
-}
-
-.produk-card h3 {
-    margin-top: 10px;
-}
-
-.produk-card p {
-    margin: 5px 0;
-}
-
-.produk-card select,
-.produk-card button {
-    width: 100%;
-    padding: 8px;
-    margin-top: 5px;
-    border-radius: 5px;
-    border: none;
-}
-
-.produk-card select {
-    background-color: #555;
-    color: white;
-}
-
-.produk-card button {
-    background-color: #ff8800;
-    color: white;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.produk-card button:hover {
-    background-color: #ff6600;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-    .admin-box {
-        flex-direction: column;
-        align-items: center;
-    }
+.product-image {
+    width: 100px;
 }
