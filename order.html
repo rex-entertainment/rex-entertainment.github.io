@@ -16,28 +16,36 @@
             </ul>
         </nav>
     </header>
+
     <main>
-        <h1>Order Produk</h1>
+        <!-- Bagian Saldo -->
+        <section class="saldo-container">
+            <h2>Saldo: <span id="saldo">0</span> IDR</h2>
+            <button id="beli-mata-uang">Beli Mata Uang</button>
+        </section>
 
-        <h2>Saldo: <span id="saldo">0</span> IDR</h2>
-        <button id="beli-mata-uang">Beli Mata Uang</button>
-        
-        <h2>PANEL BOT</h2>
-        <img src="panel-bot.jpg" alt="PANEL BOT" class="product-image">
-        <p>Harga: Rp 1.000 / 1GB</p>
+        <!-- Bagian Produk -->
+        <section class="produk-container">
+            <h2>Order Produk</h2>
+            <div class="produk-card">
+                <img src="panel-bot.jpg" alt="PANEL BOT" class="product-image">
+                <h3>PANEL BOT</h3>
+                <p>Harga: Rp 1.000 / 1GB</p>
 
-        <select id="jumlah-ram">
-            <option value="">Pilih Jumlah Ram</option>
-            <option value="1">1 GB</option>
-            <option value="2">2 GB</option>
-            <option value="3">3 GB</option>
-            <option value="4">4 GB</option>
-        </select>
-        <p id="harga-total">Harga Total: Rp 0</p>
-        <button id="order-btn" disabled>Order</button>
+                <select id="jumlah-ram">
+                    <option value="">Pilih Jumlah Ram</option>
+                    <option value="1">1 GB</option>
+                    <option value="2">2 GB</option>
+                    <option value="3">3 GB</option>
+                    <option value="4">4 GB</option>
+                </select>
+                <p id="harga-total">Harga Total: Rp 0</p>
+                <button id="order-btn" disabled>Order</button>
+            </div>
+        </section>
 
         <!-- Form Add Saldo (Hanya Owner yang bisa melihat) -->
-        <section id="add-saldo" style="display: none;">
+        <section id="add-saldo-section" style="display: none;">
             <h2>Tambah Saldo</h2>
             <label for="target-user">Username:</label>
             <input type="text" id="target-user"><br>
@@ -46,6 +54,7 @@
             <button id="add-saldo-btn">Tambah Saldo</button>
         </section>
     </main>
+
     <script>
         if (localStorage.getItem("isLoggedIn") !== "true") {
             window.location.href = "login.html";
@@ -64,7 +73,7 @@
         // Owner: Menampilkan menu Add Saldo
         if (username === "rexowner") {
             document.getElementById("add-saldo-menu").style.display = "inline";
-            document.getElementById("add-saldo").style.display = "block";
+            document.getElementById("add-saldo-section").style.display = "block";
         }
 
         // Beli Mata Uang (Chat ke Owner)
@@ -126,4 +135,4 @@
         });
     </script>
 </body>
-</html>
+    </html>
