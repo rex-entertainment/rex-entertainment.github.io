@@ -12,38 +12,45 @@
         <nav>
             <ul>
                 <li><a href="order.html">Order</a></li>
-                <li><a href="logout.html">Logout</a></li>
+                <li><a href="logout.php">Logout</a></li>
             </ul>
         </nav>
     </header>
 
-    <!-- Wadah Admin -->
-    <section class="admin-container">
-        <h2>Admin Panel</h2>
-        <div class="admin-box">
-            <div class="admin-card">
-                <h3>Tambah Saldo</h3>
-                <form action="tambah_saldo.php" method="POST">
-                    <label>Username:</label>
-                    <input type="text" name="username" required>
-                    <label>Jumlah Saldo:</label>
-                    <input type="number" name="amount" required>
-                    <button type="submit">Tambah Saldo</button>
-                </form>
-            </div>
+    <!-- Wadah Admin (Hanya Owner yang Bisa Melihat) -->
+    <?php
+    session_start();
+    if (isset($_SESSION['username']) && $_SESSION['username'] === 'rexowner') {
+    ?>
+        <section class="admin-container">
+            <h2>Admin Panel</h2>
+            <div class="admin-box">
+                <div class="admin-card">
+                    <h3>Tambah Saldo</h3>
+                    <form action="tambah_saldo.php" method="POST">
+                        <label>Username:</label>
+                        <input type="text" name="username" required>
+                        <label>Jumlah Saldo:</label>
+                        <input type="number" name="amount" required>
+                        <button type="submit">Tambah Saldo</button>
+                    </form>
+                </div>
 
-            <div class="admin-card">
-                <h3>Kurangi Saldo</h3>
-                <form action="kurangi_saldo.php" method="POST">
-                    <label>Username:</label>
-                    <input type="text" name="username" required>
-                    <label>Jumlah Saldo:</label>
-                    <input type="number" name="amount" required>
-                    <button type="submit">Kurangi Saldo</button>
-                </form>
+                <div class="admin-card">
+                    <h3>Kurangi Saldo</h3>
+                    <form action="kurangi_saldo.php" method="POST">
+                        <label>Username:</label>
+                        <input type="text" name="username" required>
+                        <label>Jumlah Saldo:</label>
+                        <input type="number" name="amount" required>
+                        <button type="submit">Kurangi Saldo</button>
+                    </form>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+    <?php
+    }
+    ?>
 
     <main>
         <!-- Bagian Saldo -->
