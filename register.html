@@ -7,45 +7,53 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <main class="center-content">
-        <h1>Register</h1>
-        <form id="register-form">
-            <label for="username">Username:</label>
-            <input type="text" id="username" required><br>
-            <label for="password">Password:</label>
-            <input type="password" id="password" required><br>
-            <button type="submit">Register</button>
-        </form>
-        <p>Sudah punya akun? <a href="login.html">Login</a></p>
-    </main>
-    <script>
-        document.getElementById("register-form").addEventListener("submit", (e) => {
-            e.preventDefault();
-            const username = document.getElementById("username").value;
-            const password = document.getElementById("password").value;
 
-            if (localStorage.getItem(username)) {
-                alert("Username sudah terdaftar! Gunakan username lain.");
+    <header>
+        <h1>REX MARKET</h1>
+    </header>
+
+    <main>
+        <section class="register-container">
+            <h2>Register</h2>
+            <form id="register-form">
+                <label>Username:</label>
+                <input type="text" id="register-username" required>
+                <button type="submit">Daftar</button>
+            </form>
+            <p id="success-message" style="color: green; display: none;">Akun berhasil dibuat!</p>
+        </section>
+    </main>
+
+    <script>
+        document.getElementById("register-form").addEventListener("submit", function(e) {
+            e.preventDefault();
+            let username = document.getElementById("register-username").value.trim();
+
+            if (!username) {
+                alert("Masukkan username!");
                 return;
             }
 
-            localStorage.setItem(username, password);
-            localStorage.setItem("isLoggedIn", "true");
-            localStorage.setItem("username", username);
-            
-            if (username === "rexowner") {
-                alert("Akun owner berhasil dibuat!");
-            } else {
-                alert("Registrasi berhasil!");
+            // Ambil daftar user yang sudah terdaftar
+            let registeredUsers = JSON.parse(localStorage.getItem("registered_users")) || [];
+
+            // Cek apakah username sudah ada
+            if (registeredUsers.includes(username)) {
+                alert("Username sudah digunakan!");
+                return;
             }
 
-            window.location.href = "order.html";
-        });
+            // Tambahkan username ke daftar user
+            registeredUsers.push(username);
+            localStorage.setItem("registered_users", JSON.stringify(registeredUsers));
 
-        // Mendaftarkan akun owner otomatis jika belum ada
-        if (!localStorage.getItem("rexowner")) {
-            localStorage.setItem("rexowner", "12321");
-        }
+            // Beri pesan sukses dan arahkan ke halaman login
+            document.getElementById("success-message").style.display = "block";
+            setTimeout(() => {
+                window.location.href = "index.html";
+            }, 2000);
+        });
     </script>
+
 </body>
 </html>
