@@ -8,181 +8,143 @@
 </head>
 <body>
 
-<header>
-    <nav>
-        <ul>
-            <li><a href="order.html">Order</a></li>
-            <li><a href="index.html">Logout</a></li>
-        </ul>
-    </nav>
-</header>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="order.html">Order</a></li>
+                <li><a href="#" id="logout">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
 
-<!-- Admin Panel (Hanya untuk rexowner) -->
-<section class="admin-container" id="admin-panel" style="display: none;">
-    <h2>Admin Panel</h2>
-    <div class="admin-box">
-        <div class="admin-card">
-            <h3>Tambah Saldo</h3>
-            <form id="tambah-saldo-form">
-                <label>Username:</label>
-                <input type="text" id="username-tambah" required>
-                <label>Jumlah Saldo:</label>
-                <input type="number" id="amount-tambah" required>
-                <button type="submit">Tambah Saldo</button>
-            </form>
-        </div>
-        <div class="admin-card">
-            <h3>Kurangi Saldo</h3>
-            <form id="kurangi-saldo-form">
-                <label>Username:</label>
-                <input type="text" id="username-kurang" required>
-                <label>Jumlah Saldo:</label>
-                <input type="number" id="amount-kurang" required>
-                <button type="submit">Kurangi Saldo</button>
-            </form>
-        </div>
-    </div>
-</section>
+    <!-- Admin Panel (Hanya untuk Owner) -->
+    <section id="admin-panel" class="admin-container" style="display: none;">
+        <h2>Admin Panel</h2>
+        <div class="admin-box">
+            <div class="admin-card">
+                <h3>Tambah Saldo</h3>
+                <form id="tambah-saldo-form">
+                    <label>Username:</label>
+                    <input type="text" id="username-tambah" required>
+                    <label>Jumlah Saldo:</label>
+                    <input type="number" id="amount-tambah" required>
+                    <button type="submit">Tambah Saldo</button>
+                </form>
+            </div>
 
-<main>
-    <!-- Bagian Saldo -->
-    <section class="saldo-container">
-        <h2>Saldo: <span id="saldo">0</span> IDR</h2>
-        <button id="beli-saldo-btn">Deposit</button>
-    </section>
-
-    <!-- Bagian Produk -->
-    <section class="produk-container">
-        <h2>Order Produk</h2>
-        <div class="produk-card">
-            <img src="image-produk.jpg" alt="PANEL BOT" class="product-image">
-            <h3>PANEL BOT</h3>
-            <p>Harga: Rp 1.000 / 1GB</p>
-
-            <label for="nomor-wa">Nomor WhatsApp:</label>
-            <input type="text" id="nomor-wa" placeholder="Contoh: 6281234567890" required>
-
-            <select id="jumlah-ram">
-                <option value="">Pilih Jumlah Ram</option>
-                <option value="1">1 GB</option>
-                <option value="2">2 GB</option>
-                <option value="3">3 GB</option>
-                <option value="4">4 GB</option>
-            </select>
-
-            <p id="harga-total">Harga Total: Rp 0</p>
-            <button id="order-btn">Order</button>
+            <div class="admin-card">
+                <h3>Kurangi Saldo</h3>
+                <form id="kurangi-saldo-form">
+                    <label>Username:</label>
+                    <input type="text" id="username-kurang" required>
+                    <label>Jumlah Saldo:</label>
+                    <input type="number" id="amount-kurang" required>
+                    <button type="submit">Kurangi Saldo</button>
+                </form>
+            </div>
         </div>
     </section>
-</main>
 
-<script>
-// Simulasi login menggunakan localStorage
-let username = localStorage.getItem("username") || prompt("Masukkan Username:");
-localStorage.setItem("username", username);
+    <main>
+        <!-- Bagian Saldo -->
+        <section class="saldo-container">
+            <h2>Saldo: <span id="saldo">0</span> IDR</h2>
+            <button id="beli-saldo-btn">Beli Mata Uang</button>
+        </section>
 
-// Cek apakah user adalah rexowner
-if (username === "rexowner") {
-    document.getElementById("admin-panel").style.display = "block";
-}
+        <!-- Bagian Produk -->
+        <section class="produk-container">
+            <h2>Order Produk</h2>
+            <div class="produk-card">
+                <img src="image-produk.jpg" alt="PANEL BOT" class="product-image">
+                <h3>PANEL BOT</h3>
+                <p>Harga: Rp 1.000 / 1GB</p>
+                <select id="jumlah-ram">
+                    <option value="">Pilih Jumlah Ram</option>
+                    <option value="1">1 GB</option>
+                    <option value="2">2 GB</option>
+                    <option value="3">3 GB</option>
+                    <option value="4">4 GB</option>
+                </select>
+                <p>Harga Total: Rp <span id="harga-total">0</span></p>
+                <button id="order-btn">Order</button>
+            </div>
+        </section>
+    </main>
 
-// Ambil saldo spesifik berdasarkan username
-function getSaldo(user) {
-    return parseInt(localStorage.getItem(user + "_saldo")) || 0;
-}
+    <script>
+        let username = localStorage.getItem("username");
 
-// Update saldo tampilan berdasarkan akun yang login
-function updateSaldo() {
-    let saldo = getSaldo(username);
-    document.getElementById("saldo").textContent = saldo;
-}
+        if (!username) {
+            username = prompt("Masukkan Username:");
+            localStorage.setItem("username", username);
+        }
 
-// Event listener untuk tambah saldo (hanya rexowner)
-document.getElementById("tambah-saldo-form").addEventListener("submit", (e) => {
-    e.preventDefault();
-    if (username !== "rexowner") {
-        alert("Hanya rexowner yang bisa menambah saldo!");
-        return;
-    }
+        // Cek jika admin (rexowner)
+        if (username === "rexowner") {
+            document.getElementById("admin-panel").style.display = "block";
+        }
 
-    let targetUser = document.getElementById("username-tambah").value;
-    let amount = parseInt(document.getElementById("amount-tambah").value);
+        function getSaldo(user) {
+            return parseInt(localStorage.getItem(user + "_saldo")) || 0;
+        }
 
-    if (!targetUser || isNaN(amount) || amount <= 0) {
-        alert("Masukkan username dan jumlah saldo yang valid.");
-        return;
-    }
+        function updateSaldo() {
+            let saldo = getSaldo(username);
+            document.getElementById("saldo").textContent = saldo;
+        }
 
-    let saldo = getSaldo(targetUser);
-    saldo += amount;
-    localStorage.setItem(targetUser + "_saldo", saldo);
+        document.getElementById('tambah-saldo-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            let targetUser = document.getElementById("username-tambah").value;
+            let amount = parseInt(document.getElementById("amount-tambah").value);
+            let saldo = getSaldo(targetUser) + amount;
+            localStorage.setItem(targetUser + "_saldo", saldo);
+            alert(`Saldo ${amount} IDR berhasil ditambahkan ke ${targetUser}`);
+            updateSaldo();
+        });
 
-    alert(`Saldo ${amount} IDR berhasil ditambahkan ke ${targetUser}`);
-    updateSaldo();
-});
+        document.getElementById('kurangi-saldo-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            let targetUser = document.getElementById("username-kurang").value;
+            let amount = parseInt(document.getElementById("amount-kurang").value);
+            let saldo = getSaldo(targetUser);
 
-// Event listener untuk kurangi saldo (hanya rexowner)
-document.getElementById("kurangi-saldo-form").addEventListener("submit", (e) => {
-    e.preventDefault();
-    if (username !== "rexowner") {
-        alert("Hanya rexowner yang bisa mengurangi saldo!");
-        return;
-    }
+            if (saldo >= amount) {
+                saldo -= amount;
+                localStorage.setItem(targetUser + "_saldo", saldo);
+                alert(`Saldo ${amount} IDR berhasil dikurangi dari ${targetUser}`);
+                updateSaldo();
+            } else {
+                alert("Saldo tidak cukup!");
+            }
+        });
 
-    let targetUser = document.getElementById("username-kurang").value;
-    let amount = parseInt(document.getElementById("amount-kurang").value);
+        document.getElementById("beli-saldo-btn").addEventListener("click", () => {
+            let whatsappLink = `https://wa.me/62856004625328?text=Saya ingin membeli saldo`;
+            window.open(whatsappLink, '_blank');
+        });
 
-    if (!targetUser || isNaN(amount) || amount <= 0) {
-        alert("Masukkan username dan jumlah saldo yang valid.");
-        return;
-    }
+        document.getElementById("order-btn").addEventListener("click", () => {
+            let jumlahRam = document.getElementById("jumlah-ram").value;
+            if (jumlahRam === "") {
+                alert("Pilih jumlah RAM terlebih dahulu!");
+                return;
+            }
 
-    let saldo = getSaldo(targetUser);
-    if (saldo < amount) {
-        alert("Saldo tidak cukup!");
-        return;
-    }
+            let hargaTotal = jumlahRam * 1000;
+            let whatsappLink = `https://wa.me/62856004625328?text=Halo, saya ingin order PANEL BOT ${jumlahRam}GB dengan harga Rp ${hargaTotal}`;
+            window.open(whatsappLink, '_blank');
+        });
 
-    saldo -= amount;
-    localStorage.setItem(targetUser + "_saldo", saldo);
+        document.getElementById("logout").addEventListener("click", () => {
+            localStorage.clear();
+            alert("Anda telah logout.");
+            location.reload();
+        });
 
-    alert(`Saldo ${amount} IDR berhasil dikurangi dari ${targetUser}`);
-    updateSaldo();
-});
-
-// Event listener untuk beli saldo via WhatsApp
-document.getElementById("beli-saldo-btn").addEventListener("click", () => {
-    const whatsappLink = `https://wa.me/62856004625328?text=Saya ingin membeli saldo sebesar ${getSaldo(username)} IDR`;
-    window.open(whatsappLink, "_blank");
-});
-
-// Event listener untuk order produk via WhatsApp
-document.getElementById("order-btn").addEventListener("click", () => {
-    const nomorWA = document.getElementById("nomor-wa").value;
-    const jumlahRam = document.getElementById("jumlah-ram").value;
-
-    if (!nomorWA || !jumlahRam) {
-        alert("Silakan masukkan nomor WhatsApp dan pilih jumlah RAM terlebih dahulu!");
-        return;
-    }
-
-    const hargaTotal = jumlahRam * 1000;
-    const pesan = `Halo, saya ingin order PANEL BOT dengan spesifikasi:\n- Jumlah RAM: ${jumlahRam} GB\n- Harga: Rp ${hargaTotal}\n- Nomor WhatsApp: ${nomorWA}`;
-
-    const whatsappLink = `https://wa.me/62856004625328?text=${encodeURIComponent(pesan)}`;
-    window.open(whatsappLink, "_blank");
-});
-
-// Event listener untuk logout
-document.getElementById("logout").addEventListener("click", () => {
-    localStorage.removeItem("username");
-    alert("Anda telah logout.");
-    location.reload();
-});
-
-// Tampilkan saldo sesuai akun yang login
-updateSaldo();
-</script>
+        updateSaldo();
+    </script>
 
 </body>
 </html>
