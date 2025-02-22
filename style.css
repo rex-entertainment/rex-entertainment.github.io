@@ -1,64 +1,156 @@
-body {
-    background-color: #2c2c2c;
-    color: white;
+/* Reset dasar */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
     font-family: Arial, sans-serif;
+}
+
+/* Background utama lebih terang dari elemen */
+body {
+    background-color: #2e2e2e; /* Abu-abu gelap */
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
     text-align: center;
 }
 
-nav {
-    background: #444;
-    padding: 10px;
+/* Header dan navigasi */
+header {
+    width: 100%;
+    background-color: #242424; /* Lebih gelap */
+    padding: 15px 0;
+    text-align: center;
 }
 
 nav ul {
-    list-style-type: none;
-    padding: 0;
+    list-style: none;
 }
 
 nav ul li {
     display: inline;
-    margin-right: 20px;
+    margin: 0 15px;
 }
 
 nav ul li a {
     color: white;
     text-decoration: none;
+    font-size: 18px;
 }
 
-.saldo-container, .admin-container, .produk-container {
-    margin: 20px auto;
-    width: 50%;
-    background: #333;
+nav ul li a:hover {
+    color: #f5a623;
+}
+
+/* Container utama */
+main {
+    width: 90%;
+    max-width: 800px;
+    margin-top: 20px;
+}
+
+/* Panel Admin */
+.admin-container {
+    background-color: #1f1f1f; /* Lebih gelap */
     padding: 20px;
     border-radius: 8px;
-}
-
-button {
-    background: #ff9800;
-    color: white;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-}
-
-button:hover {
-    background: #e68900;
-}
-
-input, select {
     width: 100%;
-    padding: 5px;
-    margin: 5px 0;
+    max-width: 500px;
+    margin: 20px auto;
 }
 
 .admin-box {
     display: flex;
-    justify-content: space-around;
+    flex-direction: column;
+    gap: 15px;
 }
 
 .admin-card {
-    background: #444;
+    background-color: #3a3a3a;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+h2, h3 {
+    color: #f5a623;
+}
+
+/* Input dan tombol */
+input, select {
+    width: 100%;
     padding: 10px;
+    margin-top: 5px;
+    background: #2a2a2a;
+    color: white;
+    border: 1px solid #555;
+    border-radius: 4px;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: #f5a623;
+    color: black;
+    font-weight: bold;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #ffb84d;
+}
+
+/* Saldo container */
+.saldo-container {
+    background-color: #1f1f1f;
+    padding: 15px;
     border-radius: 8px;
-    width: 45%;
+    margin: 20px 0;
+}
+
+#saldo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #f5a623;
+}
+
+/* Produk container */
+.produk-container {
+    background-color: #1f1f1f;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 20px 0;
+}
+
+.produk-card {
+    background-color: #3a3a3a;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.product-image {
+    width: 100%;
+    max-width: 250px;
+    border-radius: 5px;
+}
+
+/* Responsif */
+@media (max-width: 600px) {
+    main {
+        width: 95%;
+    }
+
+    .admin-container, .produk-container {
+        width: 100%;
+    }
+
+    input, select, button {
+        font-size: 16px;
+    }
 }
