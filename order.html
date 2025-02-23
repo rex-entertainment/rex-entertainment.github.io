@@ -15,6 +15,14 @@
             </ul>
         </nav>
     </header>
+    
+        <header>
+        <nav>
+            <ul>
+                <li><button id="admin-btn">Admin</button></li>
+            </ul>
+        </nav>
+    </header>
 
     <!-- Modal Konfirmasi Logout -->
     <div id="logout-modal" class="modal" style="display: none;">
@@ -23,6 +31,16 @@
             <p>Apakah Anda yakin ingin logout?</p>
             <button id="confirm-logout">Yes</button>
             <button id="cancel-logout">No</button>
+        </div>
+    </div>
+
+    <!-- Modal Konfirmasi Admin Menu -->
+    <div id="admin-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <h3>Konfirmasi Admin Menu</h3>
+            <p>Apakah Anda yakin ingin beralih ke Admin Menu?</p>
+            <button id="confirm-admin">Yes</button>
+            <button id="cancel-admin">No</button>
         </div>
     </div>
 
@@ -54,7 +72,6 @@
             <h2>Saldo Anda</h2>
             <p><span id="saldo">0</span> IDR</p>
             <button id="beli-saldo-btn">Beli Saldo</button>
-            <button id="admin-menu-btn" style="display: none;">Admin Menu</button>
         </section>
 
         <!-- Bagian Produk -->
@@ -105,6 +122,19 @@
                 window.location.href = "admin.html";
             });
 
+            // Admin Menu Modal
+            document.getElementById("admin-btn").addEventListener("click", function() {
+                document.getElementById("admin-modal").style.display = "flex";
+            });
+
+            document.getElementById("cancel-admin").addEventListener("click", function() {
+                document.getElementById("admin-modal").style.display = "none";
+            });
+
+            document.getElementById("confirm-admin").addEventListener("click", function() {
+                window.location.href = "admin.html";
+            });
+            
             // Logout Modal
             document.getElementById("logout-btn").addEventListener("click", function() {
                 document.getElementById("logout-modal").style.display = "flex";
