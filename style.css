@@ -12,94 +12,145 @@ body {
     min-height: 100vh;
 }
 
-/* ======== Container Style ======== */
-.container, #saldo-container {
+/* ======== Banner REX MARKET ======== */
+.banner {
+    background: #222;
+    color: gold;
+    text-align: center;
+    padding: 15px 0;
+    font-size: 24px;
+    font-weight: bold;
+    width: 100%;
+}
+
+/* ======== Logout Button ======== */
+.logout-btn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background-color: #ff4444;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.logout-btn:hover {
+    background-color: #cc0000;
+}
+
+/* ======== Card Containers ======== */
+.container, #saldo-container, .admin-container, .produk-container {
     background-color: #1a1a1a;
     padding: 20px;
     border-radius: 10px;
-    border: 2px solid #b8860b; /* Gold lebih solid */
+    border: 2px solid #b8860b;
     width: 90%;
     max-width: 400px;
     text-align: center;
-    box-shadow: 0 0 15px rgba(184, 134, 11, 0.6); /* Efek cahaya emas lembut */
+    box-shadow: 0 0 15px rgba(184, 134, 11, 0.6);
     transition: box-shadow 0.3s ease-in-out;
 }
 
-.container:hover, #saldo-container:hover {
-    box-shadow: 0 0 25px rgba(184, 134, 11, 0.9); /* Glow lebih kuat saat hover */
+.container:hover, #saldo-container:hover, .admin-container:hover, .produk-container:hover {
+    box-shadow: 0 0 25px rgba(184, 134, 11, 0.9);
 }
 
-/* ======== Form Style ======== */
-form {
+/* ======== Admin Menu Card ======== */
+.admin-wrapper {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 20px;
+    justify-content: center;
+    margin: 20px 0;
 }
 
-label {
-    font-size: 16px;
-    font-weight: bold;
-    margin: 5px 0;
-    color: #daa520; /* Warna emas elegan */
-    text-align: left;
-    width: 100%;
+.admin-container {
+    text-align: center;
+    width: 300px;
 }
 
-input {
-    width: 100%;
-    padding: 10px;
-    margin: 5px 0;
-    border-radius: 5px;
-    border: 1px solid #b8860b; /* Emas lebih kalem */
-    background-color: #222;
+.admin-container h2 {
+    margin-bottom: 10px;
+    color: #ff5722;
+}
+
+.admin-container button {
+    background-color: #ff5722;
     color: white;
-}
-
-/* ======== Button Style dengan Glow Effect ======== */
-button {
-    background: #b8860b; /* Warna emas lebih matte */
-    color: black;
-    font-size: 16px;
-    padding: 10px;
-    border: 1px solid #b8860b;
+    border: none;
+    padding: 10px 15px;
     border-radius: 5px;
     cursor: pointer;
-    margin-top: 10px;
     width: 100%;
     font-weight: bold;
-    text-transform: uppercase;
-    box-shadow: 0 0 10px rgba(184, 134, 11, 0.5); /* Glow lembut */
-    transition: box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out;
+    box-shadow: 0 0 10px rgba(255, 87, 34, 0.5);
 }
 
-button:hover {
-    background: #a87900; /* Warna emas lebih gelap saat hover */
-    box-shadow: 0 0 20px rgba(184, 134, 11, 0.8); /* Glow lebih terang saat hover */
+.admin-container button:hover {
+    background-color: #e64a19;
+    box-shadow: 0 0 20px rgba(255, 87, 34, 0.8);
 }
 
-/* ======== Produk Section dengan Efek Glow ======== */
+/* ======== Saldo Section ======== */
+.saldo-wrapper {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.saldo-container {
+    text-align: center;
+    width: 300px;
+}
+
+.saldo-container h2 {
+    margin-bottom: 10px;
+    color: #b8860b;
+}
+
+.saldo-container p {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* ======== Tombol Deposit Saldo ======== */
+#deposit-saldo-btn {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    font-weight: bold;
+    box-shadow: 0 0 10px rgba(40, 167, 69, 0.5);
+}
+
+#deposit-saldo-btn:hover {
+    background-color: #218838;
+    box-shadow: 0 0 20px rgba(40, 167, 69, 0.8);
+}
+
+/* ======== Produk Section ======== */
 .produk-container {
     text-align: center;
 }
 
 .produk-card {
-    background-color: #1a1a1a;
     padding: 15px;
     border-radius: 10px;
-    text-align: center;
     width: 300px;
     border: 2px solid #b8860b;
     margin: 20px auto;
-    box-shadow: 0 0 15px rgba(184, 134, 11, 0.6); /* Efek cahaya halus */
+    box-shadow: 0 0 15px rgba(184, 134, 11, 0.6);
     transition: box-shadow 0.3s ease-in-out;
 }
 
 .produk-card:hover {
-    box-shadow: 0 0 25px rgba(184, 134, 11, 0.9); /* Glow lebih kuat saat hover */
+    box-shadow: 0 0 25px rgba(184, 134, 11, 0.9);
 }
 
-/* Fix Gambar Produk */
+/* ======== Gambar Produk ======== */
 .product-image {
     width: 100%;
     max-width: 150px;
@@ -109,7 +160,7 @@ button:hover {
     margin: 10px auto;
 }
 
-/* Dropdown Pilih RAM */
+/* ======== Dropdown Pilih RAM ======== */
 select {
     width: 100%;
     padding: 10px;
@@ -120,114 +171,4 @@ select {
     color: #b8860b;
     font-weight: bold;
     text-align: center;
-}
-
-/* ======== Modal Logout dengan Efek Cahaya ======== */
-.modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.7);
-    justify-content: center;
-    align-items: center;
-}
-
-.modal-content {
-    background: #222;
-    padding: 20px;
-    border-radius: 10px;
-    text-align: center;
-    color: white;
-    border: 2px solid #b8860b;
-    box-shadow: 0 0 15px rgba(184, 134, 11, 0.6); /* Glow lembut */
-}
-
-/* Tombol di dalam modal */
-.modal button {
-    width: 80px;
-    margin: 5px;
-}
-
-/* ======== Banner Welcome ======== */
-.banner {
-    text-align: center;
-    font-size: 28px;
-    font-weight: bold;
-    color: #ffd700; /* Warna emas */
-    text-shadow: 0 0 10px #ffd700, 0 0 20px #ffcc00, 0 0 30px #ff9900;
-    margin: 20px 0;
-    padding: 10px;
-    background: rgba(255, 215, 0, 0.1);
-    border-radius: 10px;
-    border: 2px solid #ffd700;
-}
-
-/* ======== Saldo Section ======== */
-#saldo-container {
-    width: 500px;
-    margin: 50px auto;
-    padding: 20px;
-    border-radius: 10px;
-    border: 2px solid #b8860b;
-}
-
-#saldo-container h2 {
-    text-align: center;
-    color: #b8860b;
-}
-
-#saldo-container form {
-    margin-top: 20px;
-}
-
-#saldo-container input[type="text"], 
-#saldo-container input[type="number"] {
-    width: 100%;
-    height: 40px;
-    margin-bottom: 20px;
-    padding: 10px;
-    border: 1px solid #b8860b;
-    border-radius: 5px;
-    background-color: #222;
-    color: white;
-}
-
-#saldo-container button[type="submit"] {
-    width: 100%;
-    height: 40px;
-    background: #b8860b;
-    color: black;
-    padding: 10px;
-    border: 1px solid #b8860b;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
-}
-
-#saldo-container button[type="submit"]:hover {
-    background: #a87900;
-}
-
-/* ======== Tombol Admin (Hanya untuk Owner) ======== */
-#admin-menu-btn {
-    background: #ff5722;
-    color: white;
-    font-size: 16px;
-    padding: 12px;
-    border: 1px solid #ff7043;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 10px;
-    width: 100%;
-    font-weight: bold;
-    display: none; /* Default disembunyikan */
-    box-shadow: 0 0 10px rgba(255, 87, 34, 0.5);
-}
-
-#admin-menu-btn:hover {
-    background: #e64a19;
-    box-shadow: 0 0 20px rgba(255, 87, 34, 0.8);
 }
