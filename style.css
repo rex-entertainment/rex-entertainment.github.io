@@ -17,10 +17,11 @@ body {
     background-color: #1a1a1a;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(212, 175, 55, 0.5); /* Gold yang lebih soft */
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.7); /* Cahaya emas lebih terang */
     width: 90%;
     max-width: 400px;
     text-align: center;
+    border: 2px solid #FFD700; /* Border emas */
 }
 
 /* ======== Form Style ======== */
@@ -35,7 +36,7 @@ label {
     font-size: 16px;
     font-weight: bold;
     margin: 5px 0;
-    color: #D4AF37; /* Gold elegan */
+    color: #FFD700; /* Gold cerah & mewah */
     text-align: left;
     width: 100%;
 }
@@ -45,26 +46,30 @@ input {
     padding: 10px;
     margin: 5px 0;
     border-radius: 5px;
-    border: 1px solid #D4AF37;
+    border: 2px solid #FFD700; /* Lebih tebal agar lebih mencolok */
     background-color: #222;
     color: white;
 }
 
 /* ======== Button Style ======== */
 button {
-    background-color: #D4AF37; /* Gold elegan */
+    background: linear-gradient(45deg, #FFD700, #FFC000, #FFD700); /* Efek gradasi emas */
     color: black;
     font-size: 16px;
-    padding: 10px;
-    border: none;
+    padding: 12px;
+    border: 2px solid #FFD700;
     border-radius: 5px;
     cursor: pointer;
     margin-top: 10px;
     width: 100%;
+    font-weight: bold;
+    text-transform: uppercase;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.9); /* Glow emas */
 }
 
 button:hover {
-    background-color: #B8860B; /* Gold lebih tua saat hover */
+    background: linear-gradient(45deg, #FFC000, #FFD700, #FFC000);
+    box-shadow: 0 0 15px rgba(255, 215, 0, 1);
 }
 
 /* ======== Produk Section ======== */
@@ -77,16 +82,17 @@ button:hover {
     padding: 15px;
     border-radius: 10px;
     text-align: center;
-    width: 300px; /* Ukuran card fix */
-    box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+    width: 300px;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
+    border: 2px solid #FFD700;
     margin: 20px auto;
 }
 
 /* Fix Gambar Produk */
 .product-image {
-    width: 100%; /* Gambar tetap dalam card */
-    max-width: 150px; /* Ukuran maksimal */
-    height: auto; /* Jaga aspek rasio */
+    width: 100%;
+    max-width: 150px;
+    height: auto;
     border-radius: 10px;
     display: block;
     margin: 10px auto;
@@ -98,9 +104,9 @@ select {
     padding: 10px;
     margin: 5px 0;
     border-radius: 5px;
-    border: 1px solid #D4AF37;
+    border: 2px solid #FFD700;
     background-color: black;
-    color: #D4AF37;
+    color: #FFD700;
     font-weight: bold;
     text-align: center;
 }
@@ -124,6 +130,7 @@ select {
     border-radius: 10px;
     text-align: center;
     color: white;
+    border: 2px solid #FFD700;
 }
 
 /* Tombol di dalam modal */
@@ -137,23 +144,19 @@ select {
     width: 500px;
     margin: 50px auto;
     padding: 20px;
-    border: 1px solid #D4AF37;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.9);
+    border: 2px solid #FFD700;
 }
 
 #saldo-container h2 {
     text-align: center;
-    color: #D4AF37;
+    color: #FFD700;
+    text-shadow: 0 0 5px rgba(255, 215, 0, 0.8);
 }
 
 #saldo-container form {
     margin-top: 20px;
-}
-
-#saldo-container label {
-    display: block;
-    margin-bottom: 10px;
 }
 
 #saldo-container input[type="text"], 
@@ -162,7 +165,7 @@ select {
     height: 40px;
     margin-bottom: 20px;
     padding: 10px;
-    border: 1px solid #D4AF37;
+    border: 2px solid #FFD700;
     border-radius: 5px;
     background-color: #222;
     color: white;
@@ -171,31 +174,35 @@ select {
 #saldo-container button[type="submit"] {
     width: 100%;
     height: 40px;
-    background-color: #D4AF37;
+    background: linear-gradient(45deg, #FFD700, #FFC000, #FFD700);
     color: black;
     padding: 10px;
-    border: none;
+    border: 2px solid #FFD700;
     border-radius: 5px;
     cursor: pointer;
+    font-weight: bold;
 }
 
 #saldo-container button[type="submit"]:hover {
-    background-color: #B8860B;
+    background: linear-gradient(45deg, #FFC000, #FFD700, #FFC000);
+    box-shadow: 0 0 15px rgba(255, 215, 0, 1);
 }
 
 /* ======== Tombol Admin ======== */
 #admin-menu-btn {
-    background: #ff5722;
+    background: linear-gradient(45deg, #ff5722, #ff7043, #ff5722);
     color: white;
     font-size: 16px;
-    padding: 10px;
-    border: none;
+    padding: 12px;
+    border: 2px solid #ff7043;
     border-radius: 5px;
     cursor: pointer;
     margin-top: 10px;
     width: 100%;
+    font-weight: bold;
 }
 
 #admin-menu-btn:hover {
-    background: #e64a19;
+    background: linear-gradient(45deg, #ff7043, #ff5722, #ff7043);
+    box-shadow: 0 0 10px rgba(255, 87, 34, 0.9);
 }
