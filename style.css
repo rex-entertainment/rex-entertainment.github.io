@@ -1,159 +1,76 @@
-/* Reset CSS */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
-}
-
-/* Background utama abu-abu gelap */
 body {
-    background-color: #2b2b2b;
-    color: #a0ff7a; /* Warna hijau muda untuk teks */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
+    background-color: #222; /* Abu-abu gelap */
+    color: #90ee90; /* Hijau muda */
+    font-family: Arial, sans-serif;
+    text-align: center;
 }
 
-/* Header */
 header {
-    width: 100%;
-    background-color: #242424;
-    padding: 10px 0;
-    text-align: center;
+    background-color: #181818; /* Background lebih gelap */
+    padding: 10px;
     position: fixed;
     top: 0;
-    left: 0;
+    width: 100%;
     z-index: 1000;
 }
 
 nav ul {
     list-style: none;
     padding: 0;
-    display: flex;
-    justify-content: center;
-    gap: 20px;
 }
 
 nav ul li {
     display: inline;
+    margin: 0 15px;
 }
 
-nav ul li a, 
-nav ul li button {
-    text-decoration: none;
-    color: #a0ff7a;
-    font-size: 18px;
-    background: none;
-    border: none;
-    cursor: pointer;
-}
-
-/* Modal Logout */
-.modal {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: #1e1e1e;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
-    text-align: center;
-}
-
-.modal-content h3 {
-    color: #ffcc00; /* Warna emas */
-}
-
-/* Container Auth */
-#auth-container {
-    background: #1e1e1e; /* Lebih gelap dari background utama */
-    padding: 20px;
-    border-radius: 8px;
-    text-align: center;
-    width: 90%;
-    max-width: 400px;
-    margin-top: 80px;
-}
-
-#auth-container h2 {
-    color: #a0ff7a;
-}
-
-input {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border-radius: 5px;
-    border: 1px solid #444;
-    background: #333;
-    color: #a0ff7a;
-}
-
-/* Tombol */
 button {
-    width: 100%;
-    padding: 10px;
+    background-color: #008000; /* Hijau */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
     margin-top: 10px;
     border-radius: 5px;
-    border: none;
-    background: #34a853;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
 }
 
 button:hover {
-    background: #2d8742;
+    background-color: #006400; /* Hijau lebih gelap */
 }
 
-/* Admin Panel */
 .admin-container {
-    background: #3e3e3e;
+    background-color: #DAA520; /* Warna emas */
+    color: black;
     padding: 20px;
-    border-radius: 8px;
+    border-radius: 10px;
     margin-top: 20px;
-    text-align: center;
 }
 
-.admin-container h2 {
-    color: #ffcc00;
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
 }
 
-/* Produk */
-.produk-container {
-    background: #1e1e1e;
+.modal-content {
+    background: #333;
     padding: 20px;
-    border-radius: 8px;
-    margin-top: 20px;
+    border-radius: 10px;
+}
+
+.container {
+    margin-top: 100px;
+    background-color: #181818;
+    padding: 20px;
+    border-radius: 10px;
     width: 90%;
     max-width: 400px;
-    text-align: center;
-}
-
-.produk-card img {
-    width: 100%;
-    border-radius: 8px;
-}
-
-.produk-card h3, 
-.produk-card p {
-    color: #a0ff7a;
-}
-
-/* Responsif */
-@media (min-width: 768px) {
-    body {
-        flex-direction: row;
-        justify-content: space-evenly;
-    }
-
-    #auth-container, 
-    .produk-container {
-        width: 400px;
-    }
+    margin-left: auto;
+    margin-right: auto;
 }
