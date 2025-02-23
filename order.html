@@ -38,6 +38,16 @@
         </div>
     </div>
 
+    <!-- Modal Konfirmasi Beli Saldo -->
+    <div id="saldo-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <h3>Beli Saldo</h3>
+            <p>Silakan hubungi owner untuk membeli saldo.</p>
+            <button id="confirm-saldo">Chat WhatsApp</button>
+            <button id="cancel-saldo">Cancel</button>
+        </div>
+    </div>
+
     <main id="order-container">
         <!-- Bagian Saldo -->
         <section class="card-container saldo-container">
@@ -97,18 +107,19 @@
                 window.location.href = "index.html";
             });
 
-            // Beli Saldo
+            // Beli Saldo - Harus Hubungi WhatsApp
             document.getElementById("beli-saldo-btn").addEventListener("click", function() {
-                let tambahSaldo = prompt("Masukkan jumlah saldo yang ingin dibeli:");
-                if (tambahSaldo !== null && !isNaN(tambahSaldo) && tambahSaldo > 0) {
-                    let saldoSekarang = parseInt(localStorage.getItem("saldo-" + username));
-                    let saldoBaru = saldoSekarang + parseInt(tambahSaldo);
-                    localStorage.setItem("saldo-" + username, saldoBaru);
-                    document.getElementById("saldo").textContent = saldoBaru;
-                    alert("Saldo berhasil ditambahkan!");
-                } else {
-                    alert("Masukkan jumlah saldo yang valid!");
-                }
+                document.getElementById("saldo-modal").style.display = "flex";
+            });
+
+            document.getElementById("cancel-saldo").addEventListener("click", function() {
+                document.getElementById("saldo-modal").style.display = "none";
+            });
+
+            document.getElementById("confirm-saldo").addEventListener("click", function() {
+                let whatsappLink = "https://wa.me/62856004625328?text=Halo, saya ingin membeli saldo untuk REX MARKET.";
+                window.open(whatsappLink, "_blank");
+                document.getElementById("saldo-modal").style.display = "none";
             });
 
             // Update Harga
