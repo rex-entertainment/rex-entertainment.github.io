@@ -40,15 +40,7 @@ body {
     background-color: #cc0000;
 }
 
-/* ======== Wrapper untuk Admin & Saldo ======== */
-.wrapper {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    margin-top: 20px;
-}
-
-/* ======== Card Containers ======== */
+/* ======== Card Containers (Admin, Saldo, Produk) ======== */
 .card-container {
     background-color: #1a1a1a;
     padding: 20px;
@@ -58,13 +50,18 @@ body {
     text-align: center;
     box-shadow: 0 0 15px rgba(184, 134, 11, 0.6);
     transition: box-shadow 0.3s ease-in-out;
+    margin-bottom: 15px; /* Jarak antar card */
 }
 
 .card-container:hover {
     box-shadow: 0 0 25px rgba(184, 134, 11, 0.9);
 }
 
-/* ======== Admin Panel ======== */
+/* ======== Admin Panel (Posisi di atas) ======== */
+.admin-container {
+    margin-top: 20px;
+}
+
 .admin-container h2 {
     color: #ff5722;
 }
@@ -87,7 +84,7 @@ body {
     box-shadow: 0 0 20px rgba(255, 87, 34, 0.8);
 }
 
-/* ======== Saldo Section ======== */
+/* ======== Saldo Section (Posisi di bawah Admin) ======== */
 .saldo-container h2 {
     color: #b8860b;
 }
