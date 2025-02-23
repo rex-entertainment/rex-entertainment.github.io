@@ -1,4 +1,4 @@
-/* Reset dasar */
+/* Reset CSS */
 * {
     margin: 0;
     padding: 0;
@@ -6,151 +6,154 @@
     font-family: Arial, sans-serif;
 }
 
-/* Background utama lebih terang dari elemen */
+/* Background utama abu-abu gelap */
 body {
-    background-color: #2e2e2e; /* Abu-abu gelap */
-    color: #ffffff;
+    background-color: #2b2b2b;
+    color: #a0ff7a; /* Warna hijau muda untuk teks */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    text-align: center;
 }
 
-/* Header dan navigasi */
+/* Header */
 header {
     width: 100%;
-    background-color: #242424; /* Lebih gelap */
-    padding: 15px 0;
+    background-color: #242424;
+    padding: 10px 0;
     text-align: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
 }
 
 nav ul {
     list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
 }
 
 nav ul li {
     display: inline;
-    margin: 0 15px;
 }
 
-nav ul li a {
-    color: white;
+nav ul li a, 
+nav ul li button {
     text-decoration: none;
+    color: #a0ff7a;
     font-size: 18px;
+    background: none;
+    border: none;
+    cursor: pointer;
 }
 
-nav ul li a:hover {
-    color: #f5a623;
-}
-
-/* Container utama */
-main {
-    width: 90%;
-    max-width: 800px;
-    margin-top: 20px;
-}
-
-/* Panel Admin */
-.admin-container {
-    background-color: #1f1f1f; /* Lebih gelap */
+/* Modal Logout */
+.modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #1e1e1e;
     padding: 20px;
     border-radius: 8px;
-    width: 100%;
-    max-width: 500px;
-    margin: 20px auto;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    text-align: center;
 }
 
-.admin-box {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+.modal-content h3 {
+    color: #ffcc00; /* Warna emas */
 }
 
-.admin-card {
-    background-color: #3a3a3a;
-    padding: 15px;
-    border-radius: 5px;
+/* Container Auth */
+#auth-container {
+    background: #1e1e1e; /* Lebih gelap dari background utama */
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    width: 90%;
+    max-width: 400px;
+    margin-top: 80px;
 }
 
-h2, h3 {
-    color: #f5a623;
+#auth-container h2 {
+    color: #a0ff7a;
 }
 
-/* Input dan tombol */
-input, select {
+input {
     width: 100%;
     padding: 10px;
-    margin-top: 5px;
-    background: #2a2a2a;
-    color: white;
-    border: 1px solid #555;
-    border-radius: 4px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #444;
+    background: #333;
+    color: #a0ff7a;
 }
 
+/* Tombol */
 button {
     width: 100%;
     padding: 10px;
     margin-top: 10px;
-    background-color: #f5a623;
-    color: black;
-    font-weight: bold;
+    border-radius: 5px;
     border: none;
-    border-radius: 4px;
+    background: #34a853;
+    color: white;
+    font-size: 16px;
     cursor: pointer;
 }
 
 button:hover {
-    background-color: #ffb84d;
+    background: #2d8742;
 }
 
-/* Saldo container */
-.saldo-container {
-    background-color: #1f1f1f;
-    padding: 15px;
-    border-radius: 8px;
-    margin: 20px 0;
-}
-
-#saldo {
-    font-size: 24px;
-    font-weight: bold;
-    color: #f5a623;
-}
-
-/* Produk container */
-.produk-container {
-    background-color: #1f1f1f;
+/* Admin Panel */
+.admin-container {
+    background: #3e3e3e;
     padding: 20px;
     border-radius: 8px;
-    margin: 20px 0;
-}
-
-.produk-card {
-    background-color: #3a3a3a;
-    padding: 15px;
-    border-radius: 8px;
+    margin-top: 20px;
     text-align: center;
 }
 
-.product-image {
+.admin-container h2 {
+    color: #ffcc00;
+}
+
+/* Produk */
+.produk-container {
+    background: #1e1e1e;
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 20px;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+}
+
+.produk-card img {
     width: 100%;
-    max-width: 250px;
-    border-radius: 5px;
+    border-radius: 8px;
+}
+
+.produk-card h3, 
+.produk-card p {
+    color: #a0ff7a;
 }
 
 /* Responsif */
-@media (max-width: 600px) {
-    main {
-        width: 95%;
+@media (min-width: 768px) {
+    body {
+        flex-direction: row;
+        justify-content: space-evenly;
     }
 
-    .admin-container, .produk-container {
-        width: 100%;
-    }
-
-    input, select, button {
-        font-size: 16px;
+    #auth-container, 
+    .produk-container {
+        width: 400px;
     }
 }
