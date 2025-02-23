@@ -1,234 +1,189 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Order - REX MARKET</title>
+    <title>REX MARKET</title>
     <link rel="stylesheet" href="style.css">
-    <style>
-        /* CSS Agar Logout Tetap di Atas */
-        .logout-container {
-            position: fixed;
-            top: 0;
-            right: 20px;
-            background-color: #333;
-            padding: 10px;
-            border-radius: 5px;
-            z-index: 999;
-        }
-
-        .logout-container button {
-            color: white;
-            background-color: red;
-            border: none;
-            padding: 10px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-
-        .logout-container button:hover {
-            background-color: darkred;
-        }
-
-        /* Modal Logout */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            justify-content: center;
-            align-items: center;
-        }
-
-        .modal-content {
-            background-color: white;
-            padding: 20px;
-            border-radius: 5px;
-            text-align: center;
-        }
-
-        .modal-content button {
-            margin: 5px;
-            padding: 10px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-
-        #confirm-logout {
-            background-color: red;
-            color: white;
-            border: none;
-        }
-
-        #cancel-logout {
-            background-color: gray;
-            color: white;
-            border: none;
-        }
-    </style>
 </head>
 <body>
 
-<!-- Logout Tetap di Atas -->
-<div class="logout-container">
-    <button id="logout-btn">Logout</button>
-</div>
+    <!-- Header dengan Tombol Logout di Atas -->
+    <header>
+        <nav>
+            <ul>
+                <li><a href="order.html">Order</a></li>
+                <li><button id="logout-btn">Logout</button></li>
+            </ul>
+        </nav>
+    </header>
 
-<!-- Modal Logout -->
-<div id="logout-modal" class="modal">
-    <div class="modal-content">
-        <p>Apakah Anda yakin ingin logout?</p>
-        <button id="confirm-logout">Yes</button>
-        <button id="cancel-logout">No</button>
-    </div>
-</div>
-
-<!-- Admin Panel (Hanya untuk Owner) -->
-<section class="admin-container" id="admin-panel" style="display: none;">
-    <h2>Admin Panel</h2>
-    <div class="admin-box">
-        <div class="admin-card">
-            <h3>Tambah Saldo</h3>
-            <form id="tambah-saldo-form">
-                <label>Username:</label>
-                <input type="text" id="username-tambah" required>
-                <label>Jumlah Saldo:</label>
-                <input type="number" id="amount-tambah" required>
-                <button type="submit">Tambah Saldo</button>
-            </form>
-        </div>
-        <div class="admin-card">
-            <h3>Kurangi Saldo</h3>
-            <form id="kurangi-saldo-form">
-                <label>Username:</label>
-                <input type="text" id="username-kurang" required>
-                <label>Jumlah Saldo:</label>
-                <input type="number" id="amount-kurang" required>
-                <button type="submit">Kurangi Saldo</button>
-            </form>
+    <!-- Modal Konfirmasi Logout -->
+    <div id="logout-modal" class="modal">
+        <div class="modal-content">
+            <h3>Konfirmasi Logout</h3>
+            <p>Apakah Anda yakin ingin logout?</p>
+            <button id="confirm-logout">Yes</button>
+            <button id="cancel-logout">No</button>
         </div>
     </div>
-</section>
 
-<main>
-    <!-- Bagian Saldo -->
-    <section class="saldo-container">
-        <h2>Saldo: <span id="saldo">0</span> IDR</h2>
-        <button id="beli-saldo-btn">Beli Mata Uang</button>
-    </section>
+    <!-- Halaman Login & Register -->
+    <div id="auth-container">
+        <h2>Login</h2>
+        <form id="login-form">
+            <label>Username:</label>
+            <input type="text" id="login-username" required>
+            <label>Password:</label>
+            <input type="password" id="login-password" required>
+            <button type="submit">Login</button>
+        </form>
 
-    <!-- Produk -->
-    <section class="produk-container">
-        <h2>Order Produk</h2>
-        <div class="produk-card">
-            <img src="image-produk.jpg" alt="PANEL BOT" class="product-image">
-            <h3>PANEL BOT</h3>
-            <p>Harga: Rp 1.000 / 1GB</p>
-            <select id="jumlah-ram">
-                <option value="">Pilih Jumlah Ram</option>
-                <option value="1">1 GB</option>
-                <option value="2">2 GB</option>
-                <option value="3">3 GB</option>
-                <option value="4">4 GB</option>
-            </select>
-            <p>Harga Total: Rp <span id="total-harga">0</span></p>
-            <button id="order-btn">Order</button>
-        </div>
-    </section>
-</main>
+        <h2>Register</h2>
+        <form id="register-form">
+            <label>Username:</label>
+            <input type="text" id="register-username" required>
+            <label>Password:</label>
+            <input type="password" id="register-password" required>
+            <button type="submit">Register</button>
+        </form>
+    </div>
 
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-    let username = localStorage.getItem("username");
-    if (!username) {
-        window.location.href = "index.html";
-    }
+    <!-- Halaman Order (Hanya Tampil Jika Login) -->
+    <main id="order-container" style="display: none;">
+        
+        <!-- Admin Panel (Hanya untuk Owner) -->
+        <section class="admin-container" id="admin-panel" style="display: none;">
+            <h2>Admin Panel</h2>
+            <div class="admin-box">
+                <div class="admin-card">
+                    <h3>Tambah Saldo</h3>
+                    <form id="tambah-saldo-form">
+                        <label>Username:</label>
+                        <input type="text" id="username-tambah" required>
+                        <label>Jumlah Saldo:</label>
+                        <input type="number" id="amount-tambah" required>
+                        <button type="submit">Tambah Saldo</button>
+                    </form>
+                </div>
+                <div class="admin-card">
+                    <h3>Kurangi Saldo</h3>
+                    <form id="kurangi-saldo-form">
+                        <label>Username:</label>
+                        <input type="text" id="username-kurang" required>
+                        <label>Jumlah Saldo:</label>
+                        <input type="number" id="amount-kurang" required>
+                        <button type="submit">Kurangi Saldo</button>
+                    </form>
+                </div>
+            </div>
+        </section>
 
-    if (username === "rexowner") {
-        document.getElementById("admin-panel").style.display = "block";
-    }
+        <!-- Bagian Saldo -->
+        <section class="saldo-container">
+            <h2>Saldo: <span id="saldo">0</span> IDR</h2>
+            <button id="beli-saldo-btn">Beli Mata Uang</button>
+        </section>
 
-    function getSaldo(user) {
-        return parseInt(localStorage.getItem(user + "_saldo")) || 0;
-    }
+        <!-- Bagian Produk -->
+        <section class="produk-container">
+            <h2>Order Produk</h2>
+            <div class="produk-card">
+                <img src="image-produk.jpg" alt="PANEL BOT" class="product-image">
+                <h3>PANEL BOT</h3>
+                <p>Harga: Rp 1.000 / 1GB</p>
+                <select id="jumlah-ram">
+                    <option value="">Pilih Jumlah Ram</option>
+                    <option value="1">1 GB</option>
+                    <option value="2">2 GB</option>
+                    <option value="3">3 GB</option>
+                    <option value="4">4 GB</option>
+                </select>
+                <p>Harga Total: Rp <span id="total-harga">0</span></p>
+                <button id="order-btn">Order</button>
+            </div>
+        </section>
+    </main>
 
-    function updateSaldo() {
-        let saldo = getSaldo(username);
-        document.getElementById("saldo").textContent = saldo;
-    }
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            let logoutModal = document.getElementById("logout-modal");
+            let logoutBtn = document.getElementById("logout-btn");
+            let confirmLogout = document.getElementById("confirm-logout");
+            let cancelLogout = document.getElementById("cancel-logout");
 
-    document.getElementById("tambah-saldo-form").addEventListener("submit", function(e) {
-        e.preventDefault();
-        let targetUser = document.getElementById("username-tambah").value;
-        let amount = parseInt(document.getElementById("amount-tambah").value);
-        if (!targetUser || isNaN(amount) || amount <= 0) {
-            alert("Masukkan username dan jumlah saldo yang valid.");
-            return;
-        }
-        let saldo = getSaldo(targetUser) + amount;
-        localStorage.setItem(targetUser + "_saldo", saldo);
-        alert(`Saldo ${amount} IDR berhasil ditambahkan ke ${targetUser}`);
-        updateSaldo();
-    });
+            let username = localStorage.getItem("username");
+            let orderContainer = document.getElementById("order-container");
+            let authContainer = document.getElementById("auth-container");
 
-    document.getElementById("kurangi-saldo-form").addEventListener("submit", function(e) {
-        e.preventDefault();
-        let targetUser = document.getElementById("username-kurang").value;
-        let amount = parseInt(document.getElementById("amount-kurang").value);
-        if (!targetUser || isNaN(amount) || amount <= 0) {
-            alert("Masukkan username dan jumlah saldo yang valid.");
-            return;
-        }
-        let saldo = getSaldo(targetUser);
-        if (saldo < amount) {
-            alert("Saldo tidak cukup!");
-            return;
-        }
-        saldo -= amount;
-        localStorage.setItem(targetUser + "_saldo", saldo);
-        alert(`Saldo ${amount} IDR berhasil dikurangi dari ${targetUser}`);
-        updateSaldo();
-    });
+            // Cek login
+            if (username) {
+                authContainer.style.display = "none";
+                orderContainer.style.display = "block";
+                if (username === "rexowner") {
+                    document.getElementById("admin-panel").style.display = "block";
+                }
+            } else {
+                authContainer.style.display = "block";
+                orderContainer.style.display = "none";
+            }
 
-    // Logout
-    document.getElementById("logout-btn").addEventListener("click", function() {
-        document.getElementById("logout-modal").style.display = "flex";
-    });
+            // Logout Modal
+            logoutBtn.addEventListener("click", function(event) {
+                event.stopPropagation();
+                logoutModal.style.display = "flex";
+            });
 
-    document.getElementById("cancel-logout").addEventListener("click", function() {
-        document.getElementById("logout-modal").style.display = "none";
-    });
+            cancelLogout.addEventListener("click", function(event) {
+                event.stopPropagation();
+                logoutModal.style.display = "none";
+            });
 
-    document.getElementById("confirm-logout").addEventListener("click", function() {
-        localStorage.removeItem("username");
-        window.location.href = "index.html";
-    });
+            confirmLogout.addEventListener("click", function(event) {
+                event.stopPropagation();
+                localStorage.removeItem("username");
+                window.location.href = "index.html";
+            });
 
-    document.getElementById("jumlah-ram").addEventListener("change", function() {
-        let hargaPerGB = 1000;
-        let jumlahRam = parseInt(this.value);
-        let totalHarga = hargaPerGB * jumlahRam;
-        document.getElementById("total-harga").textContent = totalHarga;
-    });
+            // Register
+            document.getElementById("register-form").addEventListener("submit", function(e) {
+                e.preventDefault();
+                let regUser = document.getElementById("register-username").value;
+                let regPass = document.getElementById("register-password").value;
 
-    document.getElementById("order-btn").addEventListener("click", function() {
-        let jumlahRam = document.getElementById("jumlah-ram").value;
-        let totalHarga = document.getElementById("total-harga").textContent;
-        let whatsappLink = `https://wa.me/62856004625328?text=Halo, saya ingin order PANEL BOT ${jumlahRam}GB seharga Rp${totalHarga} IDR`;
-        window.open(whatsappLink, "_blank");
-    });
+                if (localStorage.getItem(regUser)) {
+                    alert("Username sudah terdaftar!");
+                } else {
+                    localStorage.setItem(regUser, regPass);
+                    alert("Registrasi berhasil! Silakan login.");
+                }
+            });
 
-    document.getElementById("beli-saldo-btn").addEventListener("click", function() {
-        let whatsappLink = `https://wa.me/62856004625328?text=Halo, saya ingin membeli saldo di REX MARKET`;
-        window.open(whatsappLink, "_blank");
-    });
+            // Login
+            document.getElementById("login-form").addEventListener("submit", function(e) {
+                e.preventDefault();
+                let loginUser = document.getElementById("login-username").value;
+                let loginPass = document.getElementById("login-password").value;
+                let storedPass = localStorage.getItem(loginUser);
 
-    updateSaldo();
-});
-</script>
+                if (storedPass && storedPass === loginPass) {
+                    localStorage.setItem("username", loginUser);
+                    location.reload();
+                } else {
+                    alert("Username atau password salah!");
+                }
+            });
+
+            // Order Produk via WhatsApp
+            document.getElementById("order-btn").addEventListener("click", function() {
+                let jumlahRam = document.getElementById("jumlah-ram").value;
+                let totalHarga = document.getElementById("total-harga").textContent;
+                let whatsappLink = `https://wa.me/62856004625328?text=Halo, saya ingin order PANEL BOT ${jumlahRam}GB seharga Rp${totalHarga} IDR`;
+                window.open(whatsappLink, "_blank");
+            });
+
+        });
+    </script>
 
 </body>
 </html>
