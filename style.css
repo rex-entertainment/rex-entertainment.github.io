@@ -1,4 +1,4 @@
-/* Reset gaya bawaan browser */
+/* Reset bawaan browser */
 * {
     margin: 0;
     padding: 0;
@@ -6,11 +6,11 @@
     font-family: 'Arial', sans-serif;
 }
 
-/* Background utama */
+/* Background utama (Abu-abu gelap) */
 body {
-    background-color: #1c1c1c; /* Abu-abu gelap */
+    background-color: #2a2a2a; /* Abu-abu gelap */
     color: #ffcc00; /* Emas */
-    padding-top: 60px; /* Ruang untuk header */
+    padding-top: 60px; /* Ruang untuk header tetap di atas */
 }
 
 /* Header tetap di atas */
@@ -19,9 +19,9 @@ header {
     top: 0;
     left: 0;
     width: 100%;
-    background-color: #121212; /* Abu-abu lebih gelap */
+    background-color: #1f1f1f; /* Abu-abu lebih gelap */
     padding: 15px 20px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.5);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -53,7 +53,7 @@ nav ul li a,
 nav ul li a:hover,
 #logout-btn:hover {
     background-color: #ffcc00;
-    color: #1c1c1c;
+    color: #1f1f1f;
 }
 
 /* Kontainer utama */
@@ -61,20 +61,21 @@ main {
     max-width: 800px;
     margin: auto;
     padding: 20px;
-    background-color: #121212; /* Warna elemen lebih gelap */
+    background-color: #1f1f1f; /* Elemen lebih gelap */
     border-radius: 10px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.5);
 }
 
 /* Produk Card */
 .produk-card {
-    background-color: #1c1c1c; /* Abu-abu gelap */
+    background-color: #262626; /* Lebih gelap dari background utama */
     padding: 15px;
     border-radius: 10px;
     margin-top: 20px;
     text-align: center;
 }
 
+/* Gambar Produk */
 .product-image {
     width: 100%;
     max-width: 200px;
@@ -86,7 +87,7 @@ select {
     width: 100%;
     padding: 10px;
     margin-top: 10px;
-    background-color: #1c1c1c;
+    background-color: #262626;
     color: #ffcc00;
     border: 1px solid #ffcc00;
     border-radius: 5px;
@@ -98,7 +99,7 @@ button {
     padding: 10px;
     margin-top: 10px;
     background-color: #ffcc00;
-    color: #1c1c1c;
+    color: #1f1f1f;
     border: none;
     border-radius: 5px;
     font-weight: bold;
@@ -124,7 +125,7 @@ button:hover {
 }
 
 .modal-content {
-    background-color: #121212;
+    background-color: #1f1f1f;
     padding: 20px;
     border-radius: 10px;
     text-align: center;
@@ -134,19 +135,5 @@ button:hover {
 @media (max-width: 768px) {
     main {
         width: 90%;
-    }
-
-    nav {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    nav ul {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    nav ul li {
-        margin-bottom: 10px;
     }
 }
