@@ -130,3 +130,49 @@ select {
     width: 80px;
     margin: 5px;
                      }
+                     
+#saldo-container {
+  width: 500px;
+  margin: 50px auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#saldo-container h2 {
+  text-align: center;
+}
+
+#saldo-container form {
+  margin-top: 20px;
+}
+
+#saldo-container label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+#saldo-container input[type="text"], #saldo-container input[type="number"] {
+  width: 100%;
+  height: 40px;
+  margin-bottom: 20px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+#saldo-container button[type="submit"] {
+  width: 100%;
+  height: 40px;
+  background-color: #FFD700;
+  color: #fff;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#saldo-container button[type="submit"]:hover {
+  background-color: #FFC400;
+}
