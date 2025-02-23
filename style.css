@@ -1,4 +1,4 @@
-/* 🔹 Reset CSS */
+/* Reset CSS */
 * {
     margin: 0;
     padding: 0;
@@ -6,91 +6,71 @@
     font-family: Arial, sans-serif;
 }
 
-/* 🔹 Body */
+/* Body */
 body {
-    background-color: #f4f4f4;
-    color: #333;
+    background-color: #1c1c1c; /* Abu-abu gelap */
+    color: gold; /* Warna emas */
     text-align: center;
     padding: 20px;
 }
 
-/* 🔹 Header & Navbar */
+/* Header */
 header {
-    background-color: #007bff;
-    color: white;
+    background-color: #333;
+    color: gold;
     padding: 15px 0;
-    position: fixed;
-    top: 0;
     width: 100%;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
 }
 
-nav ul {
-    list-style: none;
-    display: flex;
-    justify-content: flex-end;
-    padding-right: 20px;
-}
-
-nav ul li {
-    display: inline;
-}
-
-nav ul li button {
-    background-color: #ff4d4d;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-/* 🔹 Modal */
-.modal {
-    display: none;
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    align-items: center;
-    justify-content: center;
-}
-
-.modal-content {
-    background-color: white;
+/* Card Container */
+.card-container {
+    background-color: #111; /* Abu-abu lebih gelap */
     padding: 20px;
     border-radius: 10px;
+    margin: 20px auto;
     width: 90%;
-    max-width: 400px;
+    max-width: 500px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
 }
 
-/* 🔹 Admin Panel */
-.admin-container {
-    background-color: #ffcc00;
-    padding: 15px;
-    border-radius: 10px;
-    margin-bottom: 20px;
-}
-
-/* 🔹 Saldo */
+/* Saldo */
 .saldo-container {
-    background-color: white;
-    padding: 20px;
-    border-radius: 10px;
-    margin-bottom: 20px;
+    border: 2px solid gold;
 }
 
-/* 🔹 Produk */
-.produk-card {
-    background-color: white;
-    padding: 20px;
-    border-radius: 10px;
-}
-
-.product-image {
+/* Produk */
+.produk-card img {
     width: 100%;
     max-width: 200px;
     border-radius: 10px;
+}
+
+select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+
+button {
+    background-color: gold;
+    color: black;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #d4af37;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+    .card-container {
+        width: 95%;
+    }
 }
