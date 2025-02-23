@@ -3,83 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - REX MARKET</title>
+    <title>REX MARKET - Login</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div class="login-container">
-        <h1>REX MARKET</h1>
+    <div class="container">
+        <h2>Login</h2>
+        <form id="login-form">
+            <label>Username:</label>
+            <input type="text" id="login-username" required>
+            <label>Password:</label>
+            <input type="password" id="login-password" required>
+            <button type="submit">Login</button>
+        </form>
 
-        <!-- Form Login -->
-        <div class="form-box">
-            <h2>Login</h2>
-            <form id="login-form">
-                <label>Username:</label>
-                <input type="text" id="login-username" required>
-                <label>Password:</label>
-                <input type="password" id="login-password" required>
-                <button type="submit">Login</button>
-            </form>
-        </div>
-
-        <!-- Form Register -->
-        <div class="form-box">
-            <h2>Register</h2>
-            <form id="register-form">
-                <label>Username:</label>
-                <input type="text" id="register-username" required>
-                <label>Password:</label>
-                <input type="password" id="register-password" required>
-                <button type="submit">Register</button>
-            </form>
-        </div>
+        <h2>Register</h2>
+        <form id="register-form">
+            <label>Username:</label>
+            <input type="text" id="register-username" required>
+            <label>Password:</label>
+            <input type="password" id="register-password" required>
+            <button type="submit">Register</button>
+        </form>
     </div>
 
     <script>
-        // Cek apakah sudah login sebelumnya
-        if (localStorage.getItem("loggedInUser")) {
-            window.location.href = "order.html";
-        }
-
-        // Register
-        document.getElementById("register-form").addEventListener("submit", function(e) {
-            e.preventDefault();
-            let username = document.getElementById("register-username").value;
-            let password = document.getElementById("register-password").value;
-
-            // Cek apakah username sudah dipakai
-            if (localStorage.getItem(username)) {
-                alert("Username sudah digunakan!");
-                return;
+        document.addEventListener("DOMContentLoaded", function() {
+            let currentUser = localStorage.getItem("username");
+            if (currentUser) {
+                window.location.href = "order.html"; // Jika sudah login, langsung ke order.html
             }
 
-            // Simpan akun ke localStorage
-            localStorage.setItem(username, JSON.stringify({ password: password, saldo: 0 }));
-            alert("Registrasi berhasil! Silakan login.");
-        });
+            // Register
+            document.getElementById("register-form").addEventListener("submit", function(e) {
+                e.preventDefault();
+                let regUser = document.getElementById("register-username").value;
+                let regPass = document.getElementById("register-password").value;
 
-        // Login
-        document.getElementById("login-form").addEventListener("submit", function(e) {
-            e.preventDefault();
-            let username = document.getElementById("login-username").value;
-            let password = document.getElementById("login-password").value;
-            let userData = localStorage.getItem(username);
+                if (localStorage.getItem(regUser)) {
+                    alert("Username sudah terdaftar!");
+                } else {
+                    localStorage.setItem(regUser, regPass);
+                    alert("Registrasi berhasil! Silakan login.");
+                }
+            });
 
-            if (!userData) {
-                alert("Username tidak terdaftar!");
-                return;
-            }
+            // Login
+            document.getElementById("login-form").addEventListener("submit", function(e) {
+                e.preventDefault();
+                let loginUser = document.getElementById("login-username").value;
+                let loginPass = document.getElementById("login-password").value;
+                let storedPass = localStorage.getItem(loginUser);
 
-            let user = JSON.parse(userData);
-            if (user.password !== password) {
-                alert("Password salah!");
-                return;
-            }
-
-            // Simpan sesi login
-            localStorage.setItem("loggedInUser", username);
-            window.location.href = "order.html";
+                if (storedPass && storedPass === loginPass) {
+                    localStorage.setItem("username", loginUser);
+                    window.location.href = "order.html"; // Redirect ke order.html setelah login
+                } else {
+                    alert("Username atau password salah!");
+                }
+            });
         });
     </script>
 
