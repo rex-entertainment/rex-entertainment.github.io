@@ -54,6 +54,7 @@
             <h2>Saldo Anda</h2>
             <p><span id="saldo">0</span> IDR</p>
             <button id="beli-saldo-btn">Beli Saldo</button>
+            <button id="admin-menu-btn" style="display: none;">Admin Menu</button>
         </section>
 
         <!-- Bagian Produk -->
@@ -92,6 +93,17 @@
 
             let saldo = localStorage.getItem("saldo-" + username);
             document.getElementById("saldo").textContent = saldo;
+
+            // Tampilkan tombol Admin Menu hanya jika user adalah "myrex"
+            let adminMenuBtn = document.getElementById("admin-menu-btn");
+            if (username === "myrex") {
+                adminMenuBtn.style.display = "block";
+            }
+
+            // Fungsi ketika tombol admin diklik
+            adminMenuBtn.addEventListener("click", function() {
+                window.location.href = "admin.html";
+            });
 
             // Logout Modal
             document.getElementById("logout-btn").addEventListener("click", function() {
