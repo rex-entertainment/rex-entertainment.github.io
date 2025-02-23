@@ -1,87 +1,132 @@
-/* ======== Gaya Umum ======== */
+/* ======== General ======== */
 body {
+    background-color: #121212;
+    color: white;
     font-family: Arial, sans-serif;
-    background-color: #222;
-    color: gold;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
     margin: 0;
+    padding: 0;
+    display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
 }
 
-/* ======== Container Utama ======== */
+/* ======== Container Style ======== */
 .container {
     background-color: #1a1a1a;
     padding: 20px;
     border-radius: 10px;
-    text-align: center;
-    width: 350px;
     box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
-    margin-bottom: 20px;
-}
-
-/* ======== Judul ======== */
-h2 {
-    margin-bottom: 15px;
-    border-bottom: 2px solid gold;
-    padding-bottom: 5px;
+    width: 90%;
+    max-width: 400px;
     text-align: center;
 }
 
-/* ======== Form Input (Simetris) ======== */
+/* ======== Form Style ======== */
 form {
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-
-.form-group {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 
 label {
-    color: gold;
+    font-size: 16px;
     font-weight: bold;
-    width: 30%;
+    margin: 5px 0;
+    color: gold;
     text-align: left;
+    width: 100%;
 }
 
 input {
-    width: 65%;
-    padding: 8px;
-    border: 1px solid gold;
-    border-radius: 5px;
-    background-color: black;
-    color: gold;
-}
-
-/* ======== Tombol Simetris ======== */
-button {
     width: 100%;
     padding: 10px;
-    margin-top: 10px;
-    border: none;
+    margin: 5px 0;
+    border-radius: 5px;
+    border: 1px solid #FFD700;
+    background-color: #222;
+    color: white;
+}
+
+/* ======== Button Style ======== */
+button {
     background-color: gold;
     color: black;
     font-size: 16px;
-    font-weight: bold;
+    padding: 10px;
+    border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: 0.3s;
+    margin-top: 10px;
+    width: 100%;
 }
 
 button:hover {
-    background-color: #ffcc00;
+    background-color: #e6c300;
 }
 
-/* ======== Responsif ======== */
-@media (max-width: 400px) {
-    .container {
-        width: 90%;
-    }
+/* ======== Produk Section ======== */
+.produk-container {
+    text-align: center;
 }
+
+.produk-card {
+    background-color: #1a1a1a;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    width: 300px; /* Ukuran card fix */
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+    margin: 20px auto;
+}
+
+/* Fix Gambar Produk */
+.product-image {
+    width: 100%; /* Gambar tetap dalam card */
+    max-width: 150px; /* Ukuran maksimal */
+    height: auto; /* Jaga aspek rasio */
+    border-radius: 10px;
+    display: block;
+    margin: 10px auto;
+}
+
+/* Dropdown Pilih RAM */
+select {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+    border: 1px solid #FFD700;
+    background-color: black;
+    color: gold;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Modal Logout */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: #222;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    color: white;
+}
+
+#logout-modal button {
+    width: 80px;
+    margin: 5px;
+                     }
