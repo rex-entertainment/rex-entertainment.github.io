@@ -20,21 +20,19 @@
     </header>
 
     <main id="order-container">
-        <div class="wrapper">
-            <!-- Admin Menu (Hanya untuk Owner) -->
-        <section class="produk-card">
-                <h2>ADMIN MENU</h2>
-                <p>Untuk setting saldo</p>
-                <button id="admin-menu-btn">ADMIN MENU</button>
+        <!-- Admin Menu (Hanya untuk Owner) -->
+        <section class="card-container admin-container" id="admin-card" style="display: none;">
+            <h2>ADMIN MENU</h2>
+            <p>Untuk setting saldo</p>
+            <button id="admin-menu-btn">ADMIN MENU</button>
         </section>
 
-            <!-- Saldo -->
-            <section class="card-container saldo-container">
-                <h2>Saldo Anda</h2>
-                <p><span id="saldo">0</span> IDR</p>
-                <button id="deposit-saldo-btn">DEPOSIT</button>
-            </section>
-        </div>
+        <!-- Saldo -->
+        <section class="card-container saldo-container">
+            <h2>Saldo Anda</h2>
+            <p><span id="saldo">0</span> IDR</p>
+            <button id="deposit-saldo-btn">DEPOSIT</button>
+        </section>
 
         <!-- Produk -->
         <section class="card-container produk-container">
