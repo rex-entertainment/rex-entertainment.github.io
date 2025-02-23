@@ -1,79 +1,214 @@
-/* Reset default margin & padding */
+/* Reset CSS */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+    font-family: Arial, sans-serif;
 }
 
-/* Background utama */
+/* Body */
 body {
-    background-color: #1e1e1e; /* Abu-abu gelap */
-    color: #ffcc00; /* Warna emas */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-height: 100vh;
-    padding-top: 50px; /* Spasi untuk header */
+    background-color: #f4f4f4;
+    color: #333;
+    text-align: center;
+    padding: 20px;
 }
 
-/* CONTAINER LOGIN & REGISTER */
-.container {
-    width: 90%;
-    max-width: 400px;
-    background-color: #222; /* Abu-abu lebih gelap */
+/* Header & Navbar */
+header {
+    background-color: #007bff;
+    color: white;
+    padding: 15px 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 20px;
+}
+
+nav ul li {
+    display: inline;
+}
+
+nav ul li button {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+nav ul li button:hover {
+    background-color: #e60000;
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1001;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background-color: white;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.4);
     text-align: center;
-    margin-bottom: 20px;
+    width: 90%;
+    max-width: 400px;
 }
 
-/* JUDUL */
-h2 {
-    margin-bottom: 15px;
-}
-
-/* LABEL */
-label {
-    display: block;
-    text-align: left;
-    margin-bottom: 5px;
-    font-weight: bold;
-}
-
-/* INPUT */
-input {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    background-color: #252525;
-    color: #ffcc00;
-    border: 1px solid #ffcc00;
-    border-radius: 5px;
-}
-
-/* TOMBOL LOGIN & REGISTER */
-button {
-    width: 100%;
-    padding: 12px;
-    background-color: #ffcc00;
-    color: #191919;
+.modal-content button {
+    margin: 10px;
+    padding: 10px 15px;
     border: none;
     border-radius: 5px;
-    font-weight: bold;
     cursor: pointer;
-    transition: 0.3s;
 }
 
-button:hover {
-    background-color: #e6b800;
+#confirm-logout {
+    background-color: #ff4d4d;
+    color: white;
 }
 
-/* RESPONSIF UNTUK HP */
-@media (max-width: 768px) {
-    .container {
+#cancel-logout {
+    background-color: #007bff;
+    color: white;
+}
+
+#confirm-logout:hover {
+    background-color: #e60000;
+}
+
+#cancel-logout:hover {
+    background-color: #0056b3;
+}
+
+/* Main Container */
+#order-container {
+    margin-top: 80px;
+    padding: 20px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Admin Panel (Khusus Owner) */
+.admin-container {
+    background-color: #ffcc00;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Saldo Container */
+.saldo-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#saldo {
+    font-weight: bold;
+    color: #28a745;
+    font-size: 20px;
+}
+
+#beli-saldo-btn {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+#beli-saldo-btn:hover {
+    background-color: #218838;
+}
+
+/* Produk Section */
+.produk-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.produk-card {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin-top: 20px;
+}
+
+.product-image {
+    width: 100%;
+    max-width: 200px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#order-btn {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+#order-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Responsiveness */
+@media screen and (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    header {
+        padding: 10px 0;
+    }
+
+    #order-container {
         width: 95%;
         padding: 15px;
+    }
+
+    .modal-content {
+        width: 80%;
     }
 }
