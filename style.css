@@ -1,8 +1,8 @@
 /* ======== Gaya Umum ======== */
 body {
     font-family: Arial, sans-serif;
-    background-color: #222; /* Warna abu-abu gelap */
-    color: gold; /* Warna teks emas */
+    background-color: #222;
+    color: gold;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -11,89 +11,15 @@ body {
     flex-direction: column;
 }
 
-/* ======== Header & Navigasi ======== */
-header {
-    width: 100%;
-    background-color: #1a1a1a;
-    padding: 15px;
-    text-align: right;
-}
-
-nav ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-nav ul li {
-    display: inline;
-}
-
-#logout-btn {
-    background-color: gold;
-    color: black;
-    border: none;
-    padding: 8px 15px;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: 0.3s;
-}
-
-#logout-btn:hover {
-    background-color: #ffcc00;
-}
-
-/* ======== Modal Logout ======== */
-.modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
-    justify-content: center;
-    align-items: center;
-}
-
-.modal-content {
-    background-color: #1a1a1a;
-    padding: 20px;
-    border-radius: 10px;
-    text-align: center;
-    box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
-}
-
-.modal-content h3 {
-    margin-bottom: 10px;
-}
-
-.modal-content button {
-    margin: 5px;
-    padding: 8px 15px;
-    border: none;
-    background-color: gold;
-    color: black;
-    font-weight: bold;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: 0.3s;
-}
-
-.modal-content button:hover {
-    background-color: #ffcc00;
-}
-
 /* ======== Container Utama ======== */
 .container {
     background-color: #1a1a1a;
     padding: 20px;
     border-radius: 10px;
     text-align: center;
-    width: 300px;
+    width: 350px;
     box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
-    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 /* ======== Judul ======== */
@@ -101,27 +27,40 @@ h2 {
     margin-bottom: 15px;
     border-bottom: 2px solid gold;
     padding-bottom: 5px;
+    text-align: center;
 }
 
-/* ======== Form Input ======== */
+/* ======== Form Input (Simetris) ======== */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-group {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
 label {
-    display: block;
-    text-align: left;
-    margin: 10px 0 5px;
+    color: gold;
     font-weight: bold;
+    width: 30%;
+    text-align: left;
 }
 
 input {
-    width: 100%;
+    width: 65%;
     padding: 8px;
-    margin-bottom: 10px;
     border: 1px solid gold;
     border-radius: 5px;
     background-color: black;
     color: gold;
 }
 
-/* ======== Tombol ======== */
+/* ======== Tombol Simetris ======== */
 button {
     width: 100%;
     padding: 10px;
@@ -140,45 +79,9 @@ button:hover {
     background-color: #ffcc00;
 }
 
-/* ======== Order Produk ======== */
-.card-container {
-    background-color: #1a1a1a;
-    padding: 20px;
-    margin-top: 20px;
-    border-radius: 10px;
-    text-align: center;
-    box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
-    width: 320px;
-}
-
-.produk-card {
-    text-align: center;
-}
-
-.produk-card h3 {
-    margin: 10px 0;
-}
-
-.product-image {
-    width: 100%;
-    border-radius: 10px;
-    margin-bottom: 10px;
-}
-
-/* ======== Dropdown Pilih RAM (Emas) ======== */
-#jumlah-ram {
-    width: 100%;
-    padding: 8px;
-    border: 2px solid gold;
-    border-radius: 5px;
-    background-color: black;
-    color: gold;
-    font-size: 16px;
-}
-
 /* ======== Responsif ======== */
 @media (max-width: 400px) {
-    .container, .card-container {
+    .container {
         width: 90%;
     }
 }
