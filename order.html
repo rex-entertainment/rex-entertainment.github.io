@@ -8,7 +8,6 @@
 </head>
 <body>
 
-    <!-- 🔹 Header -->
     <header>
         <nav>
             <ul>
@@ -17,7 +16,7 @@
         </nav>
     </header>
 
-    <!-- 🔹 Modal Konfirmasi Logout -->
+    <!-- Modal Konfirmasi Logout -->
     <div id="logout-modal" class="modal">
         <div class="modal-content">
             <h3>Konfirmasi Logout</h3>
@@ -27,23 +26,22 @@
         </div>
     </div>
 
-    <!-- 🔹 Main Content -->
     <main id="order-container">
-        <!-- Admin Panel (Hanya untuk Owner) -->
-        <section class="admin-container" id="admin-panel" style="display: none;">
+        <!-- Admin Panel -->
+        <section class="card-container admin-container" id="admin-panel" style="display: none;">
             <h2>Admin Panel</h2>
             <p>Fitur admin dapat ditambahkan di sini</p>
         </section>
 
         <!-- Bagian Saldo -->
-        <section class="saldo-container">
+        <section class="card-container saldo-container">
             <h2>Saldo Anda</h2>
-            <p><strong>IDR <span id="saldo">0</span></strong></p>
+            <p><span id="saldo">0</span> IDR</p>
             <button id="beli-saldo-btn">Beli Saldo</button>
         </section>
 
         <!-- Bagian Produk -->
-        <section class="produk-container">
+        <section class="card-container produk-container">
             <h2>Order Produk</h2>
             <div class="produk-card">
                 <img src="image-produk.jpg" alt="PANEL BOT" class="product-image">
@@ -64,53 +62,63 @@
         </section>
     </main>
 
-    <!-- 🔹 JavaScript -->
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             let username = localStorage.getItem("username");
-            if (!username) window.location.href = "index.html";
 
-            let saldo = localStorage.getItem("saldo-" + username) || "0";
+            if (!username) {
+                window.location.href = "index.html";
+            }
+
+            if (!localStorage.getItem("saldo-" + username)) {
+                localStorage.setItem("saldo-" + username, "0");
+            }
+
+            let saldo = localStorage.getItem("saldo-" + username);
             document.getElementById("saldo").textContent = saldo;
 
             if (username === "myrex") {
                 document.getElementById("admin-panel").style.display = "block";
             }
 
-            document.getElementById("logout-btn").addEventListener("click", () => {
+            document.getElementById("logout-btn").addEventListener("click", function() {
                 document.getElementById("logout-modal").style.display = "flex";
             });
 
-            document.getElementById("cancel-logout").addEventListener("click", () => {
+            document.getElementById("cancel-logout").addEventListener("click", function() {
                 document.getElementById("logout-modal").style.display = "none";
             });
 
-            document.getElementById("confirm-logout").addEventListener("click", () => {
+            document.getElementById("confirm-logout").addEventListener("click", function() {
                 localStorage.removeItem("username");
                 window.location.href = "index.html";
             });
 
-            document.getElementById("beli-saldo-btn").addEventListener("click", () => {
-                let tambahSaldo = prompt("Masukkan jumlah saldo:");
-                if (tambahSaldo && !isNaN(tambahSaldo) && tambahSaldo > 0) {
-                    let saldoBaru = parseInt(saldo) + parseInt(tambahSaldo);
+            document.getElementById("beli-saldo-btn").addEventListener("click", function() {
+                let tambahSaldo = prompt("Masukkan jumlah saldo yang ingin dibeli:");
+                if (tambahSaldo !== null && !isNaN(tambahSaldo) && tambahSaldo > 0) {
+                    let saldoSekarang = parseInt(localStorage.getItem("saldo-" + username));
+                    let saldoBaru = saldoSekarang + parseInt(tambahSaldo);
                     localStorage.setItem("saldo-" + username, saldoBaru);
                     document.getElementById("saldo").textContent = saldoBaru;
                     alert("Saldo berhasil ditambahkan!");
+                } else {
+                    alert("Masukkan jumlah saldo yang valid!");
                 }
             });
 
             document.getElementById("jumlah-ram").addEventListener("change", function() {
                 let jumlahRam = parseInt(this.value);
-                document.getElementById("total-harga").textContent = jumlahRam * 1000;
+                let totalHarga = jumlahRam * 1000;
+                document.getElementById("total-harga").textContent = totalHarga;
             });
 
-            document.getElementById("order-btn").addEventListener("click", () => {
+            document.getElementById("order-btn").addEventListener("click", function() {
                 let jumlahRam = document.getElementById("jumlah-ram").value;
                 let totalHarga = parseInt(document.getElementById("total-harga").textContent);
                 let saldoSekarang = parseInt(localStorage.getItem("saldo-" + username));
 
-                if (!jumlahRam) {
+                if (jumlahRam === "") {
                     alert("Silakan pilih jumlah RAM terlebih dahulu!");
                     return;
                 }
@@ -127,6 +135,7 @@
                 let whatsappLink = `https://wa.me/62856004625328?text=Halo, saya ingin order PANEL BOT ${jumlahRam}GB seharga Rp${totalHarga} IDR`;
                 window.open(whatsappLink, "_blank");
             });
+
         });
     </script>
 
