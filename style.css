@@ -13,7 +13,7 @@ body {
 }
 
 /* ======== Container Style ======== */
-.container {
+.container, #saldo-container {
     background-color: #1a1a1a;
     padding: 20px;
     border-radius: 10px;
@@ -105,7 +105,7 @@ select {
     text-align: center;
 }
 
-/* Modal Logout */
+/* ======== Modal Logout ======== */
 .modal {
     display: none;
     position: fixed;
@@ -126,63 +126,76 @@ select {
     color: white;
 }
 
-#logout-modal button {
+/* Tombol di dalam modal */
+.modal button {
     width: 80px;
     margin: 5px;
-                     }
-                     
+}
+
+/* ======== Saldo Section ======== */
 #saldo-container {
-  width: 500px;
-  margin: 50px auto;
-  padding: 20px;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 500px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.1);
 }
 
 #saldo-container h2 {
-  text-align: center;
+    text-align: center;
+    color: gold;
 }
 
 #saldo-container form {
-  margin-top: 20px;
+    margin-top: 20px;
 }
 
 #saldo-container label {
-  display: block;
-  margin-bottom: 10px;
+    display: block;
+    margin-bottom: 10px;
 }
 
-#saldo-container input[type="text"], #saldo-container input[type="number"] {
-  width: 100%;
-  height: 40px;
-  margin-bottom: 20px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+#saldo-container input[type="text"], 
+#saldo-container input[type="number"] {
+    width: 100%;
+    height: 40px;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #222;
+    color: white;
 }
 
 #saldo-container button[type="submit"] {
-  width: 100%;
-  height: 40px;
-  background-color: #FFD700;
-  color: #fff;
-  padding: 10px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
+    width: 100%;
+    height: 40px;
+    background-color: #FFD700;
+    color: black;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 #saldo-container button[type="submit"]:hover {
-  background-color: #FFC400;
+    background-color: #FFC400;
 }
 
+/* ======== Tombol Admin ======== */
 #admin-menu-btn {
-  background: #ff5722;
-  color: white;
-  font-size: 16px;
+    background: #ff5722;
+    color: white;
+    font-size: 16px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    width: 100%;
 }
 
-#admin-menu-btn:hover  {
-  background: #e64a19;
+#admin-menu-btn:hover {
+    background: #e64a19;
 }
