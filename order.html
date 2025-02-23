@@ -8,11 +8,11 @@
 </head>
 <body>
 
-    <!-- Header dengan Tombol Logout -->
+    <!-- Header dengan Logout Fixed -->
     <header>
         <nav>
             <ul>
-                <li><a href="order.html">Order</a></li>
+                <li><a href="#">Order</a></li>
                 <li><button id="logout-btn">Logout</button></li>
             </ul>
         </nav>
@@ -49,7 +49,7 @@
         </form>
     </div>
 
-    <!-- Halaman Order (Hanya Tampil Jika Login) -->
+    <!-- Halaman Order (Hanya Jika Login) -->
     <main id="order-container" style="display: none;">
         
         <!-- Admin Panel (Hanya untuk Owner) -->
@@ -105,15 +105,15 @@
             }
 
             // Logout Modal
-            logoutBtn.addEventListener("click", function(event) {
+            logoutBtn.addEventListener("click", function() {
                 logoutModal.style.display = "flex";
             });
 
-            cancelLogout.addEventListener("click", function(event) {
+            cancelLogout.addEventListener("click", function() {
                 logoutModal.style.display = "none";
             });
 
-            confirmLogout.addEventListener("click", function(event) {
+            confirmLogout.addEventListener("click", function() {
                 localStorage.removeItem("username");
                 window.location.href = "index.html";
             });
@@ -141,7 +141,7 @@
 
                 if (storedPass && storedPass === loginPass) {
                     localStorage.setItem("username", loginUser);
-                    window.location.href = "order.html"; // Redirect tanpa reload
+                    window.location.href = "index.html"; // Redirect tanpa reload
                 } else {
                     alert("Username atau password salah!");
                 }
