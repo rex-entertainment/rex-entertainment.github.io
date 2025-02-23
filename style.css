@@ -8,7 +8,6 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     min-height: 100vh;
 }
 
@@ -21,13 +20,21 @@ body {
     font-size: 24px;
     font-weight: bold;
     width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
 }
 
-/* ======== Logout Button ======== */
-.logout-btn {
-    position: absolute;
-    top: 15px;
+/* ======== Header (Logout Button) ======== */
+header {
+    position: fixed;
+    top: 60px;
     right: 20px;
+    z-index: 1000;
+}
+
+.logout-btn {
     background-color: #ff4444;
     color: white;
     border: none;
@@ -40,7 +47,27 @@ body {
     background-color: #cc0000;
 }
 
-/* ======== Card Containers (Admin, Saldo, Produk) ======== */
+/* ======== Wrapper untuk Admin & Saldo ======== */
+#order-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    margin-top: 80px; /* Supaya tidak tertutup banner */
+}
+
+/* Mode Desktop (Lebar layar lebih dari 768px) */
+@media (min-width: 768px) {
+    #order-container {
+        flex-direction: row;
+        justify-content: center;
+        align-items: flex-start;
+        margin-top: 100px;
+    }
+}
+
+/* ======== Card Containers ======== */
 .card-container {
     background-color: #1a1a1a;
     padding: 20px;
@@ -49,103 +76,28 @@ body {
     width: 280px;
     text-align: center;
     box-shadow: 0 0 15px rgba(184, 134, 11, 0.6);
-    transition: box-shadow 0.3s ease-in-out;
-    margin-bottom: 15px; /* Jarak antar card */
 }
 
-.card-container:hover {
-    box-shadow: 0 0 25px rgba(184, 134, 11, 0.9);
-}
-
-/* ======== Admin Panel (Posisi di atas) ======== */
+/* ======== Admin Menu ======== */
 .admin-container {
-    margin-top: 20px;
+    order: 1; /* Agar admin menu selalu di atas */
 }
 
-.admin-container h2 {
-    color: #ff5722;
-}
-
-/* Tombol Admin */
-#admin-menu-btn {
-    background-color: #ff5722;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-    width: 100%;
-    font-weight: bold;
-    box-shadow: 0 0 10px rgba(255, 87, 34, 0.5);
-}
-
-#admin-menu-btn:hover {
-    background-color: #e64a19;
-    box-shadow: 0 0 20px rgba(255, 87, 34, 0.8);
-}
-
-/* ======== Saldo Section (Posisi di bawah Admin) ======== */
-.saldo-container h2 {
-    color: #b8860b;
-}
-
-/* Tombol Deposit Saldo */
-#deposit-saldo-btn {
-    background-color: #28a745;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-    width: 100%;
-    font-weight: bold;
-    box-shadow: 0 0 10px rgba(40, 167, 69, 0.5);
-}
-
-#deposit-saldo-btn:hover {
-    background-color: #218838;
-    box-shadow: 0 0 20px rgba(40, 167, 69, 0.8);
+/* ======== Saldo Section ======== */
+.saldo-container {
+    order: 2; /* Agar saldo berada di bawah admin */
 }
 
 /* ======== Produk Section ======== */
 .produk-container {
-    text-align: center;
+    order: 3; /* Produk di bawah saldo */
     margin-top: 20px;
 }
 
-.produk-card {
-    padding: 15px;
-    border-radius: 10px;
-    width: 300px;
-    border: 2px solid #b8860b;
-    margin: 20px auto;
-    box-shadow: 0 0 15px rgba(184, 134, 11, 0.6);
-    transition: box-shadow 0.3s ease-in-out;
-}
-
-.produk-card:hover {
-    box-shadow: 0 0 25px rgba(184, 134, 11, 0.9);
-}
-
-/* ======== Gambar Produk ======== */
-.product-image {
-    width: 100%;
-    max-width: 150px;
-    height: auto;
-    border-radius: 10px;
-    display: block;
-    margin: 10px auto;
-}
-
-/* ======== Dropdown Pilih RAM ======== */
-select {
-    width: 100%;
-    padding: 10px;
-    margin: 5px 0;
-    border-radius: 5px;
-    border: 1px solid #b8860b;
-    background-color: black;
-    color: #b8860b;
-    font-weight: bold;
-    text-align: center;
+/* ======== Responsive Design untuk Mobile ======== */
+@media (max-width: 767px) {
+    #order-container {
+        flex-direction: column;
+        align-items: center;
+    }
 }
