@@ -8,7 +8,7 @@
 </head>
 <body>
 
-    <!-- Header dengan Tombol Logout di Atas -->
+    <!-- Header dengan Tombol Logout -->
     <header>
         <nav>
             <ul>
@@ -55,28 +55,6 @@
         <!-- Admin Panel (Hanya untuk Owner) -->
         <section class="admin-container" id="admin-panel" style="display: none;">
             <h2>Admin Panel</h2>
-            <div class="admin-box">
-                <div class="admin-card">
-                    <h3>Tambah Saldo</h3>
-                    <form id="tambah-saldo-form">
-                        <label>Username:</label>
-                        <input type="text" id="username-tambah" required>
-                        <label>Jumlah Saldo:</label>
-                        <input type="number" id="amount-tambah" required>
-                        <button type="submit">Tambah Saldo</button>
-                    </form>
-                </div>
-                <div class="admin-card">
-                    <h3>Kurangi Saldo</h3>
-                    <form id="kurangi-saldo-form">
-                        <label>Username:</label>
-                        <input type="text" id="username-kurang" required>
-                        <label>Jumlah Saldo:</label>
-                        <input type="number" id="amount-kurang" required>
-                        <button type="submit">Kurangi Saldo</button>
-                    </form>
-                </div>
-            </div>
         </section>
 
         <!-- Bagian Saldo -->
@@ -96,8 +74,6 @@
                     <option value="">Pilih Jumlah Ram</option>
                     <option value="1">1 GB</option>
                     <option value="2">2 GB</option>
-                    <option value="3">3 GB</option>
-                    <option value="4">4 GB</option>
                 </select>
                 <p>Harga Total: Rp <span id="total-harga">0</span></p>
                 <button id="order-btn">Order</button>
@@ -130,17 +106,14 @@
 
             // Logout Modal
             logoutBtn.addEventListener("click", function(event) {
-                event.stopPropagation();
                 logoutModal.style.display = "flex";
             });
 
             cancelLogout.addEventListener("click", function(event) {
-                event.stopPropagation();
                 logoutModal.style.display = "none";
             });
 
             confirmLogout.addEventListener("click", function(event) {
-                event.stopPropagation();
                 localStorage.removeItem("username");
                 window.location.href = "index.html";
             });
@@ -168,7 +141,7 @@
 
                 if (storedPass && storedPass === loginPass) {
                     localStorage.setItem("username", loginUser);
-                    location.reload();
+                    window.location.href = "order.html"; // Redirect tanpa reload
                 } else {
                     alert("Username atau password salah!");
                 }
