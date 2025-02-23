@@ -1,4 +1,4 @@
-/* Reset default margin dan padding */
+/* Reset default margin & padding */
 * {
     margin: 0;
     padding: 0;
@@ -6,7 +6,7 @@
     font-family: 'Poppins', sans-serif;
 }
 
-/* Background utama (Abu-abu gelap) */
+/* Background utama */
 body {
     background-color: #1e1e1e; /* Abu-abu gelap */
     color: #ffcc00; /* Warna emas */
@@ -14,104 +14,49 @@ body {
     flex-direction: column;
     align-items: center;
     min-height: 100vh;
-    padding-top: 70px; /* Untuk header tetap di atas */
+    padding-top: 50px; /* Spasi untuk header */
 }
 
-/* HEADER - FIXED NAVBAR */
-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background-color: #191919; /* Abu-abu lebih gelap */
-    padding: 15px 0;
-    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    z-index: 1000;
-}
-
-/* NAVIGASI */
-nav ul {
-    list-style: none;
-    display: flex;
-    gap: 25px;
-}
-
-nav ul li {
-    display: inline;
-}
-
-nav ul li a,
-#logout-btn {
-    color: #ffcc00;
-    text-decoration: none;
-    padding: 10px 20px;
-    border: 1px solid #ffcc00;
-    border-radius: 5px;
-    transition: 0.3s;
-    cursor: pointer;
-}
-
-nav ul li a:hover,
-#logout-btn:hover {
-    background-color: #ffcc00;
-    color: #191919;
-}
-
-/* KONTEN UTAMA */
-main {
+/* CONTAINER LOGIN & REGISTER */
+.container {
     width: 90%;
-    max-width: 750px;
-    background-color: #222; /* Abu-abu lebih gelap dari background utama */
-    border-radius: 10px;
-    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.4);
-    padding: 30px;
-    margin-top: 20px;
-    text-align: center;
-}
-
-/* Judul utama */
-main h2 {
-    margin-bottom: 15px;
-}
-
-/* Kartu produk */
-.produk-card {
-    background-color: #252525; /* Lebih gelap dari background utama */
+    max-width: 400px;
+    background-color: #222; /* Abu-abu lebih gelap */
     padding: 20px;
     border-radius: 10px;
-    margin-top: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.4);
     text-align: center;
+    margin-bottom: 20px;
 }
 
-/* Gambar Produk */
-.product-image {
-    width: 100%;
-    max-width: 230px;
-    border-radius: 10px;
+/* JUDUL */
+h2 {
     margin-bottom: 15px;
 }
 
-/* Dropdown */
-select {
+/* LABEL */
+label {
+    display: block;
+    text-align: left;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+/* INPUT */
+input {
     width: 100%;
-    padding: 12px;
-    margin-top: 10px;
+    padding: 10px;
+    margin-bottom: 15px;
     background-color: #252525;
     color: #ffcc00;
     border: 1px solid #ffcc00;
     border-radius: 5px;
 }
 
-/* TOMBOL */
+/* TOMBOL LOGIN & REGISTER */
 button {
     width: 100%;
     padding: 12px;
-    margin-top: 12px;
     background-color: #ffcc00;
     color: #191919;
     border: none;
@@ -125,49 +70,10 @@ button:hover {
     background-color: #e6b800;
 }
 
-/* MODAL LOGOUT */
-.modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.6);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.modal-content {
-    background-color: #191919;
-    padding: 25px;
-    border-radius: 10px;
-    text-align: center;
-}
-
-/* Memberikan jarak antar elemen dalam modal */
-.modal-content h3 {
-    margin-bottom: 10px;
-}
-
-.modal-content p {
-    margin-bottom: 15px;
-}
-
 /* RESPONSIF UNTUK HP */
 @media (max-width: 768px) {
-    main {
+    .container {
         width: 95%;
-        padding: 20px;
-    }
-
-    nav ul {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    nav ul li {
-        margin-bottom: 10px;
+        padding: 15px;
     }
 }
