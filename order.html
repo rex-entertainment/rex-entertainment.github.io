@@ -17,7 +17,7 @@
     </header>
 
     <!-- Modal Konfirmasi Logout -->
-    <div id="logout-modal" class="modal">
+    <div id="logout-modal" class="modal" style="display: none;">
         <div class="modal-content">
             <h3>Konfirmasi Logout</h3>
             <p>Apakah Anda yakin ingin logout?</p>
@@ -26,13 +26,19 @@
         </div>
     </div>
 
-    <main id="order-container">
-        <!-- Admin Panel -->
-        <section class="card-container admin-container" id="admin-panel" style="display: none;">
-            <h2>Admin Panel</h2>
-            <p>Fitur admin dapat ditambahkan di sini</p>
-        </section>
+    <!-- Modal Konfirmasi Order -->
+    <div id="order-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <h3>Konfirmasi Order</h3>
+            <p>Nama Produk: <span id="modal-produk"></span></p>
+            <p>Jumlah RAM: <span id="modal-ram"></span> GB</p>
+            <p>Total Harga: Rp <span id="modal-harga"></span></p>
+            <button id="confirm-order">Order</button>
+            <button id="cancel-order">Cancel</button>
+        </div>
+    </div>
 
+    <main id="order-container">
         <!-- Bagian Saldo -->
         <section class="card-container saldo-container">
             <h2>Saldo Anda</h2>
@@ -77,11 +83,7 @@
             let saldo = localStorage.getItem("saldo-" + username);
             document.getElementById("saldo").textContent = saldo;
 
-            if (username === "myrex") {
-                document.getElementById("admin-panel").style.display = "block";
-            }
-
-            // Logout Button
+            // Logout Modal
             document.getElementById("logout-btn").addEventListener("click", function() {
                 document.getElementById("logout-modal").style.display = "flex";
             });
@@ -132,9 +134,28 @@
                     return;
                 }
 
+                // Tampilkan modal order
+                document.getElementById("modal-produk").textContent = "PANEL BOT";
+                document.getElementById("modal-ram").textContent = jumlahRam;
+                document.getElementById("modal-harga").textContent = totalHarga;
+                document.getElementById("order-modal").style.display = "flex";
+            });
+
+            // Tombol Cancel Order
+            document.getElementById("cancel-order").addEventListener("click", function() {
+                document.getElementById("order-modal").style.display = "none";
+            });
+
+            // Tombol Confirm Order
+            document.getElementById("confirm-order").addEventListener("click", function() {
+                let jumlahRam = document.getElementById("jumlah-ram").value;
+                let totalHarga = parseInt(document.getElementById("total-harga").textContent);
+                let saldoSekarang = parseInt(localStorage.getItem("saldo-" + username));
+
                 saldoSekarang -= totalHarga;
                 localStorage.setItem("saldo-" + username, saldoSekarang);
                 document.getElementById("saldo").textContent = saldoSekarang;
+                document.getElementById("order-modal").style.display = "none";
 
                 let whatsappLink = `https://wa.me/62856004625328?text=Halo, saya ingin order PANEL BOT ${jumlahRam}GB seharga Rp${totalHarga} IDR`;
                 window.open(whatsappLink, "_blank");
