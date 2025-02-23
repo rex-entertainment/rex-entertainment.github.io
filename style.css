@@ -1,76 +1,113 @@
-/* Reset CSS */
-* {
+/* Styling umum */
+body {
+    background-color: #1a1a1a;
+    color: gold;
+    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
 }
 
-/* Body */
-body {
-    background-color: #1c1c1c; /* Abu-abu gelap */
-    color: gold; /* Warna emas */
-    text-align: center;
-    padding: 20px;
-}
-
-/* Header */
+/* Header & Navbar */
 header {
-    background-color: #333;
-    color: gold;
-    padding: 15px 0;
-    width: 100%;
-    text-align: center;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    background-color: #121212;
+    padding: 15px;
+    text-align: right;
 }
 
-/* Card Container */
-.card-container {
-    background-color: #111; /* Abu-abu lebih gelap */
-    padding: 20px;
-    border-radius: 10px;
-    margin: 20px auto;
-    width: 90%;
-    max-width: 500px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
-/* Saldo */
-.saldo-container {
-    border: 2px solid gold;
-}
-
-/* Produk */
-.produk-card img {
-    width: 100%;
-    max-width: 200px;
-    border-radius: 10px;
-}
-
-select {
-    width: 100%;
-    padding: 10px;
-    margin-top: 10px;
-    border-radius: 5px;
+nav ul li {
+    display: inline;
 }
 
 button {
     background-color: gold;
     color: black;
-    padding: 10px;
     border: none;
-    border-radius: 5px;
-    margin-top: 10px;
+    padding: 10px 15px;
     cursor: pointer;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+#jumlah-ram {
+    background-color: black;  /* Latar belakang hitam */
+    color: gold;  /* Warna teks emas */
+    border: 2px solid gold;  /* Border emas */
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+#jumlah-ram option {
+    background-color: black;  /* Warna latar dropdown */
+    color: gold;  /* Warna teks emas */
 }
 
 button:hover {
-    background-color: #d4af37;
+    background-color: #e6b800;
 }
 
-/* Responsiveness */
-@media (max-width: 768px) {
-    .card-container {
-        width: 95%;
-    }
+/* Card Container */
+.card-container {
+    background-color: #222;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+/* Admin Panel */
+.admin-container {
+    display: none;
+}
+
+/* Saldo */
+.saldo-container p {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* Produk */
+.produk-container {
+    margin-top: 20px;
+}
+
+.produk-container select, .produk-container p {
+    margin: 10px 0;
+}
+
+.product-image {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/* Modal Logout */
+.modal {
+    display: none; /* Disembunyikan secara default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: #222;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.modal-content button {
+    margin: 10px;
 }
