@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Saldo</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="container">
+    <h2>Login</h2>
+    <form id="login-form">
+      <label>Username Admin</label>
+      <input type="text" id="username" required>
+      <label>Password Admin</label>
+      <input type="password" id="password" required>
+      <button type="submit">Login</button>
+    </form>
+  </div>
+
+  <div id="saldo-container" style="display: none;">
+    <h2>Saldo: <span id="saldo">0</span> IDR</h2>
+    <form id="tambah-saldo-form">
+      <label>Jumlah Saldo:</label>
+      <input type="number" id="amount-tambah" required>
+      <button type="submit">Tambah Saldo</button>
+    </form>
+    <form id="kurangi-saldo-form">
+      <label>Jumlah Saldo:</label>
+      <input type="number" id="amount-kurang" required>
+      <button type="submit">Kurangi Saldo</button>
+    </form>
+  </div>
+
+  <script>
+    const loginForm = document.getElementById('login-form');
+    const saldoContainer = document.getElementById('saldo-container');
+    const saldoElement = document.getElementById('saldo');
+
+    let saldo = 0;
+
+    loginForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+      if (username === "myrex") {
+        saldoContainer.style.display = "block";
+        document.getElementById('login-container').style.display = "none";
+      } else {
+        alert("Khusus Akun Admin");
+      }
+    });
+
+    document.getElementById('tambah-saldo-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const amount = parseInt(document.getElementById('amount-tambah').value);
+      saldo += amount;
+      saldoElement.textContent = saldo;
+    });
+
+    document.getElementById('kurangi-saldo-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const amount = parseInt(document.getElementById('amount-kurang').value);
+      if (saldo >= amount) {
+        saldo -= amount;
+        saldoElement.textContent = saldo;
+      } else {
+        alert('Saldo tidak cukup!');
+      }
+    });
+  </script>
+</body>
+</html>
