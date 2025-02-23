@@ -8,41 +8,33 @@
 </head>
 <body>
 
+    <!-- Banner REX MARKET -->
+    <div class="banner">
+        <h1>REX MARKET</h1>
+    </div>
+
     <header>
         <nav>
-            <ul>
-                <li><button id="logout-btn">Logout</button></li>
-                <li><button id="admin-menu-btn" style="display: none;">Admin Menu</button></li>
-            </ul>
+            <button id="logout-btn" class="logout-btn">Logout</button>
         </nav>
     </header>
 
-    <!-- Modal Logout -->
-    <div id="logout-modal" class="modal" style="display: none;">
-        <div class="modal-content">
-            <h3>Konfirmasi Logout</h3>
-            <p>Apakah Anda yakin ingin logout?</p>
-            <button id="confirm-logout">Yes</button>
-            <button id="cancel-logout">No</button>
-        </div>
-    </div>
-
-    <!-- Modal Admin Menu -->
-    <div id="admin-modal" class="modal" style="display: none;">
-        <div class="modal-content">
-            <h3>Konfirmasi Admin Menu</h3>
-            <p>Apakah Anda yakin ingin beralih ke Admin Menu?</p>
-            <button id="confirm-admin">Yes</button>
-            <button id="cancel-admin">No</button>
-        </div>
-    </div>
-
     <main id="order-container">
+        <!-- Admin Menu -->
+        <section class="admin-wrapper">
+            <div class="card-container admin-container" id="admin-card" style="display: none;">
+                <h2>Admin Panel</h2>
+                <button id="admin-menu-btn">Admin Menu</button>
+            </div>
+        </section>
+
         <!-- Saldo -->
-        <section class="card-container saldo-container">
-            <h2>Saldo Anda</h2>
-            <p><span id="saldo">0</span> IDR</p>
-            <button id="beli-saldo-btn">Beli Saldo</button>
+        <section class="saldo-wrapper">
+            <div class="card-container saldo-container">
+                <h2>Saldo Anda</h2>
+                <p><span id="saldo">0</span> IDR</p>
+                <button id="deposit-saldo-btn">Deposit Saldo</button>
+            </div>
         </section>
 
         <!-- Produk -->
@@ -84,37 +76,27 @@
             let saldo = localStorage.getItem("saldo-" + username);
             document.getElementById("saldo").textContent = saldo;
 
-            // Tampilkan tombol Admin Menu hanya untuk "myrex"
-            let adminMenuBtn = document.getElementById("admin-menu-btn");
+            // Tampilkan card Admin Menu hanya untuk "myrex"
+            let adminCard = document.getElementById("admin-card");
             if (username === "myrex") {
-                adminMenuBtn.style.display = "block";
+                adminCard.style.display = "block";
             }
 
             // Admin Menu Modal
-            adminMenuBtn.addEventListener("click", function() {
-                document.getElementById("admin-modal").style.display = "flex";
-            });
-
-            document.getElementById("cancel-admin").addEventListener("click", function() {
-                document.getElementById("admin-modal").style.display = "none";
-            });
-
-            document.getElementById("confirm-admin").addEventListener("click", function() {
+            document.getElementById("admin-menu-btn").addEventListener("click", function() {
                 window.location.href = "admin.html";
             });
 
-            // Logout Modal
+            // Logout
             document.getElementById("logout-btn").addEventListener("click", function() {
-                document.getElementById("logout-modal").style.display = "flex";
-            });
-
-            document.getElementById("cancel-logout").addEventListener("click", function() {
-                document.getElementById("logout-modal").style.display = "none";
-            });
-
-            document.getElementById("confirm-logout").addEventListener("click", function() {
                 localStorage.removeItem("username");
                 window.location.href = "index.html";
+            });
+
+            // Deposit Saldo - Chat Admin via WhatsApp
+            document.getElementById("deposit-saldo-btn").addEventListener("click", function() {
+                let whatsappLink = `https://wa.me/6285600462532?text=Halo, saya ingin melakukan deposit saldo.`;
+                window.open(whatsappLink, "_blank");
             });
 
             // Update Harga
@@ -136,7 +118,7 @@
                 }
 
                 if (saldoSekarang < totalHarga) {
-                    alert("Saldo tidak cukup! Silakan beli saldo terlebih dahulu.");
+                    alert("Saldo tidak cukup! Silakan deposit saldo terlebih dahulu.");
                     return;
                 }
 
