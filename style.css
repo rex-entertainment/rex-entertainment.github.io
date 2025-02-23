@@ -1,4 +1,4 @@
-/* Reset CSS */
+/* 🔹 Reset CSS */
 * {
     margin: 0;
     padding: 0;
@@ -6,7 +6,7 @@
     font-family: Arial, sans-serif;
 }
 
-/* Body */
+/* 🔹 Body */
 body {
     background-color: #f4f4f4;
     color: #333;
@@ -14,7 +14,7 @@ body {
     padding: 20px;
 }
 
-/* Header & Navbar */
+/* 🔹 Header & Navbar */
 header {
     background-color: #007bff;
     color: white;
@@ -22,7 +22,6 @@ header {
     position: fixed;
     top: 0;
     width: 100%;
-    z-index: 1000;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
@@ -44,18 +43,12 @@ nav ul li button {
     padding: 10px 15px;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 16px;
 }
 
-nav ul li button:hover {
-    background-color: #e60000;
-}
-
-/* Modal */
+/* 🔹 Modal */
 .modal {
     display: none;
     position: fixed;
-    z-index: 1001;
     left: 0;
     top: 0;
     width: 100%;
@@ -69,146 +62,35 @@ nav ul li button:hover {
     background-color: white;
     padding: 20px;
     border-radius: 10px;
-    text-align: center;
     width: 90%;
     max-width: 400px;
 }
 
-.modal-content button {
-    margin: 10px;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-#confirm-logout {
-    background-color: #ff4d4d;
-    color: white;
-}
-
-#cancel-logout {
-    background-color: #007bff;
-    color: white;
-}
-
-#confirm-logout:hover {
-    background-color: #e60000;
-}
-
-#cancel-logout:hover {
-    background-color: #0056b3;
-}
-
-/* Main Container */
-#order-container {
-    margin-top: 80px;
-    padding: 20px;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-/* Admin Panel (Khusus Owner) */
+/* 🔹 Admin Panel */
 .admin-container {
     background-color: #ffcc00;
     padding: 15px;
     border-radius: 10px;
     margin-bottom: 20px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* Saldo Container */
+/* 🔹 Saldo */
 .saldo-container {
     background-color: white;
     padding: 20px;
     border-radius: 10px;
     margin-bottom: 20px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-#saldo {
-    font-weight: bold;
-    color: #28a745;
-    font-size: 20px;
-}
-
-#beli-saldo-btn {
-    background-color: #28a745;
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 10px;
-}
-
-#beli-saldo-btn:hover {
-    background-color: #218838;
-}
-
-/* Produk Section */
-.produk-container {
+/* 🔹 Produk */
+.produk-card {
     background-color: white;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.produk-card {
-    background-color: #ffffff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    margin-top: 20px;
 }
 
 .product-image {
     width: 100%;
     max-width: 200px;
     border-radius: 10px;
-    margin-bottom: 10px;
-}
-
-select {
-    width: 100%;
-    padding: 10px;
-    margin-top: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-#order-btn {
-    background-color: #007bff;
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 10px;
-}
-
-#order-btn:hover {
-    background-color: #0056b3;
-}
-
-/* Responsiveness */
-@media screen and (max-width: 768px) {
-    body {
-        padding: 10px;
-    }
-
-    header {
-        padding: 10px 0;
-    }
-
-    #order-container {
-        width: 95%;
-        padding: 15px;
-    }
-
-    .modal-content {
-        width: 80%;
-    }
 }
