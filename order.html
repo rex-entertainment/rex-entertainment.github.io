@@ -20,22 +20,21 @@
     </header>
 
     <main id="order-container">
-        <!-- Admin Menu -->
-        <section class="admin-wrapper">
-            <div class="card-container admin-container" id="admin-card" style="display: none;">
+        <div class="wrapper">
+            <!-- Admin Menu (Hanya untuk Owner) -->
+            <section class="card-container admin-container" id="admin-card" style="display: none;">
                 <h2>Admin Panel</h2>
+                <p>Kelola pesanan dan saldo pengguna</p>
                 <button id="admin-menu-btn">Admin Menu</button>
-            </div>
-        </section>
+            </section>
 
-        <!-- Saldo -->
-        <section class="saldo-wrapper">
-            <div class="card-container saldo-container">
+            <!-- Saldo -->
+            <section class="card-container saldo-container">
                 <h2>Saldo Anda</h2>
                 <p><span id="saldo">0</span> IDR</p>
                 <button id="deposit-saldo-btn">Deposit Saldo</button>
-            </div>
-        </section>
+            </section>
+        </div>
 
         <!-- Produk -->
         <section class="card-container produk-container">
@@ -68,7 +67,7 @@
                 return;
             }
 
-            // Set saldo user
+            // Set saldo user jika belum ada
             if (!localStorage.getItem("saldo-" + username)) {
                 localStorage.setItem("saldo-" + username, "0");
             }
@@ -76,13 +75,13 @@
             let saldo = localStorage.getItem("saldo-" + username);
             document.getElementById("saldo").textContent = saldo;
 
-            // Tampilkan card Admin Menu hanya untuk "myrex"
+            // Tampilkan Admin Menu hanya jika username adalah "myrex"
             let adminCard = document.getElementById("admin-card");
             if (username === "myrex") {
                 adminCard.style.display = "block";
             }
 
-            // Admin Menu Modal
+            // Admin Menu
             document.getElementById("admin-menu-btn").addEventListener("click", function() {
                 window.location.href = "admin.html";
             });
@@ -93,13 +92,13 @@
                 window.location.href = "index.html";
             });
 
-            // Deposit Saldo - Chat Admin via WhatsApp
+            // Deposit Saldo (Chat Admin via WhatsApp)
             document.getElementById("deposit-saldo-btn").addEventListener("click", function() {
                 let whatsappLink = `https://wa.me/6285600462532?text=Halo, saya ingin melakukan deposit saldo.`;
                 window.open(whatsappLink, "_blank");
             });
 
-            // Update Harga
+            // Update Harga saat memilih RAM
             document.getElementById("jumlah-ram").addEventListener("change", function() {
                 let jumlahRam = parseInt(this.value);
                 let totalHarga = jumlahRam * 1000;
@@ -122,11 +121,13 @@
                     return;
                 }
 
+                // Kurangi saldo user
                 saldoSekarang -= totalHarga;
                 localStorage.setItem("saldo-" + username, saldoSekarang);
                 document.getElementById("saldo").textContent = saldoSekarang;
 
-                let whatsappLink = `https://wa.me/62856004625328?text=Halo, saya ingin order PANEL BOT ${jumlahRam}GB seharga Rp${totalHarga} IDR`;
+                // Redirect ke WhatsApp dengan format order
+                let whatsappLink = `https://wa.me/6285600462532?text=Halo, saya ingin order PANEL BOT ${jumlahRam}GB seharga Rp${totalHarga} IDR`;
                 window.open(whatsappLink, "_blank");
             });
 
