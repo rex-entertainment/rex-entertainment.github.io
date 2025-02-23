@@ -7,6 +7,24 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  
+      <header>
+        <nav>
+            <ul>
+                <li><button id="back-btn">Kembali</button></li>
+            </ul>
+        </nav>
+      </header>
+  
+      <div id="back-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <h3>Konfirmasi Kembali</h3>
+            <p>Apakah Anda yakin ingin kembali?</p>
+            <button id="confirm-back">Yes</button>
+            <button id="cancel-back">No</button>
+        </div>
+      </div>
+  
   <div id="login-container">
     <h2>Login Admin</h2>
     <form id="login-form">
@@ -19,6 +37,18 @@
   </div>
 
   <script>
+                   // Back Modal
+            document.getElementById("back-btn").addEventListener("click", function() {
+                document.getElementById("back-modal").style.display = "flex";
+            });
+
+            document.getElementById("cancel-back").addEventListener("click", function() {
+                document.getElementById("back-modal").style.display = "none";
+            });
+
+            document.getElementById("confirm-back").addEventListener("click", function() {
+                window.location.href = "order.html";
+            });
 // Login khusus admin
 document.getElementById("login-form").addEventListener("submit", function (e) {
     e.preventDefault();
