@@ -1,198 +1,138 @@
-/* ===== Reset Style ===== */
+/* Reset gaya bawaan browser */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
 }
 
-/* ===== Body & Background ===== */
+/* Background utama */
 body {
-    background-color: #1e1e1e;
-    color: #32cd32; /* Warna teks hijau muda */
-    text-align: center;
-    padding-top: 60px; /* Agar tidak tertutup navbar */
+    background-color: #1c1c1c; /* Abu-abu gelap */
+    color: #ffcc00; /* Emas */
+    padding-top: 60px; /* Ruang untuk header */
 }
 
-/* ===== Navbar & Logout Button ===== */
+/* Header tetap di atas */
 header {
-    background-color: #121212; /* Lebih gelap dari background utama */
-    padding: 15px;
     position: fixed;
-    width: 100%;
     top: 0;
     left: 0;
+    width: 100%;
+    background-color: #121212; /* Abu-abu lebih gelap */
+    padding: 15px 20px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     z-index: 1000;
 }
 
+/* Navigasi */
 nav ul {
     list-style: none;
     display: flex;
-    justify-content: space-between;
-    padding: 0 20px;
 }
 
 nav ul li {
-    display: inline;
+    margin: 0 10px;
 }
 
-nav ul li a, #logout-btn {
-    color: #32cd32;
+nav ul li a,
+#logout-btn {
+    color: #ffcc00;
     text-decoration: none;
-    font-size: 18px;
-    padding: 10px;
+    padding: 10px 15px;
+    background-color: transparent;
+    border: 1px solid #ffcc00;
+    border-radius: 5px;
     transition: 0.3s;
-    background: none;
-    border: none;
     cursor: pointer;
 }
 
-nav ul li a:hover, #logout-btn:hover {
-    color: #ffffff;
+nav ul li a:hover,
+#logout-btn:hover {
+    background-color: #ffcc00;
+    color: #1c1c1c;
 }
 
-/* Tombol Logout Fixed */
-#logout-btn {
-    position: fixed;
-    top: 10px;
-    right: 10px;
-    background-color: red;
-    color: white;
-    padding: 10px 15px;
-    border-radius: 5px;
-    font-weight: bold;
-}
-
-/* ===== Form Login & Register ===== */
-#auth-container {
-    max-width: 400px;
-    margin: 50px auto;
+/* Kontainer utama */
+main {
+    max-width: 800px;
+    margin: auto;
     padding: 20px;
-    background: #121212;
+    background-color: #121212; /* Warna elemen lebih gelap */
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* Produk Card */
+.produk-card {
+    background-color: #1c1c1c; /* Abu-abu gelap */
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.product-image {
+    width: 100%;
+    max-width: 200px;
     border-radius: 10px;
 }
 
-h2 {
-    color: #32cd32;
-    margin-bottom: 10px;
-}
-
-form {
-    display: flex;
-    flex-direction: column;
-}
-
-label {
-    font-size: 14px;
-    margin-bottom: 5px;
-    text-align: left;
-    color: #32cd32;
-}
-
-input {
+/* Dropdown */
+select {
+    width: 100%;
     padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #32cd32;
+    margin-top: 10px;
+    background-color: #1c1c1c;
+    color: #ffcc00;
+    border: 1px solid #ffcc00;
     border-radius: 5px;
-    background: #222;
-    color: white;
 }
 
+/* Tombol */
 button {
-    background-color: #32cd32;
-    color: black;
-    font-size: 16px;
+    width: 100%;
     padding: 10px;
+    margin-top: 10px;
+    background-color: #ffcc00;
+    color: #1c1c1c;
     border: none;
     border-radius: 5px;
+    font-weight: bold;
     cursor: pointer;
     transition: 0.3s;
 }
 
 button:hover {
-    background-color: #228b22;
-    color: white;
+    background-color: #e6b800;
 }
 
-/* ===== Order Section ===== */
-#order-container {
-    max-width: 600px;
-    margin: 20px auto;
-    padding: 20px;
-    background: #121212;
-    border-radius: 10px;
-}
-
-.produk-container {
-    margin-top: 20px;
-}
-
-.produk-card {
-    background: #222;
-    padding: 15px;
-    border-radius: 8px;
-    text-align: center;
-}
-
-.produk-card img {
-    width: 100%;
-    max-width: 200px;
-    border-radius: 8px;
-    margin-bottom: 10px;
-}
-
-/* ===== Admin Panel (Warna Emas) ===== */
-#admin-panel {
-    background: #b8860b; /* Warna emas */
-    padding: 15px;
-    border-radius: 8px;
-    color: black;
-}
-
-/* ===== Modal Logout ===== */
+/* Modal Logout */
 .modal {
     display: none;
     position: fixed;
-    z-index: 2000;
-    left: 0;
     top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
-    align-items: center;
     justify-content: center;
+    align-items: center;
 }
 
 .modal-content {
-    background: #121212;
+    background-color: #121212;
     padding: 20px;
     border-radius: 10px;
     text-align: center;
-    color: #32cd32;
 }
 
-.modal-content button {
-    margin: 10px;
-    padding: 10px 15px;
-}
-
-/* ===== Responsive Design ===== */
+/* Responsif */
 @media (max-width: 768px) {
-    body {
-        padding-top: 80px;
-    }
-
-    nav ul {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    #logout-btn {
-        top: 15px;
-        right: 15px;
-    }
-
-    #auth-container, #order-container {
+    main {
         width: 90%;
     }
-        }
+}
