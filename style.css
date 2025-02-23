@@ -10,7 +10,11 @@
 body {
     background-color: #2a2a2a; /* Abu-abu gelap */
     color: #ffcc00; /* Emas */
-    padding-top: 60px; /* Ruang untuk header tetap di atas */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    padding-top: 70px; /* Ruang untuk header */
 }
 
 /* Header tetap di atas */
@@ -23,7 +27,7 @@ header {
     padding: 15px 20px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.5);
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     z-index: 1000;
 }
@@ -32,10 +36,11 @@ header {
 nav ul {
     list-style: none;
     display: flex;
+    gap: 15px;
 }
 
 nav ul li {
-    margin: 0 10px;
+    display: inline;
 }
 
 nav ul li a,
@@ -58,12 +63,14 @@ nav ul li a:hover,
 
 /* Kontainer utama */
 main {
+    width: 90%;
     max-width: 800px;
-    margin: auto;
-    padding: 20px;
     background-color: #1f1f1f; /* Elemen lebih gelap */
     border-radius: 10px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    margin-top: 20px;
+    text-align: center;
 }
 
 /* Produk Card */
@@ -72,6 +79,9 @@ main {
     padding: 15px;
     border-radius: 10px;
     margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
 }
 
@@ -80,6 +90,7 @@ main {
     width: 100%;
     max-width: 200px;
     border-radius: 10px;
+    margin-bottom: 15px;
 }
 
 /* Dropdown */
@@ -96,7 +107,7 @@ select {
 /* Tombol */
 button {
     width: 100%;
-    padding: 10px;
+    padding: 12px;
     margin-top: 10px;
     background-color: #ffcc00;
     color: #1f1f1f;
@@ -120,6 +131,7 @@ button:hover {
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
     justify-content: center;
     align-items: center;
 }
@@ -134,6 +146,6 @@ button:hover {
 /* Responsif */
 @media (max-width: 768px) {
     main {
-        width: 90%;
+        width: 95%;
     }
 }
