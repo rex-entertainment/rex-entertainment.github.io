@@ -176,3 +176,13 @@ select {
 #saldo-container button[type="submit"]:hover {
   background-color: #FFC400;
 }
+
+#admin-menu-btn {
+  background: #ff5722;
+  color: white;
+  font-size: 16px;
+}
+
+#admin-menu-btn:hover  {
+  background: #e64a19;
+}
