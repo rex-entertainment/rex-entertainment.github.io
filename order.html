@@ -81,6 +81,7 @@
                 document.getElementById("admin-panel").style.display = "block";
             }
 
+            // Logout Button
             document.getElementById("logout-btn").addEventListener("click", function() {
                 document.getElementById("logout-modal").style.display = "flex";
             });
@@ -94,6 +95,7 @@
                 window.location.href = "index.html";
             });
 
+            // Beli Saldo
             document.getElementById("beli-saldo-btn").addEventListener("click", function() {
                 let tambahSaldo = prompt("Masukkan jumlah saldo yang ingin dibeli:");
                 if (tambahSaldo !== null && !isNaN(tambahSaldo) && tambahSaldo > 0) {
@@ -107,12 +109,14 @@
                 }
             });
 
+            // Update Harga
             document.getElementById("jumlah-ram").addEventListener("change", function() {
                 let jumlahRam = parseInt(this.value);
                 let totalHarga = jumlahRam * 1000;
                 document.getElementById("total-harga").textContent = totalHarga;
             });
 
+            // Order Produk
             document.getElementById("order-btn").addEventListener("click", function() {
                 let jumlahRam = document.getElementById("jumlah-ram").value;
                 let totalHarga = parseInt(document.getElementById("total-harga").textContent);
