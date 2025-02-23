@@ -5,20 +5,89 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Order - REX MARKET</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* CSS Agar Logout Tetap di Atas */
+        .logout-container {
+            position: fixed;
+            top: 0;
+            right: 20px;
+            background-color: #333;
+            padding: 10px;
+            border-radius: 5px;
+            z-index: 999;
+        }
+
+        .logout-container button {
+            color: white;
+            background-color: red;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .logout-container button:hover {
+            background-color: darkred;
+        }
+
+        /* Modal Logout */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .modal-content button {
+            margin: 5px;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        #confirm-logout {
+            background-color: red;
+            color: white;
+            border: none;
+        }
+
+        #cancel-logout {
+            background-color: gray;
+            color: white;
+            border: none;
+        }
+    </style>
 </head>
 <body>
 
-<header>
-    <nav>
-        <ul>
-            <li><a href="order.html">Order</a></li>
-            <li><a href="#" id="logout">Logout</a></li>
-        </ul>
-    </nav>
-</header>
+<!-- Logout Tetap di Atas -->
+<div class="logout-container">
+    <button id="logout-btn">Logout</button>
+</div>
 
-<!-- Admin Panel (Hanya untuk rexowner) -->
-<section id="admin-panel" class="admin-container" style="display: none;">
+<!-- Modal Logout -->
+<div id="logout-modal" class="modal">
+    <div class="modal-content">
+        <p>Apakah Anda yakin ingin logout?</p>
+        <button id="confirm-logout">Yes</button>
+        <button id="cancel-logout">No</button>
+    </div>
+</div>
+
+<!-- Admin Panel (Hanya untuk Owner) -->
+<section class="admin-container" id="admin-panel" style="display: none;">
     <h2>Admin Panel</h2>
     <div class="admin-box">
         <div class="admin-card">
@@ -45,102 +114,99 @@
 </section>
 
 <main>
-    <!-- Saldo -->
+    <!-- Bagian Saldo -->
     <section class="saldo-container">
         <h2>Saldo: <span id="saldo">0</span> IDR</h2>
         <button id="beli-saldo-btn">Beli Mata Uang</button>
     </section>
 
-    <!-- Order Produk -->
+    <!-- Produk -->
     <section class="produk-container">
         <h2>Order Produk</h2>
         <div class="produk-card">
+            <img src="image-produk.jpg" alt="PANEL BOT" class="product-image">
             <h3>PANEL BOT</h3>
             <p>Harga: Rp 1.000 / 1GB</p>
             <select id="jumlah-ram">
+                <option value="">Pilih Jumlah Ram</option>
                 <option value="1">1 GB</option>
                 <option value="2">2 GB</option>
                 <option value="3">3 GB</option>
                 <option value="4">4 GB</option>
             </select>
-            <p>Total Harga: Rp <span id="total-harga">0</span></p>
+            <p>Harga Total: Rp <span id="total-harga">0</span></p>
             <button id="order-btn">Order</button>
         </div>
     </section>
 </main>
 
 <script>
-    // Cek apakah pengguna sudah login
-    let username = localStorage.getItem("loggedInUser");
+document.addEventListener("DOMContentLoaded", function() {
+    let username = localStorage.getItem("username");
     if (!username) {
         window.location.href = "index.html";
     }
 
-    // Tampilkan Admin Panel jika login sebagai rexowner
     if (username === "rexowner") {
         document.getElementById("admin-panel").style.display = "block";
     }
 
-    // Ambil saldo dari localStorage
     function getSaldo(user) {
-        let userData = JSON.parse(localStorage.getItem(user));
-        return userData ? userData.saldo : 0;
+        return parseInt(localStorage.getItem(user + "_saldo")) || 0;
     }
 
-    // Update tampilan saldo
     function updateSaldo() {
         let saldo = getSaldo(username);
         document.getElementById("saldo").textContent = saldo;
     }
 
-    // Tambah Saldo
     document.getElementById("tambah-saldo-form").addEventListener("submit", function(e) {
         e.preventDefault();
         let targetUser = document.getElementById("username-tambah").value;
         let amount = parseInt(document.getElementById("amount-tambah").value);
-
-        let userData = JSON.parse(localStorage.getItem(targetUser));
-        if (!userData) {
-            alert("Username tidak ditemukan!");
+        if (!targetUser || isNaN(amount) || amount <= 0) {
+            alert("Masukkan username dan jumlah saldo yang valid.");
             return;
         }
-
-        userData.saldo += amount;
-        localStorage.setItem(targetUser, JSON.stringify(userData));
+        let saldo = getSaldo(targetUser) + amount;
+        localStorage.setItem(targetUser + "_saldo", saldo);
         alert(`Saldo ${amount} IDR berhasil ditambahkan ke ${targetUser}`);
         updateSaldo();
     });
 
-    // Kurangi Saldo
     document.getElementById("kurangi-saldo-form").addEventListener("submit", function(e) {
         e.preventDefault();
         let targetUser = document.getElementById("username-kurang").value;
         let amount = parseInt(document.getElementById("amount-kurang").value);
-
-        let userData = JSON.parse(localStorage.getItem(targetUser));
-        if (!userData) {
-            alert("Username tidak ditemukan!");
+        if (!targetUser || isNaN(amount) || amount <= 0) {
+            alert("Masukkan username dan jumlah saldo yang valid.");
             return;
         }
-
-        if (userData.saldo < amount) {
+        let saldo = getSaldo(targetUser);
+        if (saldo < amount) {
             alert("Saldo tidak cukup!");
             return;
         }
-
-        userData.saldo -= amount;
-        localStorage.setItem(targetUser, JSON.stringify(userData));
+        saldo -= amount;
+        localStorage.setItem(targetUser + "_saldo", saldo);
         alert(`Saldo ${amount} IDR berhasil dikurangi dari ${targetUser}`);
         updateSaldo();
     });
 
-    // Logout tanpa menghapus saldo
-    document.getElementById("logout").addEventListener("click", function() {
-        localStorage.removeItem("loggedInUser");
+    // Logout
+    document.getElementById("logout-btn").addEventListener("click", function() {
+        document.getElementById("logout-modal").style.display = "flex";
+    });
+
+    document.getElementById("cancel-logout").addEventListener("click", function() {
+        document.getElementById("logout-modal").style.display = "none";
+    });
+
+    document.getElementById("confirm-logout").addEventListener("click", function() {
+        localStorage.removeItem("username");
         window.location.href = "index.html";
     });
 
-    // Hitung harga saat memilih jumlah RAM
     document.getElementById("jumlah-ram").addEventListener("change", function() {
         let hargaPerGB = 1000;
         let jumlahRam = parseInt(this.value);
@@ -148,7 +214,6 @@
         document.getElementById("total-harga").textContent = totalHarga;
     });
 
-    // Order Produk (WhatsApp)
     document.getElementById("order-btn").addEventListener("click", function() {
         let jumlahRam = document.getElementById("jumlah-ram").value;
         let totalHarga = document.getElementById("total-harga").textContent;
@@ -156,13 +221,13 @@
         window.open(whatsappLink, "_blank");
     });
 
-    // Beli Saldo via WhatsApp
     document.getElementById("beli-saldo-btn").addEventListener("click", function() {
         let whatsappLink = `https://wa.me/62856004625328?text=Halo, saya ingin membeli saldo di REX MARKET`;
         window.open(whatsappLink, "_blank");
     });
 
     updateSaldo();
+});
 </script>
 
 </body>
