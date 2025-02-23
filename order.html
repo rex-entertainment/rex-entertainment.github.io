@@ -17,46 +17,35 @@
         </nav>
     </header>
 
-    <!-- Modal Konfirmasi -->
-    <div id="modal-container">
-        <div id="logout-modal" class="modal">
+    <!-- Modal Logout -->
+    <div id="logout-modal" class="modal" style="display: none;">
+        <div class="modal-content">
             <h3>Konfirmasi Logout</h3>
             <p>Apakah Anda yakin ingin logout?</p>
             <button id="confirm-logout">Yes</button>
             <button id="cancel-logout">No</button>
         </div>
+    </div>
 
-        <div id="admin-modal" class="modal">
+    <!-- Modal Admin Menu -->
+    <div id="admin-modal" class="modal" style="display: none;">
+        <div class="modal-content">
             <h3>Konfirmasi Admin Menu</h3>
             <p>Apakah Anda yakin ingin beralih ke Admin Menu?</p>
             <button id="confirm-admin">Yes</button>
             <button id="cancel-admin">No</button>
         </div>
-
-        <div id="order-modal" class="modal">
-            <h3>Konfirmasi Order</h3>
-            <p>Nama Produk: <span id="modal-produk"></span></p>
-            <p>Jumlah RAM: <span id="modal-ram"></span> GB</p>
-            <p>Total Harga: Rp <span id="modal-harga"></span></p>
-            <button id="confirm-order">Order</button>
-            <button id="cancel-order">Cancel</button>
-        </div>
-
-        <div id="saldo-modal" class="modal">
-            <h3>Beli Saldo</h3>
-            <p>Silakan hubungi owner untuk membeli saldo.</p>
-            <button id="confirm-saldo">Chat WhatsApp</button>
-            <button id="cancel-saldo">Cancel</button>
-        </div>
     </div>
 
     <main id="order-container">
+        <!-- Saldo -->
         <section class="card-container saldo-container">
             <h2>Saldo Anda</h2>
             <p><span id="saldo">0</span> IDR</p>
             <button id="beli-saldo-btn">Beli Saldo</button>
         </section>
 
+        <!-- Produk -->
         <section class="card-container produk-container">
             <h2>Order Produk</h2>
             <div class="produk-card">
@@ -87,6 +76,7 @@
                 return;
             }
 
+            // Set saldo user
             if (!localStorage.getItem("saldo-" + username)) {
                 localStorage.setItem("saldo-" + username, "0");
             }
@@ -94,50 +84,49 @@
             let saldo = localStorage.getItem("saldo-" + username);
             document.getElementById("saldo").textContent = saldo;
 
+            // Tampilkan tombol Admin Menu hanya untuk "myrex"
             let adminMenuBtn = document.getElementById("admin-menu-btn");
             if (username === "myrex") {
                 adminMenuBtn.style.display = "block";
             }
 
-            // Event Listeners
-            const addClickListener = (id, callback) => {
-                let btn = document.getElementById(id);
-                if (btn) btn.addEventListener("click", callback);
-            };
+            // Admin Menu Modal
+            adminMenuBtn.addEventListener("click", function() {
+                document.getElementById("admin-modal").style.display = "flex";
+            });
 
-            // Admin Menu
-            addClickListener("admin-menu-btn", () => document.getElementById("admin-modal").style.display = "flex");
-            addClickListener("confirm-admin", () => window.location.href = "admin.html");
-            addClickListener("cancel-admin", () => document.getElementById("admin-modal").style.display = "none");
+            document.getElementById("cancel-admin").addEventListener("click", function() {
+                document.getElementById("admin-modal").style.display = "none";
+            });
 
-            // Logout
-            addClickListener("logout-btn", () => document.getElementById("logout-modal").style.display = "flex");
-            addClickListener("cancel-logout", () => document.getElementById("logout-modal").style.display = "none");
-            addClickListener("confirm-logout", () => {
+            document.getElementById("confirm-admin").addEventListener("click", function() {
+                window.location.href = "admin.html";
+            });
+
+            // Logout Modal
+            document.getElementById("logout-btn").addEventListener("click", function() {
+                document.getElementById("logout-modal").style.display = "flex";
+            });
+
+            document.getElementById("cancel-logout").addEventListener("click", function() {
+                document.getElementById("logout-modal").style.display = "none";
+            });
+
+            document.getElementById("confirm-logout").addEventListener("click", function() {
                 localStorage.removeItem("username");
                 window.location.href = "index.html";
             });
 
-            // Beli Saldo
-            addClickListener("beli-saldo-btn", () => document.getElementById("saldo-modal").style.display = "flex");
-            addClickListener("cancel-saldo", () => document.getElementById("saldo-modal").style.display = "none");
-            addClickListener("confirm-saldo", () => {
-                let whatsappLink = "https://wa.me/62856004625328?text=Halo, saya ingin membeli saldo untuk REX MARKET.";
-                window.open(whatsappLink, "_blank");
-                document.getElementById("saldo-modal").style.display = "none";
-            });
-
             // Update Harga
-            let jumlahRamSelect = document.getElementById("jumlah-ram");
-            jumlahRamSelect.addEventListener("change", function() {
+            document.getElementById("jumlah-ram").addEventListener("change", function() {
                 let jumlahRam = parseInt(this.value);
                 let totalHarga = jumlahRam * 1000;
                 document.getElementById("total-harga").textContent = totalHarga;
             });
 
             // Order Produk
-            addClickListener("order-btn", () => {
-                let jumlahRam = jumlahRamSelect.value;
+            document.getElementById("order-btn").addEventListener("click", function() {
+                let jumlahRam = document.getElementById("jumlah-ram").value;
                 let totalHarga = parseInt(document.getElementById("total-harga").textContent);
                 let saldoSekarang = parseInt(localStorage.getItem("saldo-" + username));
 
@@ -151,23 +140,9 @@
                     return;
                 }
 
-                document.getElementById("modal-produk").textContent = "PANEL BOT";
-                document.getElementById("modal-ram").textContent = jumlahRam;
-                document.getElementById("modal-harga").textContent = totalHarga;
-                document.getElementById("order-modal").style.display = "flex";
-            });
-
-            addClickListener("cancel-order", () => document.getElementById("order-modal").style.display = "none");
-
-            addClickListener("confirm-order", () => {
-                let jumlahRam = jumlahRamSelect.value;
-                let totalHarga = parseInt(document.getElementById("total-harga").textContent);
-                let saldoSekarang = parseInt(localStorage.getItem("saldo-" + username));
-
                 saldoSekarang -= totalHarga;
                 localStorage.setItem("saldo-" + username, saldoSekarang);
                 document.getElementById("saldo").textContent = saldoSekarang;
-                document.getElementById("order-modal").style.display = "none";
 
                 let whatsappLink = `https://wa.me/62856004625328?text=Halo, saya ingin order PANEL BOT ${jumlahRam}GB seharga Rp${totalHarga} IDR`;
                 window.open(whatsappLink, "_blank");
