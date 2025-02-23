@@ -1,24 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>REX MARKET</title>
+    <title>REX MARKET - Order</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Header dengan Logout Fixed -->
     <header>
         <nav>
-            <ul>
-                <li><a href="#">Order</a></li>
+            <u
+                
                 <li><button id="logout-btn">Logout</button></li>
             </ul>
         </nav>
     </header>
 
-    <!-- Modal Konfirmasi Logout -->
     <div id="logout-modal" class="modal">
         <div class="modal-content">
             <h3>Konfirmasi Logout</h3>
@@ -28,133 +26,56 @@
         </div>
     </div>
 
-    <!-- Halaman Login & Register -->
-    <div id="auth-container">
-        <h2>Login</h2>
-        <form id="login-form">
-            <label>Username:</label>
-            <input type="text" id="login-username" required>
-            <label>Password:</label>
-            <input type="password" id="login-password" required>
-            <button type="submit">Login</button>
-        </form>
+    <main id="order-container">
+        <h2>Saldo: <span id="saldo">0</span> IDR</h2>
+        <button id="beli-saldo-btn">Beli Saldo</button>
 
-        <h2>Register</h2>
-        <form id="register-form">
-            <label>Username:</label>
-            <input type="text" id="register-username" required>
-            <label>Password:</label>
-            <input type="password" id="register-password" required>
-            <button type="submit">Register</button>
-        </form>
-    </div>
-
-    <!-- Halaman Order (Hanya Jika Login) -->
-    <main id="order-container" style="display: none;">
-        
-        <!-- Admin Panel (Hanya untuk Owner) -->
-        <section class="admin-container" id="admin-panel" style="display: none;">
-            <h2>Admin Panel</h2>
-        </section>
-
-        <!-- Bagian Saldo -->
-        <section class="saldo-container">
-            <h2>Saldo: <span id="saldo">0</span> IDR</h2>
-            <button id="beli-saldo-btn">Beli Mata Uang</button>
-        </section>
-
-        <!-- Bagian Produk -->
-        <section class="produk-container">
-            <h2>Order Produk</h2>
-            <div class="produk-card">
-                <img src="image-produk.jpg" alt="PANEL BOT" class="product-image">
-                <h3>PANEL BOT</h3>
-                <p>Harga: Rp 1.000 / 1GB</p>
-                <select id="jumlah-ram">
-                    <option value="">Pilih Jumlah Ram</option>
-                    <option value="1">1 GB</option>
-                    <option value="2">2 GB</option>
-                </select>
-                <p>Harga Total: Rp <span id="total-harga">0</span></p>
-                <button id="order-btn">Order</button>
-            </div>
-        </section>
+        <h2>Order Produk</h2>
+        <div class="produk-card">
+            <img src="image-produk.jpg" alt="PANEL BOT" class="product-image">
+            <h3>PANEL BOT</h3>
+            <p>Harga: Rp 1.000 / 1GB</p>
+            <select id="jumlah-ram">
+                <option value="">Pilih Jumlah Ram</option>
+                <option value="3">3 GB</option>
+                <option value="4">4 GB</option>
+                <option value="5">5 GB</option>
+                <option value="6">6 GB</option>
+                <option value="7">7 GB</option>
+                <option value="8">8 GB</option>
+            </select>
+            <p>Harga Total: Rp <span id="total-harga">0</span></p>
+            <button id="order-btn">Order</button>
+        </div>
     </main>
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            let logoutModal = document.getElementById("logout-modal");
-            let logoutBtn = document.getElementById("logout-btn");
-            let confirmLogout = document.getElementById("confirm-logout");
-            let cancelLogout = document.getElementById("cancel-logout");
-
             let username = localStorage.getItem("username");
-            let orderContainer = document.getElementById("order-container");
-            let authContainer = document.getElementById("auth-container");
 
-            // Cek login
-            if (username) {
-                authContainer.style.display = "none";
-                orderContainer.style.display = "block";
-                if (username === "rexowner") {
-                    document.getElementById("admin-panel").style.display = "block";
-                }
-            } else {
-                authContainer.style.display = "block";
-                orderContainer.style.display = "none";
+            if (!username) {
+                window.location.href = "index.html"; // Jika belum login, balik ke index.html
             }
 
-            // Logout Modal
-            logoutBtn.addEventListener("click", function() {
-                logoutModal.style.display = "flex";
+            document.getElementById("logout-btn").addEventListener("click", function() {
+                document.getElementById("logout-modal").style.display = "flex";
             });
 
-            cancelLogout.addEventListener("click", function() {
-                logoutModal.style.display = "none";
+            document.getElementById("cancel-logout").addEventListener("click", function() {
+                document.getElementById("logout-modal").style.display = "none";
             });
 
-            confirmLogout.addEventListener("click", function() {
+            document.getElementById("confirm-logout").addEventListener("click", function() {
                 localStorage.removeItem("username");
                 window.location.href = "index.html";
             });
 
-            // Register
-            document.getElementById("register-form").addEventListener("submit", function(e) {
-                e.preventDefault();
-                let regUser = document.getElementById("register-username").value;
-                let regPass = document.getElementById("register-password").value;
-
-                if (localStorage.getItem(regUser)) {
-                    alert("Username sudah terdaftar!");
-                } else {
-                    localStorage.setItem(regUser, regPass);
-                    alert("Registrasi berhasil! Silakan login.");
-                }
-            });
-
-            // Login
-            document.getElementById("login-form").addEventListener("submit", function(e) {
-                e.preventDefault();
-                let loginUser = document.getElementById("login-username").value;
-                let loginPass = document.getElementById("login-password").value;
-                let storedPass = localStorage.getItem(loginUser);
-
-                if (storedPass && storedPass === loginPass) {
-                    localStorage.setItem("username", loginUser);
-                    window.location.href = "index.html"; // Redirect tanpa reload
-                } else {
-                    alert("Username atau password salah!");
-                }
-            });
-
-            // Order Produk via WhatsApp
             document.getElementById("order-btn").addEventListener("click", function() {
                 let jumlahRam = document.getElementById("jumlah-ram").value;
                 let totalHarga = document.getElementById("total-harga").textContent;
                 let whatsappLink = `https://wa.me/62856004625328?text=Halo, saya ingin order PANEL BOT ${jumlahRam}GB seharga Rp${totalHarga} IDR`;
                 window.open(whatsappLink, "_blank");
             });
-
         });
     </script>
 
