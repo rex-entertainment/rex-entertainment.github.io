@@ -8,6 +8,52 @@
 </head>
 <body>
 
+    <header>
+        <nav>
+            <ul>
+                <li><button id="logout-btn">Logout</button></li>
+            </ul>
+        </nav>
+    </header>
+
+      <header>
+        <nav>
+            <ul>
+                <li><button id="back-btn">Back</button></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Modal Konfirmasi Logout -->
+    <div id="logout-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <h3>Konfirmasi Logout</h3>
+            <p>Apakah Anda yakin ingin logout?</p>
+            <button id="confirm-logout">Yes</button>
+            <button id="cancel-logout">No</button>
+        </div>
+    </div>
+
+    <!-- Modal Konfirmasi Logout -->
+    <div id="logout-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <h3>Konfirmasi Logout</h3>
+            <p>Apakah Anda yakin ingin logout?</p>
+            <button id="confirm-logout">Yes</button>
+            <button id="cancel-logout">No</button>
+        </div>
+    </div>
+
+      <!-- Modal Konfirmasi Back -->
+    <div id="back-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <h3>Konfirmasi Back</h3>
+            <p>Apakah Anda yakin ingin kembali?</p>
+            <button id="confirm-back">Yes</button>
+            <button id="cancel-back">No</button>
+        </div>
+    </div>
+
   <div id="saldo-container" style="display: none;">
     <h2>Kelola Saldo</h2>
     
@@ -27,8 +73,6 @@
       <input type="number" id="amount-kurang" required>
       <button type="submit">Kurangi</button>
     </form>
-
-    <button id="logout-btn">Logout</button>
   </div>
 
   <script>
@@ -43,6 +87,33 @@
       const saldoElement = document.getElementById("saldo");
       const targetUsernameInput = document.getElementById("target-username");
 
+            // Logout Modal
+            document.getElementById("logout-btn").addEventListener("click", function() {
+                document.getElementById("logout-modal").style.display = "flex";
+            });
+
+            document.getElementById("cancel-logout").addEventListener("click", function() {
+                document.getElementById("logout-modal").style.display = "none";
+            });
+
+            document.getElementById("confirm-logout").addEventListener("click", function() {
+                localStorage.removeItem("username");
+                window.location.href = "admin-login.html";
+            });
+
+                  // Back Modal
+            document.getElementById("back-btn").addEventListener("click", function() {
+                document.getElementById("back-modal").style.display = "flex";
+            });
+
+            document.getElementById("cancel-back").addEventListener("click", function() {
+                document.getElementById("back-modal").style.display = "none";
+            });
+
+            document.getElementById("confirm-back").addEventListener("click", function() {
+                window.location.href = "order.html";
+            });
+      
       function getSaldo(username) {
         return parseInt(localStorage.getItem("saldo-" + username)) || 0;
       }
