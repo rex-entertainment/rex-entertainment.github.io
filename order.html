@@ -10,13 +10,13 @@
 
     <header>
         <nav>
-            <u
-                
+            <ul>
                 <li><button id="logout-btn">Logout</button></li>
             </ul>
         </nav>
     </header>
 
+    <!-- Modal Konfirmasi Logout -->
     <div id="logout-modal" class="modal">
         <div class="modal-content">
             <h3>Konfirmasi Logout</h3>
@@ -27,9 +27,17 @@
     </div>
 
     <main id="order-container">
+        <!-- Admin Panel (Hanya untuk Owner) -->
+        <section class="admin-container" id="admin-panel" style="display: none;">
+            <h2>Admin Panel</h2>
+            <p>Fitur admin dapat ditambahkan di sini</p>
+        </section>
+
+        <!-- Bagian Saldo -->
         <h2>Saldo: <span id="saldo">0</span> IDR</h2>
         <button id="beli-saldo-btn">Beli Saldo</button>
 
+        <!-- Bagian Produk -->
         <h2>Order Produk</h2>
         <div class="produk-card">
             <img src="image-produk.jpg" alt="PANEL BOT" class="product-image">
@@ -57,6 +65,20 @@
                 window.location.href = "index.html"; // Jika belum login, balik ke index.html
             }
 
+            // Cek apakah saldo sudah ada di localStorage, jika belum set default 0
+            if (!localStorage.getItem("saldo-" + username)) {
+                localStorage.setItem("saldo-" + username, "0");
+            }
+
+            // Ambil saldo dari localStorage
+            let saldo = localStorage.getItem("saldo-" + username);
+            document.getElementById("saldo").textContent = saldo;
+
+            // Tampilkan Admin Panel jika username adalah "myrex"
+            if (username === "myrex") {
+                document.getElementById("admin-panel").style.display = "block";
+            }
+
             document.getElementById("logout-btn").addEventListener("click", function() {
                 document.getElementById("logout-modal").style.display = "flex";
             });
@@ -70,12 +92,50 @@
                 window.location.href = "index.html";
             });
 
+            document.getElementById("beli-saldo-btn").addEventListener("click", function() {
+                let tambahSaldo = prompt("Masukkan jumlah saldo yang ingin dibeli:");
+                if (tambahSaldo !== null && !isNaN(tambahSaldo) && tambahSaldo > 0) {
+                    let saldoSekarang = parseInt(localStorage.getItem("saldo-" + username));
+                    let saldoBaru = saldoSekarang + parseInt(tambahSaldo);
+                    localStorage.setItem("saldo-" + username, saldoBaru);
+                    document.getElementById("saldo").textContent = saldoBaru;
+                    alert("Saldo berhasil ditambahkan!");
+                } else {
+                    alert("Masukkan jumlah saldo yang valid!");
+                }
+            });
+
+            document.getElementById("jumlah-ram").addEventListener("change", function() {
+                let jumlahRam = parseInt(this.value);
+                let totalHarga = jumlahRam * 1000; // Harga per GB Rp 1.000
+                document.getElementById("total-harga").textContent = totalHarga;
+            });
+
             document.getElementById("order-btn").addEventListener("click", function() {
                 let jumlahRam = document.getElementById("jumlah-ram").value;
-                let totalHarga = document.getElementById("total-harga").textContent;
+                let totalHarga = parseInt(document.getElementById("total-harga").textContent);
+                let saldoSekarang = parseInt(localStorage.getItem("saldo-" + username));
+
+                if (jumlahRam === "") {
+                    alert("Silakan pilih jumlah RAM terlebih dahulu!");
+                    return;
+                }
+
+                if (saldoSekarang < totalHarga) {
+                    alert("Saldo tidak cukup! Silakan beli saldo terlebih dahulu.");
+                    return;
+                }
+
+                // Kurangi saldo setelah pembelian
+                saldoSekarang -= totalHarga;
+                localStorage.setItem("saldo-" + username, saldoSekarang);
+                document.getElementById("saldo").textContent = saldoSekarang;
+
+                // Redirect ke WhatsApp untuk order
                 let whatsappLink = `https://wa.me/62856004625328?text=Halo, saya ingin order PANEL BOT ${jumlahRam}GB seharga Rp${totalHarga} IDR`;
                 window.open(whatsappLink, "_blank");
             });
+
         });
     </script>
 
