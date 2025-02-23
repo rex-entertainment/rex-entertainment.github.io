@@ -40,41 +40,37 @@ body {
     background-color: #cc0000;
 }
 
+/* ======== Wrapper untuk Admin & Saldo ======== */
+.wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
 /* ======== Card Containers ======== */
-.container, #saldo-container, .admin-container, .produk-container {
+.card-container {
     background-color: #1a1a1a;
     padding: 20px;
     border-radius: 10px;
     border: 2px solid #b8860b;
-    width: 90%;
-    max-width: 400px;
+    width: 280px;
     text-align: center;
     box-shadow: 0 0 15px rgba(184, 134, 11, 0.6);
     transition: box-shadow 0.3s ease-in-out;
 }
 
-.container:hover, #saldo-container:hover, .admin-container:hover, .produk-container:hover {
+.card-container:hover {
     box-shadow: 0 0 25px rgba(184, 134, 11, 0.9);
 }
 
-/* ======== Admin Menu Card ======== */
-.admin-wrapper {
-    display: flex;
-    justify-content: center;
-    margin: 20px 0;
-}
-
-.admin-container {
-    text-align: center;
-    width: 300px;
-}
-
+/* ======== Admin Panel ======== */
 .admin-container h2 {
-    margin-bottom: 10px;
     color: #ff5722;
 }
 
-.admin-container button {
+/* Tombol Admin */
+#admin-menu-btn {
     background-color: #ff5722;
     color: white;
     border: none;
@@ -86,34 +82,17 @@ body {
     box-shadow: 0 0 10px rgba(255, 87, 34, 0.5);
 }
 
-.admin-container button:hover {
+#admin-menu-btn:hover {
     background-color: #e64a19;
     box-shadow: 0 0 20px rgba(255, 87, 34, 0.8);
 }
 
 /* ======== Saldo Section ======== */
-.saldo-wrapper {
-    display: flex;
-    justify-content: center;
-    margin: 20px 0;
-}
-
-.saldo-container {
-    text-align: center;
-    width: 300px;
-}
-
 .saldo-container h2 {
-    margin-bottom: 10px;
     color: #b8860b;
 }
 
-.saldo-container p {
-    font-size: 20px;
-    font-weight: bold;
-}
-
-/* ======== Tombol Deposit Saldo ======== */
+/* Tombol Deposit Saldo */
 #deposit-saldo-btn {
     background-color: #28a745;
     color: white;
@@ -134,6 +113,7 @@ body {
 /* ======== Produk Section ======== */
 .produk-container {
     text-align: center;
+    margin-top: 20px;
 }
 
 .produk-card {
