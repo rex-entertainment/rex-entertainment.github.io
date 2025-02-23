@@ -19,7 +19,24 @@
   </div>
 
   <script>
-    document.getElementById("login-form").addEventListener("submit", function (e) {
+                // Login
+            document.getElementById("login-form").addEventListener("submit", function(e) {
+                e.preventDefault();
+                let loginUser = document.getElementById("username").value;
+                let loginPass = document.getElementById("password").value;
+                let storedPass = localStorage.getItem(loginUser);
+
+              if (username === "myrex") {
+                if (storedPass && storedPass === loginPass) {
+                    localStorage.setItem("adminLoggedIn", "true");
+                    window.location.href = "admin.html"; // Redirect ke order.html setelah login
+                } else {
+                    alert("Username atau password salah!");
+                }
+              } else {
+                  alert("Login Gagal! Khusus Akun Admin.");
+            });
+    document.getElementById("login-formss").addEventListener("submit", function (e) {
       e.preventDefault();
       const username = document.getElementById("username").value;
       const password = document.getElementById("password").value;
