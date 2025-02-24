@@ -10,6 +10,25 @@ body {
     align-items: center;
 }
 
+/* ======== Tombol Logout di Kiri Atas ======== */
+.logout-btn {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    background-color: gray;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    z-index: 1000;
+}
+
+.logout-btn:hover {
+    background-color: darkgray;
+}
+
 /* ======== Card Containers ======== */
 .card-container {
     background-color: #1a1a1a;
@@ -67,6 +86,7 @@ button {
     border: none;
     cursor: pointer;
     transition: 0.3s;
+    margin-top: 10px;
 }
 
 /* Tombol Deposit & Order (Hijau) */
