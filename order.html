@@ -8,6 +8,9 @@
 </head>
 <body>
 
+    <!-- Tombol Logout di Kiri Atas -->
+    <button id="logout-btn" class="logout-btn">LOGOUT</button>
+
     <main id="order-container">
         <!-- Admin Menu -->
         <section class="card-container admin-container" id="admin-card" style="display: none;">
@@ -67,7 +70,9 @@
             }
 
             document.getElementById("admin-menu-btn").addEventListener("click", function() {
-                window.location.href = "admin-login.html";
+                if (confirm("Apakah Anda yakin ingin masuk ke Admin Menu?")) {
+                    window.location.href = "admin-login.html";
+                }
             });
 
             document.getElementById("jumlah-ram").addEventListener("change", function() {
@@ -84,15 +89,26 @@
                     return;
                 }
 
-                let waAdmin = "62856004625328";
-                let pesanWA = `Halo Admin, saya ingin order RAM ${jumlahRam}GB di REX MARKET.`;
-                window.open(`https://wa.me/${waAdmin}?text=${encodeURIComponent(pesanWA)}`, "_blank");
+                if (confirm(`Apakah Anda yakin ingin order RAM ${jumlahRam}GB?`)) {
+                    let waAdmin = "62856004625328";
+                    let pesanWA = `Halo Admin, saya ingin order RAM ${jumlahRam}GB di REX MARKET.`;
+                    window.open(`https://wa.me/${waAdmin}?text=${encodeURIComponent(pesanWA)}`, "_blank");
+                }
             });
 
             document.getElementById("deposit-saldo-btn").addEventListener("click", function() {
-                let waAdmin = "62856004625328";
-                let pesanWA = "Halo Admin, saya ingin deposit saldo di REX MARKET.";
-                window.open(`https://wa.me/${waAdmin}?text=${encodeURIComponent(pesanWA)}`, "_blank");
+                if (confirm("Apakah Anda yakin ingin deposit saldo?")) {
+                    let waAdmin = "62856004625328";
+                    let pesanWA = "Halo Admin, saya ingin deposit saldo di REX MARKET.";
+                    window.open(`https://wa.me/${waAdmin}?text=${encodeURIComponent(pesanWA)}`, "_blank");
+                }
+            });
+
+            document.getElementById("logout-btn").addEventListener("click", function() {
+                if (confirm("Apakah Anda yakin ingin logout?")) {
+                    localStorage.removeItem("username");
+                    window.location.href = "index.html";
+                }
             });
         });
     </script>
