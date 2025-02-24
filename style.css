@@ -1,72 +1,30 @@
 /* ======== General ======== */
 body {
     background-color: #121212;
-    color: white;
+    color: gold;
     font-family: Arial, sans-serif;
     margin: 0;
-    padding-top: 70px; /* Menyesuaikan dengan tinggi header */
+    padding-top: 50px;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-/* ======== Fixed Header ======== */
-.fixed-header {
-    background: #222;
-    color: gold;
-    text-align: center;
-    padding: 15px 0;
-    font-size: 24px;
-    font-weight: bold;
-    width: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.fixed-header .logout-btn {
-    position: absolute;
-    left: 20px;
-    background-color: #ff4444;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.fixed-header .logout-btn:hover {
-    background-color: #cc0000;
-}
-
-/* ======== Card Containers (Admin, Saldo, Produk) ======== */
+/* ======== Card Containers ======== */
 .card-container {
     background-color: #1a1a1a;
     padding: 20px;
     border-radius: 10px;
-    border: 2px solid #b8860b;
+    border: 2px solid gold;
     width: 300px;
     text-align: center;
-    box-shadow: 0 0 15px rgba(184, 134, 11, 0.6);
-    transition: box-shadow 0.3s ease-in-out;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
     margin-bottom: 15px;
 }
 
-.card-container:hover {
-    box-shadow: 0 0 25px rgba(184, 134, 11, 0.9);
-}
-
-/* ======== Produk Section ======== */
-.produk-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 20px;
+.card-container h2,
+.card-container p {
+    color: gold;
 }
 
 /* ======== Produk Card ======== */
@@ -74,20 +32,13 @@ body {
     padding: 15px;
     border-radius: 10px;
     width: 280px;
-    border: 2px solid #b8860b;
-    box-shadow: 0 0 15px rgba(184, 134, 11, 0.6);
-    transition: box-shadow 0.3s ease-in-out;
+    border: 2px solid gold;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
 }
 
-.produk-card:hover {
-    box-shadow: 0 0 25px rgba(184, 134, 11, 0.9);
-}
-
-/* ======== Gambar Produk ======== */
-.product-image {
+.produk-card img {
     width: 100%;
     max-width: 150px;
-    height: auto;
     border-radius: 10px;
     display: block;
     margin: 10px auto;
@@ -99,9 +50,43 @@ select {
     padding: 10px;
     margin: 5px 0;
     border-radius: 5px;
-    border: 1px solid #b8860b;
+    border: 1px solid gold;
     background-color: black;
-    color: #b8860b;
+    color: gold;
     font-weight: bold;
     text-align: center;
+}
+
+/* ======== Tombol ======== */
+button {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* Tombol Deposit & Order (Hijau) */
+.deposit-btn,
+.order-btn {
+    background-color: green;
+    color: white;
+}
+
+.deposit-btn:hover,
+.order-btn:hover {
+    background-color: darkgreen;
+}
+
+/* Tombol Admin Menu (Merah) */
+.admin-btn {
+    background-color: red;
+    color: white;
+}
+
+.admin-btn:hover {
+    background-color: darkred;
 }
