@@ -8,29 +8,31 @@
 </head>
 <body>
 
-    <!-- Tombol Logout di Kiri Atas -->
-    <button id="logout-btn" class="logout-btn">LOGOUT</button>
+    <!-- Header -->
+    <header class="fixed-header">
+        <h1>REX MARKET</h1>
+        <button id="logout-btn" class="logout-btn">Logout</button>
+    </header>
 
     <main id="order-container">
         <!-- Admin Menu -->
         <section class="card-container admin-container" id="admin-card" style="display: none;">
             <h2>ADMIN MENU</h2>
             <p>Untuk setting saldo</p>
-            <button id="admin-menu-btn" class="admin-btn">ADMIN MENU</button>
+            <button id="admin-menu-btn" class="btn-red">ADMIN MENU</button>
         </section>
 
         <!-- Saldo -->
         <section class="card-container saldo-container">
             <h2>Saldo Anda</h2>
             <p><span id="saldo">0</span> IDR</p>
-            <button id="deposit-saldo-btn" class="deposit-btn">DEPOSIT</button>
+            <button id="deposit-saldo-btn" class="btn-green">DEPOSIT</button>
         </section>
 
         <!-- Produk -->
         <section class="card-container produk-container">
             <h2>Order Produk</h2>
             <div class="produk-card">
-                <img src="image-produk.jpg" alt="PANEL BOT" class="product-image">
                 <h3>PANEL BOT</h3>
                 <p>Harga: Rp 1.000 / 1GB</p>
                 <select id="jumlah-ram">
@@ -38,41 +40,57 @@
                     <option value="3">3 GB</option>
                     <option value="4">4 GB</option>
                     <option value="5">5 GB</option>
-                    <option value="6">6 GB</option>
-                    <option value="7">7 GB</option>
-                    <option value="8">8 GB</option>
                 </select>
                 <p>Harga Total: Rp <span id="total-harga">0</span></p>
-                <button id="order-btn" class="order-btn">ORDER</button>
+                <button id="order-btn" class="btn-green">ORDER</button>
             </div>
         </section>
     </main>
 
+    <!-- Modal Konfirmasi -->
+    <div id="modal-konfirmasi" class="modal">
+        <div class="modal-content">
+            <p id="modal-text"></p>
+            <button id="modal-yes" class="btn-green">Ya</button>
+            <button id="modal-no" class="btn-red">Tidak</button>
+        </div>
+    </div>
+
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             let username = localStorage.getItem("username");
-
             if (!username) {
                 window.location.href = "index.html";
                 return;
             }
 
-            if (!localStorage.getItem("saldo-" + username)) {
-                localStorage.setItem("saldo-" + username, "0");
-            }
-
-            let saldo = localStorage.getItem("saldo-" + username);
+            let saldo = localStorage.getItem("saldo-" + username) || "0";
             document.getElementById("saldo").textContent = saldo;
 
-            let adminCard = document.getElementById("admin-card");
             if (username === "myrex") {
-                adminCard.style.display = "block";
+                document.getElementById("admin-card").style.display = "block";
             }
 
-            document.getElementById("admin-menu-btn").addEventListener("click", function() {
-                if (confirm("Apakah Anda yakin ingin masuk ke Admin Menu?")) {
-                    window.location.href = "admin-login.html";
-                }
+            function showModal(message, callback) {
+                document.getElementById("modal-text").textContent = message;
+                document.getElementById("modal-konfirmasi").style.display = "flex";
+                document.getElementById("modal-yes").onclick = function() {
+                    document.getElementById("modal-konfirmasi").style.display = "none";
+                    callback(true);
+                };
+                document.getElementById("modal-no").onclick = function() {
+                    document.getElementById("modal-konfirmasi").style.display = "none";
+                    callback(false);
+                };
+            }
+
+            document.getElementById("logout-btn").addEventListener("click", function() {
+                showModal("Apakah Anda yakin ingin logout?", function(confirm) {
+                    if (confirm) {
+                        localStorage.removeItem("username");
+                        window.location.href = "index.html";
+                    }
+                });
             });
 
             document.getElementById("jumlah-ram").addEventListener("change", function() {
@@ -84,31 +102,38 @@
 
             document.getElementById("order-btn").addEventListener("click", function() {
                 let jumlahRam = parseInt(document.getElementById("jumlah-ram").value);
+                let hargaTotal = jumlahRam * 1000;
+                let saldoSaatIni = parseInt(localStorage.getItem("saldo-" + username));
+
                 if (!jumlahRam) {
                     alert("Pilih jumlah RAM terlebih dahulu!");
                     return;
                 }
 
-                if (confirm(`Apakah Anda yakin ingin order RAM ${jumlahRam}GB?`)) {
-                    let waAdmin = "62856004625328";
-                    let pesanWA = `Halo Admin, saya ingin order RAM ${jumlahRam}GB di REX MARKET.`;
-                    window.open(`https://wa.me/${waAdmin}?text=${encodeURIComponent(pesanWA)}`, "_blank");
-                }
+                showModal("Apakah Anda yakin ingin order?", function(confirm) {
+                    if (confirm) {
+                        if (saldoSaatIni < hargaTotal) {
+                            alert("Saldo tidak cukup, silakan deposit.");
+                            return;
+                        }
+
+                        localStorage.setItem("saldo-" + username, saldoSaatIni - hargaTotal);
+                        document.getElementById("saldo").textContent = saldoSaatIni - hargaTotal;
+                        alert("Order berhasil! Silakan chat admin di WhatsApp: +62856004625328");
+                    }
+                });
             });
 
             document.getElementById("deposit-saldo-btn").addEventListener("click", function() {
-                if (confirm("Apakah Anda yakin ingin deposit saldo?")) {
-                    let waAdmin = "62856004625328";
-                    let pesanWA = "Halo Admin, saya ingin deposit saldo di REX MARKET.";
-                    window.open(`https://wa.me/${waAdmin}?text=${encodeURIComponent(pesanWA)}`, "_blank");
-                }
+                showModal("Apakah Anda ingin deposit saldo?", function(confirm) {
+                    if (confirm) {
+                        alert("Silakan chat admin di WhatsApp: +62856004625328 untuk deposit.");
+                    }
+                });
             });
 
-            document.getElementById("logout-btn").addEventListener("click", function() {
-                if (confirm("Apakah Anda yakin ingin logout?")) {
-                    localStorage.removeItem("username");
-                    window.location.href = "index.html";
-                }
+            document.getElementById("admin-menu-btn").addEventListener("click", function() {
+                window.location.href = "admin-login.html";
             });
         });
     </script>
