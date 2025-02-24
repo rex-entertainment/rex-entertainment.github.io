@@ -4,29 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>REX MARKET - Order</title>
-    <link rel="stylesheet" href="style.css"> <!-- Link ke file CSS -->
+    <link rel="stylesheet" href="style.css"> <!-- Link ke CSS -->
 </head>
 <body>
-
-    <!-- Banner REX MARKET -->
-    <header class="fixed-header">
-        <button id="logout-btn" class="logout-btn">Logout</button>
-        <h1>REX MARKET</h1>
-    </header>
 
     <main id="order-container">
         <!-- Admin Menu -->
         <section class="card-container admin-container" id="admin-card" style="display: none;">
             <h2>ADMIN MENU</h2>
             <p>Untuk setting saldo</p>
-            <button id="admin-menu-btn">ADMIN MENU</button>
+            <button id="admin-menu-btn" class="admin-btn">ADMIN MENU</button>
         </section>
 
         <!-- Saldo -->
         <section class="card-container saldo-container">
             <h2>Saldo Anda</h2>
             <p><span id="saldo">0</span> IDR</p>
-            <button id="deposit-saldo-btn">DEPOSIT</button>
+            <button id="deposit-saldo-btn" class="deposit-btn">DEPOSIT</button>
         </section>
 
         <!-- Produk -->
@@ -46,7 +40,7 @@
                     <option value="8">8 GB</option>
                 </select>
                 <p>Harga Total: Rp <span id="total-harga">0</span></p>
-                <button id="order-btn">ORDER</button>
+                <button id="order-btn" class="order-btn">ORDER</button>
             </div>
         </section>
     </main>
@@ -68,13 +62,12 @@
             document.getElementById("saldo").textContent = saldo;
 
             let adminCard = document.getElementById("admin-card");
-            if (username === "myrex") { // Admin hanya untuk myrex
+            if (username === "myrex") {
                 adminCard.style.display = "block";
             }
 
-            document.getElementById("logout-btn").addEventListener("click", function() {
-                localStorage.removeItem("username");
-                window.location.href = "index.html";
+            document.getElementById("admin-menu-btn").addEventListener("click", function() {
+                window.location.href = "admin-login.html";
             });
 
             document.getElementById("jumlah-ram").addEventListener("change", function() {
@@ -86,32 +79,20 @@
 
             document.getElementById("order-btn").addEventListener("click", function() {
                 let jumlahRam = parseInt(document.getElementById("jumlah-ram").value);
-                let hargaTotal = jumlahRam * 1000;
-                let saldoSaatIni = parseInt(localStorage.getItem("saldo-" + username));
-
                 if (!jumlahRam) {
                     alert("Pilih jumlah RAM terlebih dahulu!");
                     return;
                 }
 
-                if (saldoSaatIni < hargaTotal) {
-                    alert("Saldo tidak cukup, silakan deposit.");
-                    return;
-                }
-
-                localStorage.setItem("saldo-" + username, saldoSaatIni - hargaTotal);
-                document.getElementById("saldo").textContent = saldoSaatIni - hargaTotal;
-                alert("Order berhasil!");
+                let waAdmin = "62856004625328";
+                let pesanWA = `Halo Admin, saya ingin order RAM ${jumlahRam}GB di REX MARKET.`;
+                window.open(`https://wa.me/${waAdmin}?text=${encodeURIComponent(pesanWA)}`, "_blank");
             });
 
             document.getElementById("deposit-saldo-btn").addEventListener("click", function() {
-                let deposit = prompt("Masukkan jumlah deposit:");
-                if (deposit) {
-                    let saldoSaatIni = parseInt(localStorage.getItem("saldo-" + username));
-                    localStorage.setItem("saldo-" + username, saldoSaatIni + parseInt(deposit));
-                    document.getElementById("saldo").textContent = saldoSaatIni + parseInt(deposit);
-                    alert("Deposit berhasil!");
-                }
+                let waAdmin = "62856004625328";
+                let pesanWA = "Halo Admin, saya ingin deposit saldo di REX MARKET.";
+                window.open(`https://wa.me/${waAdmin}?text=${encodeURIComponent(pesanWA)}`, "_blank");
             });
         });
     </script>
