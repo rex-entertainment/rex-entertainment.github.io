@@ -4,16 +4,14 @@ body {
     color: white;
     font-family: Arial, sans-serif;
     margin: 0;
-    padding: 0;
+    padding-top: 70px; /* Menyesuaikan dengan tinggi header */
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    min-height: 100vh;
 }
 
-/* ======== Banner REX MARKET ======== */
-.banner {
+/* ======== Fixed Header ======== */
+.fixed-header {
     background: #222;
     color: gold;
     text-align: center;
@@ -25,13 +23,14 @@ body {
     top: 0;
     left: 0;
     z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-/* ======== Logout Button ======== */
-.logout-btn {
+.fixed-header .logout-btn {
     position: absolute;
-    top: 15px;
-    right: 20px;
+    left: 20px;
     background-color: #ff4444;
     color: white;
     border: none;
@@ -40,7 +39,7 @@ body {
     cursor: pointer;
 }
 
-.logout-btn:hover {
+.fixed-header .logout-btn:hover {
     background-color: #cc0000;
 }
 
@@ -50,79 +49,32 @@ body {
     padding: 20px;
     border-radius: 10px;
     border: 2px solid #b8860b;
-    width: 280px;
+    width: 300px;
     text-align: center;
     box-shadow: 0 0 15px rgba(184, 134, 11, 0.6);
     transition: box-shadow 0.3s ease-in-out;
-    margin-bottom: 15px; /* Jarak antar card */
+    margin-bottom: 15px;
 }
 
 .card-container:hover {
     box-shadow: 0 0 25px rgba(184, 134, 11, 0.9);
 }
 
-/* ======== Admin Panel (Posisi di atas) ======== */
-.admin-container {
-    margin-top: 20px;
-}
-
-.admin-container h2 {
-    color: #ff5722;
-}
-
-/* Tombol Admin */
-#admin-menu-btn {
-    background-color: #ff5722;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-    width: 100%;
-    font-weight: bold;
-    box-shadow: 0 0 10px rgba(255, 87, 34, 0.5);
-}
-
-#admin-menu-btn:hover {
-    background-color: #e64a19;
-    box-shadow: 0 0 20px rgba(255, 87, 34, 0.8);
-}
-
-/* ======== Saldo Section (Posisi di bawah Admin) ======== */
-.saldo-container h2 {
-    color: #b8860b;
-}
-
-/* Tombol Deposit Saldo */
-#deposit-saldo-btn {
-    background-color: #28a745;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-    width: 100%;
-    font-weight: bold;
-    box-shadow: 0 0 10px rgba(40, 167, 69, 0.5);
-}
-
-#deposit-saldo-btn:hover {
-    background-color: #218838;
-    box-shadow: 0 0 20px rgba(40, 167, 69, 0.8);
-}
-
 /* ======== Produk Section ======== */
 .produk-container {
-    text-align: center;
-    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
 }
 
+/* ======== Produk Card ======== */
 .produk-card {
     padding: 15px;
     border-radius: 10px;
-    width: 300px;
+    width: 280px;
     border: 2px solid #b8860b;
-    margin: 20px auto;
     box-shadow: 0 0 15px rgba(184, 134, 11, 0.6);
     transition: box-shadow 0.3s ease-in-out;
 }
