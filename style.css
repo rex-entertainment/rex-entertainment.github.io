@@ -10,12 +10,30 @@ body {
     align-items: center;
 }
 
-/* ======== Tombol Logout di Kiri Atas ======== */
+/* ======== Fixed Header ======== */
+.fixed-header {
+    background: #222;
+    color: gold;
+    text-align: center;
+    padding: 15px 0;
+    font-size: 24px;
+    font-weight: bold;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ======== Tombol Logout (Kanan Atas, Tetap Terlihat) ======== */
 .logout-btn {
     position: fixed;
     top: 10px;
-    left: 10px;
-    background-color: gray;
+    right: 10px;
+    background-color: red;
     color: white;
     border: none;
     padding: 10px 15px;
@@ -26,7 +44,7 @@ body {
 }
 
 .logout-btn:hover {
-    background-color: darkgray;
+    background-color: darkred;
 }
 
 /* ======== Card Containers ======== */
@@ -110,3 +128,31 @@ button {
 .admin-btn:hover {
     background-color: darkred;
 }
+
+/* ======== Modal Konfirmasi ======== */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: #222;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+    border: 2px solid gold;
+}
+
+.modal-content p {
+    color: gold;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    }
