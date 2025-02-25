@@ -2,41 +2,151 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>SELAMAT ULANG TAHUN</title>
+  <title>Selamat</title>
   <style>
     body {
-      background-color: #333;
+      background: linear-gradient(to right, #11998e, #38ef7d);
       font-family: Arial, sans-serif;
+      transition: background-color 0.1s ease-in-out;
     }
-    #tombol {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background-color: #4CAF50;
-      color: #fff;
-      padding: 20px 40px;
-      border: none;
+    .cardmedia {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      max-width: 600px;
+      font-size: 24px;
+      font-family: Arial, sans-serif;
+      width: 90%;
+      padding: 20px;
+      border-radius: 15px;
+      margin-top: 25px;
+      background: rgba(100, 100, 100, 0.3);
+      backdrop-filter: blur(2px);
+      box-shadow: 0 2px 3px rgba(0, 0, 0, 0.9);
+    }
+    .cardmedia .item {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 15px;
+    }
+    .cardmedia img {
+      width: 100%;
       border-radius: 5px;
-      cursor: pointer;
-      transition: background-color 0.3s ease-in-out;
+      box-shadow: 0 2px 3px rgba(0, 0, 0, 0.9);
     }
+    .cardmedia h1 {
+      font-size: 36px;
+      color: cyan;
+    }
+    .cardmedia p {
+      font-size: 18px;
+      color: skyblue;
+    }
+    .cardmedia button {
+            padding: 8px 16px;
+            font-size: 14px;
+            color: white;
+            background: rgba(100, 100, 100, 0.3);
+            box-shadow: 0 2px 3px rgba(0, 0, 0, 0.9);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+    .cardmedia button:hover {
+      background: rgba(100, 100, 100, 0.1);
+        }
+        
+        .btn {
+            padding: 8px 16px;
+            font-size: 14px;
+            color: white;
+            background: #000000;
+            box-shadow: 0 2px 3px rgba(0, 0, 0, 0.9);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+    .btn:hover {
+      background: #BBBBBB;
+        }
+        
+            /* Overlay Fullscreen */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        /* Konten Overlay */
+        .overlay-content {
+            background: #8B0A1A;
+            padding: 20px;
+            text-align: center;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 1);
+            color: black;
+            width: 80%;
+            max-width: 400px;
+        }
   </style>
 </head>
 <body>
-  <button id="tombol">Start Now</button>
-
+    
+  <div class="cardmedia">
+    <h1>HEPPY BIRTHDAY</h1>
+  </div>
+  <div class="cardmedia">
+    <button id="tombol" onclick="showComingSoon()">MULAI</button>
+    <p>pencet tombol di atas untuk melihat kejutan spesial</p>
+  </div>
+      <div id="comingSoonOverlay" class="overlay">
+        <div class="overlay-content">
+            <h1>CLICK BUTTON TO CLOSE</h1>
+            <button class="btn" onclick="showAudio2()">CLOSE</button>
+        </div>
+    </div>
+  <div class="cardmedia">
+     <img src="kue.png" alt="KUE">
+  </div>
   <script>
+    function showComingSoon() {
+        document.getElementById("comingSoonOverlay").style.display = "flex";
+    }
+
+    function closeComingSoon() {
+        document.getElementById("comingSoonOverlay").style.display = "none";
+    }
+    function showAudio2() {
+       const suara = new Audio('suara.mp3');
+       suara.loop = true;
+       suara.play();
+    }
+    
+    
     const tombol = document.getElementById('tombol');
     const suara = new Audio('suara.mp3');
-
     tombol.addEventListener('click', () => {
+      suara.loop = true;
       suara.play();
-      tombol.style.display = 'none';
-      document.body.style.backgroundColor = '#fff';
+      document.body.style.background = 'none';
+      let kelapKelip = false;
       setInterval(() => {
-        document.body.style.backgroundColor = document.body.style.backgroundColor === '#fff' ? '#333' : '#fff';
-      }, 100);
+        document.body.style.backgroundColor = kelapKelip ? '#FFFFFF' : '#000000';
+        kelapKelip = !kelapKelip;
+      }, 50);
     });
   </script>
 </body>
