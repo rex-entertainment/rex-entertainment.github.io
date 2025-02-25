@@ -1,0 +1,43 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>SELAMAT ULANG TAHUN</title>
+  <style>
+    body {
+      background-color: #333;
+      font-family: Arial, sans-serif;
+    }
+    #tombol {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #4CAF50;
+      color: #fff;
+      padding: 20px 40px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease-in-out;
+    }
+  </style>
+</head>
+<body>
+  <button id="tombol">Start Now</button>
+
+  <script>
+    const tombol = document.getElementById('tombol');
+    const suara = new Audio('suara.mp3');
+
+    tombol.addEventListener('click', () => {
+      suara.play();
+      tombol.style.display = 'none';
+      document.body.style.backgroundColor = '#fff';
+      setInterval(() => {
+        document.body.style.backgroundColor = document.body.style.backgroundColor === '#fff' ? '#333' : '#fff';
+      }, 100);
+    });
+  </script>
+</body>
+</html>
