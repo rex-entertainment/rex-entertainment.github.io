@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tools TikTok - Cek & Suntik</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            background: white;
+            width: 50%;
+            margin: auto;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            margin-top: 30px;
+        }
+
+        input, select {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        button {
+            background: #007bff;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        #result, #response {
+            margin-top: 20px;
+            text-align: left;
+            background: #eef;
+            padding: 15px;
+            border-radius: 5px;
+            display: inline-block;
+            width: 90%;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>🔍 Cek Video TikTok</h2>
+        <p>Masukkan URL TikTok untuk mendapatkan informasi video.</p>
+        <input type="text" id="tiktokUrl" placeholder="Masukkan URL TikTok">
+        <button onclick="cekTikTok()">Cek Video</button>
+        <div id="result"></div>
+    </div>
+
+    <div class="container">
+        <h2>🚀 Suntik Sosial Media</h2>
+        <form id="orderForm">
+            <label for="service">ID Layanan:</label>
+            <input type="number" id="service" required>
+
+            <label for="target">Target (Username/Link Video):</label>
+            <input type="text" id="target" required>
+
+            <label for="quantity">Jumlah Pesanan:</label>
+            <input type="number" id="quantity" required>
+
+            <button type="submit">Kirim Pesanan</button>
+        </form>
+
+        <div id="response"></div>
+    </div>
+
+    <script>
+        async function cekTikTok() {
+            const url = document.getElementById("tiktokUrl").value;
+            const resultDiv = document.getElementById("result");
+
+            if (!url) {
+                resultDiv.innerHTML = `<p style="color:red;">⚠️ Harap masukkan URL TikTok!</p>`;
+                return;
+            }
+
+            resultDiv.innerHTML = `<p>🔍 Sedang mencari video TikTok...</p>`;
+
+            try {
+                const apiUrl = `https://api.antidev.tech/api/media/tiktok?url=${encodeURIComponent(url)}`;
+                const response = await fetch(apiUrl, { headers: { "accept": "application/json" } });
+                const data = await response.json();
+
+                if (!data.response) {
+                    resultDiv.innerHTML = `<p style="color:red;">❌ Gagal mendapatkan data TikTok.</p>`;
+                    return;
+                }
+
+                const videoData = data.response;
+                resultDiv.innerHTML = `
+                    <h3>✅ Hasil Pencarian TikTok</h3>
+                    <p>📌 <b>Judul:</b> ${videoData.title}</p>
+                    <p>🎵 <b>Musik:</b> ${videoData.music_info?.title} - ${videoData.music_info?.author}</p>
+                    <p>👤 <b>Akun:</b> ${videoData.author?.nickname} (@${videoData.author?.unique_id})</p>
+                    <p>👀 <b>Views:</b> ${videoData.play_count}</p>
+                    <p>❤️ <b>Likes:</b> ${videoData.digg_count}</p>
+                    <p>💬 <b>Komentar:</b> ${videoData.comment_count}</p>
+                    <p>🔄 <b>Shares:</b> ${videoData.share_count}</p>
+                    <p>🎥 <b>Tanpa Watermark:</b> <a href="${videoData.play}" target="_blank">[Klik Disini]</a></p>
+                    <p>📌 <b>Dengan Watermark:</b> <a href="${videoData.wmplay}" target="_blank">[Klik Disini]</a></p>
+                    <p>🖼 <b>Thumbnail:</b> <br><img src="${videoData.cover}" width="200"></p>
+                `;
+
+                // Auto-masukkan target ke form suntik
+                document.getElementById("target").value = url;
+            } catch (error) {
+                console.error("Error fetching TikTok data:", error.message);
+                resultDiv.innerHTML = `<p style="color:red;">❌ Terjadi kesalahan saat mengambil data TikTok.</p>`;
+            }
+        }
+
+        document.getElementById("orderForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            const api_id = 1253;
+            const api_key = "9k4h8m-bcc9uf-ttmiif-d9ikh5-d05s10";
+            const service = document.getElementById("service").value;
+            const target = document.getElementById("target").value;
+            const quantity = document.getElementById("quantity").value;
+
+            let injectedVideos = JSON.parse(localStorage.getItem("injectedVideos")) || [];
+
+            if (injectedVideos.includes(target)) {
+                document.getElementById("response").innerHTML = `<p style="color:red;">⚠️ Video ini sudah pernah disuntik!</p>`;
+                return;
+            }
+
+            const data = {
+                api_id: api_id,
+                api_key: api_key,
+                service: parseInt(service),
+                target: target,
+                quantity: parseInt(quantity)
+            };
+
+            fetch("https://selebgramsmm.co.id/api/order", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    document.getElementById("response").innerHTML = `<p style="color:red;">❌ Gagal: ${data.error}</p>`;
+                } else {
+                    document.getElementById("response").innerHTML = `<p>✅ Pesanan Berhasil Dikirim!</p><pre>${JSON.stringify(data, null, 2)}</pre>`;
+                    injectedVideos.push(target);
+                    localStorage.setItem("injectedVideos", JSON.stringify(injectedVideos));
+                }
+            })
+            .catch(error => {
+                document.getElementById("response").innerHTML = `<p style="color:red;">❌ Error: ${error.message}</p>`;
+            });
+        });
+    </script>
+</body>
+  </html>
